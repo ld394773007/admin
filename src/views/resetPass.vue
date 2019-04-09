@@ -13,13 +13,14 @@
         <el-form-item prop="email">
           <el-input class="reset-input"
                     placeholder="你的邮箱"
+                    clearable
                     v-model="resetForm.email"
                     autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary"
-                     class="reset-btn"
-                     @click="submitForm('resetForm')">重置密码</el-button>
+          <a href="javascript:"
+             class="common-btn"
+             @click="submitForm('resetForm')">重置密码<i class="fas fa-arrow-alt-circle-right common-btn-icon"></i></a>
         </el-form-item>
       </el-form>
     </div>
@@ -30,9 +31,9 @@
       <div class="reset-success">
         <span class="reset-text">重置密码邮件已发送至邮箱</span>
         <span class="reset-text">{{resetForm.email}}, 有效期为24小时</span>
-        <el-button type="primary"
-                   class="reset-btn"
-                   @click="goToEmail">前往邮箱</el-button>
+        <a href="javascript:"
+             class="common-btn reset-btn"
+             @click="goToEmail">前往邮箱<i class="fas fa-arrow-alt-circle-right common-btn-icon"></i></a>
         <el-button type="primary"
                    plain
                    class="reset-btn"
@@ -158,8 +159,8 @@ export default {
     @include flex-col-center;
     position: absolute;
     left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    top: 15%;
+    transform: translate(-50%, 0);
   }
   .register {
     margin-top: 10px;

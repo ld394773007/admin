@@ -4,18 +4,16 @@
       <div class="header">
         <img class="logo"
              src="/static/images/创建企业_团队/u116.png">
-        <el-menu class="el-menu-demo"
-                 mode="horizontal"
-                 @select="handleSelect">
-          <el-menu-item index="1">产品</el-menu-item>
-          <el-menu-item index="2">价格</el-menu-item>
-          <el-menu-item index="1">解决方案</el-menu-item>
-        </el-menu>
+        <div class="nav-list">
+          <div class="nav-item">产品</div>
+          <div class="nav-item">价格</div>
+          <div class="nav-item">解决方案</div>
+          <div class="nav-item">客户案例</div>
+        </div>
         <div class="nav-action">
-          <el-button type="primary"
-                     @click="$router.push('/login')"
-                     round>登陆</el-button>
-          <el-button @click="$router.push('/register')" round>免费使用</el-button>
+          <router-link to="/login" class="login-btn btn">登录</router-link>
+          <button class="register-btn btn"
+                  @click="$router.push('/register')">免费使用</button>
         </div>
       </div>
     </el-header>
@@ -38,11 +36,48 @@ export default {
 <style lang="scss" scoped>
 .header {
   @include flex-center;
+  margin: 0 auto;
+  height: 64px;
+  max-width: 1200px;
   justify-content: space-between;
-  padding: 0 30px;
-  padding-top: 20px;
   .logo {
     width: 140px;
+  }
+  .nav-list {
+    @include flex-center;
+  }
+  .nav-item {
+    @include flex-center;
+    margin-right: 12px;
+    padding: 12px 16px;
+    height: 42px;
+    font-size: 16px;
+    color: #383838;
+    cursor: pointer;
+    &:hover {
+      color: #3da8f5;
+    }
+  }
+  .btn {
+    padding: 0 28px;
+    height: 42px;
+    line-height: 42px;
+    font-size: 16px;
+    color: #383838;
+    cursor: pointer;
+    &:hover {
+      color: #3da8f5;
+    }
+  }
+  .register-btn {
+    box-shadow: 0 2px 8px rgba(36, 100, 147, 0.15);
+    border: 1px solid #3da8f5;
+    border-radius: 26px;
+    color: #3da8f5;
+    transition: all .3s;
+    &:hover {
+      box-shadow: 0 6px 18px rgba(36,100,147,.15);
+    }
   }
 }
 </style>

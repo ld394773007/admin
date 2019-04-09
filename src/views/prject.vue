@@ -62,7 +62,7 @@
         </el-input>
       </div>
       <div class="prject-header-right">
-        <i class="fa fa-list-ul"
+        <i class="far fa-chart-bar"
            @click="type = !type"></i>
         <el-button type="primary">新建项目</el-button>
       </div>
@@ -132,6 +132,12 @@
           </div>
         </el-card>
       </div>
+      <div class="prject-pagination">
+        <el-pagination background
+                       layout="prev, pager, next"
+                       :total="1000">
+        </el-pagination>
+      </div>
     </div>
   </el-card>
 </template>
@@ -171,7 +177,24 @@ export default {
 <style lang="scss" scoped>
 .prject {
   position: relative;
+  .fa-chart-bar {
+    font-size: 24px;
+    color: #409eff;
+  }
+  &-pagination {
+    @include flex-center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 20px;
+  }
   &-list {
+    position: absolute;
+    left: 20px;
+    right: 0;
+    top: 0;
+    bottom: 80px;
+    overflow-y: auto;
     @include flex-center;
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -250,7 +273,6 @@ export default {
     right: 0;
     top: 80px;
     bottom: 0;
-    overflow-y: auto;
   }
   &-input,
   &-time {

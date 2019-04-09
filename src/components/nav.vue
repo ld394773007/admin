@@ -6,10 +6,7 @@
       <el-menu default-active="1"
                class="el-menu-demo"
                mode="horizontal"
-               @select="handleSelect"
-               background-color="#545c64"
-               text-color="#fff"
-               active-text-color="#ffd04b">
+               @select="handleSelect">
         <el-menu-item index="1">工作台</el-menu-item>
         <el-menu-item index="2">项目</el-menu-item>
         <el-menu-item index="3">wiki</el-menu-item>
@@ -127,10 +124,8 @@ export default {
   box-sizing: border-box;
   padding: 0 30px;
   justify-content: space-between;
-  background-color: #545c64;
   .fa-user-friends {
     cursor: pointer;
-    color: #fff;
   }
   .bell-wrap {
     @include flex-center;
@@ -145,7 +140,6 @@ export default {
   }
   &-right {
     @include flex-center;
-    color: #fff;
   }
   &-list {
     @include flex-center;

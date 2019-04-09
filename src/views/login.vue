@@ -1,39 +1,34 @@
 <template>
   <div class="login">
     <div class="login-content">
-      <img class="logo" src="/static/images/创建企业_团队/u116.png">
-      <el-form :model="ruleForm2"
-               status-icon
-               :rules="rules2"
-               ref="ruleForm2"
-               label-width="0"
-               class="demo-ruleForm">
-        <el-form-item
-                      prop="userName">
-          <el-input class="login-input"
-                    placeholder="请输入你的邮箱或者手机号"
-                    v-model="ruleForm2.userName"
-                    autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item
-                      prop="pass">
-          <el-input type="password"
-                    class="login-input"
-                    placeholder="请输入你的密码"
-                    v-model="ruleForm2.pass"
-                    autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary"
-                     class="login-btn"
-                     @click="submitForm('ruleForm2')">登录</el-button>
-        </el-form-item>
-      </el-form>
+      <img class="logo"
+           src="/static/images/创建企业_团队/u116.png">
+      <Form ref="formData"
+            :model="formData"
+            :label-width="0">
+        <FormItem>
+          <el-input class="login-input" clearable v-model="formData.userName" placeholder="请输入手机号或者邮箱"></el-input>
+        </FormItem>
+        <FormItem>
+          <el-input class="login-input" clearable show-password v-model="formData.pass" placeholder="请输入密码"></el-input>
+        </FormItem>
+        <FormItem>
+          <div class="err-message"
+               v-if="message"><i class="err-message-icon el-icon-warning"></i>{{message}}</div>
+          <a href="javascript:"
+             class="common-btn"
+             @click="submitForm">登录<i class="fas fa-arrow-alt-circle-right common-btn-icon"></i></a>
+        </FormItem>
+      </Form>
+
       <div class="wechat-login">
-        <el-button type="success" class="wechat-btn" plain>使用微信登录</el-button>
-        <div class="register">还没有账号？ <router-link to="/register" class="register-btn">注册新账号</router-link></div>
+        <el-Button type="success" ghost class="wechat-btn"><span class="wechat-btn-text">使用微信登录</span><i class="fab fa-weixin wechat-btn-icon"></i></el-Button>
+        <div class="register">还没有账号？ <router-link to="/register"
+                       class="register-btn">注册新账号</router-link>
+        </div>
       </div>
-      <div class="reset-password" @click="$router.push('/resetPass')">忘记密码？</div>
+      <div class="reset-password"
+           @click="$router.push('/resetPass')">忘记密码？</div>
     </div>
   </div>
 </template>
@@ -64,31 +59,36 @@ export default {
       }
     };
     return {
-      ruleForm2: {
+      formData: {
         pass: '',
         userName: '',
       },
-      rules2: {
-        pass: [
-          { validator: validatePass, trigger: 'blur' }
-        ],
-        userName: [
-          { validator: validateName, trigger: 'blur' }
-        ],
-      }
+      message: '',
+      passType: true
     };
   },
   methods: {
+
+    onFocus () {
+      this.message = ''
+    },
     submitForm (formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          this.$router.push('/home')
-          alert('submit!');
+      console.log(111)
+      let { pass, userName } = this.formData
+
+      if (checkMobile(userName) || checkEmail(userName)) {
+        if (pass == '') {
+          this.message = '密码不能为空'
+        } else if (pass.length < 6) {
+          this.message = '密码过短'
         } else {
-          console.log('error submit!!');
-          return false;
+          alert('login success')
+          this.$router.push('/home')
         }
-      });
+      } else {
+        console.log(1122)
+        this.message = '请输入正确的手机号或邮箱'
+      }
     }
   }
 
@@ -97,51 +97,51 @@ export default {
 
 <style lang="scss" scoped>
 .login {
+  .err-message {
+    color: #f74555;
+    font-size: 14px;
+    &-icon {
+      margin-right: 4px;
+    }
+  }
   &-content {
     position: relative;
     @include flex-col-center;
     position: absolute;
     left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    top: 15%;
+    transform: translate(-50%, 0);
   }
-  .register{
+  .register {
     margin-top: 10px;
-    font-size: 12px;
-    color: #909399;
+    font-size: 14px;
+    color: #A6A6A6;
+    font-weight: bold;
     &-btn {
       text-decoration: none;
-      color: rgba($color: #409EFF, $alpha: 0.8);
+      color: rgba($color: #409eff, $alpha: 0.8);
     }
   }
   .reset-password {
     cursor: pointer;
     position: absolute;
     right: 0;
-    top: 200px;
-    color: #909399;
+    top: 210px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #A6A6A6;
   }
   .logo {
     margin-bottom: 30px;
   }
   &-input {
-    width: 300px;
+    width: 350px;
   }
-  &-btn {
-    margin-top: 10px;
-    width: 100%;
-  }
-  .wechat-btn, .wechat-login  {
-    width: 100%;
-  }
-  .wechat-login  {
-    @include flex-col-center;
-    padding-top: 20px;
-    border-top: 1px #DCDFE6 solid;
-  }
-  .wechat-btn {
-    background-color: #fff;
-    color: #67C23A;
+
+
+  .fa-eye,
+  .fa-eye-slash {
+    font-size: 16px;
   }
 }
 </style>

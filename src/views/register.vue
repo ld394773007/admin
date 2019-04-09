@@ -13,13 +13,14 @@
         <el-form-item prop="email">
           <el-input class="login-input"
                     placeholder="你的邮箱"
+                    clearable
                     v-model="ruleForm2.email"
                     autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary"
-                     class="login-btn"
-                     @click="submitForm('ruleForm2')">即刻开始</el-button>
+          <a href="javascript:"
+             class="common-btn"
+             @click="submitForm('ruleForm2')">即刻开始<i class="fas fa-arrow-alt-circle-right common-btn-icon"></i></a>
         </el-form-item>
       </el-form>
       <div class="wechat-login">
@@ -27,9 +28,7 @@
         <div class="register">第三方账号登录 或 <router-link to="/login"
                        class="register-btn">点点任务账号登录</router-link>
         </div>
-        <el-button type="success"
-                   class="wechat-btn"
-                   plain>使用微信登录</el-button>
+        <el-Button type="success" ghost class="wechat-btn"><span class="wechat-btn-text">使用微信登录</span><i class="fab fa-weixin wechat-btn-icon"></i></el-Button>
       </div>
     </div>
     <div class="login-content"
@@ -52,31 +51,37 @@
         <el-form-item prop="name">
           <el-input class="login-input"
                     placeholder="姓名"
+                    clearable
                     v-model="ruleForm2.name"
                     autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item prop="password">
           <el-input class="login-input"
                     placeholder="密码"
+                    clearable
+                    show-password
                     v-model="ruleForm2.password"
                     autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item prop="repassword">
           <el-input class="login-input"
                     placeholder="确认密码"
+                    clearable
+                    show-password
                     v-model="ruleForm2.repassword"
                     autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item prop="code">
           <el-input class="login-input"
                     placeholder="验证码"
+                    clearable
                     v-model="ruleForm2.code"
                     autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary"
-                     class="login-btn"
-                     @click="register('ruleForm2')">注册</el-button>
+          <a href="javascript:"
+             class="common-btn"
+             @click="register('ruleForm2')">注册<i class="fas fa-arrow-alt-circle-right common-btn-icon"></i></a>
         </el-form-item>
       </el-form>
       <div class="clause">
@@ -123,7 +128,8 @@ export default {
       }
     };
     return {
-      isSuccess: true,
+      isSuccess: false,
+      checked: false,
       ruleForm2: {
         email: '394773007@qq.com',
         name: '',
@@ -180,8 +186,9 @@ export default {
 .login {
   .clause {
     @include flex-center;
-    color: #909399;
-    font-size: 12px;
+    color: #A6A6A6;
+    font-size: 14px;
+    font-weight: bold;
     &-checkbox {
       margin-right: 10px;
     }
@@ -194,13 +201,14 @@ export default {
     @include flex-col-center;
     position: absolute;
     left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    top: 15%;
+    transform: translate(-50%, 0);
   }
   .register {
     margin-bottom: 20px;
-    font-size: 12px;
-    color: #909399;
+    font-size: 14px;
+    color: #A6A6A6;
+    font-weight: bold;
     &-btn {
       text-decoration: none;
       color: rgba($color: #409eff, $alpha: 0.8);
@@ -216,7 +224,7 @@ export default {
     margin-bottom: 30px;
   }
   &-input {
-    width: 300px;
+    width: 350px;
   }
   &-btn {
     margin-top: 10px;
