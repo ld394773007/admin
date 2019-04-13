@@ -16,6 +16,10 @@ export default {
   padding: 0;
 }
 
+body {
+  font-size: 14px;
+}
+
 i {
   font-style: normal;
 }
@@ -24,15 +28,23 @@ a {
   color: #303133;
   text-decoration: none;
 }
+input {
+  outline: none;
+  border: none;
+}
 button {
   background: none;
   border: none;
   outline: none;
 }
 
+body {
+  color: #383838;
+}
+
 .continar {
-  width: 97%;
-  height: calc(100vh - 100px);
+  margin: 0 auto;
+  width: 1200px;
 }
 .fa,
 .fas,
@@ -59,7 +71,6 @@ button {
 .common-btn {
   position: relative;
   display: block;
-  margin-top: 10px;
   padding: 0 16px;
   width: 100%;
   height: 46px;
@@ -69,9 +80,17 @@ button {
   text-align: center;
   color: #fff;
   background-color: #3da8f5;
+  border: 1px solid #3da8f5;
   border-radius: 5px;
   cursor: pointer;
   transition: padding-right 0.25s;
+  &.plan {
+    color: #3da8f5;
+    background-color: #fff;
+    &:hover {
+      background-color: #3da8f5;
+    }
+  }
   &-icon {
     position: absolute;
     margin-top: 12px;
@@ -125,5 +144,82 @@ button {
     border-color: #67c23a;
     color: #fff !important;
   }
+}
+.common-phone {
+  @include flex-center;
+  &-input {
+    flex: 1;
+    margin-left: 5px;
+    height: 46px;
+    font-size: 16px;
+    padding-left: 5px;
+    &.disabled {
+      cursor: not-allowed;
+      background-color: #eee;
+    }
+  }
+  &-right {
+    @include flex-center;
+    justify-content: flex-start;
+    flex: 1;
+    height: 46px;
+    padding-left: 8px;
+    border: 1px solid #dcdfe6;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-left: none;
+    transform: translateX(-2px);
+    .span-edit {
+      font-size: 16px;
+      color: #383838;
+      margin-right: 6px;
+    }
+  }
+  &-select {
+    width: 96px;
+    border: none;
+  }
+  .country-code {
+    height: 32px;
+    border: none;
+    outline: none;
+    border-right: 1px solid #dcdfe6;
+    color: #383838;
+  }
+}
+.el-input {
+  font-size: 16px;
+}
+.claer-border input {
+  border: none;
+}
+.ivu-menu-horizontal {
+  height: 48px;
+  line-height: 48px;
+}
+.ivu-menu-horizontal.ivu-menu-light:after {
+  display: none;
+}
+.iconfont {
+  font-size: 20px;
+  color: #a6a6a6;
+}
+.ivu-badge-dot {
+  top: 2px;
+  right: -5px;
+}
+.commom-badge {
+  .ivu-badge-dot {
+    background: #3da8f5;
+  }
+}
+.ivu-menu {
+  z-index: 0;
+}
+.ivu-avatar-string {
+  position: static !important;
+}
+.user-avatar {
+  background-color:#cdd081;
 }
 </style>

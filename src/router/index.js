@@ -33,7 +33,7 @@ export default new Router({
         {
           path: 'user',
           name: 'user',
-          component: () => import('@/views/user')
+          component: () => import('@/views/user/index')
         },
         {
           path: 'message',
@@ -46,6 +46,11 @@ export default new Router({
           component: () => import('@/views/team')
         }
       ]
+    },
+    {
+      path: '/createTeam',
+      name: 'createTeam',
+      component: () => import('@/components/createTeam')
     },
     {
       path: '/login',

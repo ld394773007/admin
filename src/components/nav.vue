@@ -3,21 +3,126 @@
     <div class="nav-left">
       <img class="logo"
            src="/static/images/导航/u31.png">
-      <el-menu default-active="1"
-               class="el-menu-demo"
-               mode="horizontal"
-               @select="handleSelect">
-        <el-menu-item index="1">工作台</el-menu-item>
-        <el-menu-item index="2">项目</el-menu-item>
-        <el-menu-item index="3">wiki</el-menu-item>
-        <el-menu-item index="4">管理后台</el-menu-item>
-        <el-menu-item index="5">管理看板</el-menu-item>
-      </el-menu>
+      <Menu mode="horizontal"
+            active-name="1">
+        <MenuItem name="1">
+        首页
+        </MenuItem>
+        <MenuItem name="2">
+        项目
+        </MenuItem>
+        <MenuItem name="2">
+        wiki
+        </MenuItem>
+        <MenuItem name="4">
+        数据
+        </MenuItem>
+      </Menu>
     </div>
+
     <div class="nav-right">
-      <router-link to="/home/team"
-                   class="team-btn"><i class="fas fa-user-friends"></i></router-link>
-      <el-popover placement="bottom"
+      <Dropdown trigger="click">
+        <a href="javascript:"
+           class="nav-plus">
+          <i class="plus-icon"></i>
+        </a>
+        <DropdownMenu slot="list">
+          <DropdownItem>
+            <div class="down-item">
+              <i class="iconfont icon-group down-item-icon"></i>
+              项目
+            </div>
+          </DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
+
+      <i class="line"></i>
+      <i class="iconfont icon-group nav-icon"></i>
+      <router-link to="/home/team">
+        <i class="iconfont icon-icon-test nav-icon"></i>
+      </router-link>
+
+      <Dropdown trigger="click">
+        <a href="javascript:"
+           class="nav-plus">
+          <Badge class="plus-badge"
+                 dot>
+            <i class="iconfont icon-lingdang nav-icon"></i>
+          </Badge>
+
+        </a>
+        <DropdownMenu slot="list">
+          <Card title="消息中心"
+                :padding="0"
+                shadow
+                style="width: 400px;">
+            <router-link to="/home/message"
+                         slot="extra">
+              查看更多
+            </router-link>
+            <CellGroup>
+              <Cell v-for="item in 10"
+                    :key="item">
+                <div class="message-left"
+                     slot="icon">
+                  <i class="message-icon"></i>
+                  <Avatar class="message-avatar">陈波</Avatar>
+                </div>
+                <p class="message-title">欧阳志远更新了工作内容，欧阳志远更新了工作内容，欧阳志远更新了工作内容，</p>
+                <div slot="label">
+                  <span>阿里巴巴上市计划</span>
+                  <span class="message-time">2019-09-09 12:09:56</span>
+                </div>
+              </Cell>
+            </CellGroup>
+          </Card>
+        </DropdownMenu>
+      </Dropdown>
+      <i class="iconfont icon-rili nav-icon"></i>
+      <Dropdown trigger="click">
+        <a href="javascript:"
+           class="nav-help">
+          <i class="iconfont icon-help nav-icon"></i>
+        </a>
+        <DropdownMenu slot="list">
+          <DropdownItem>帮助中心</DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
+
+      <a href="javascript:"
+         class="upgrade-btn">升级</a>
+      <router-link to="/home/user">
+        <Badge class="commom-badge"
+               dot>
+          <Avatar class="nav-avatar user-avatar">陈波</Avatar>
+        </Badge>
+      </router-link>
+      <Dropdown trigger="click">
+        <a href="javascript:"
+           class="nav-list">
+          <Icon type="ios-list"
+                color="#a6a6a6"
+                size="26" />
+          阿里巴巴科技有限公司
+        </a>
+        <DropdownMenu slot="list">
+          <Card title="Options"
+                icon="ios-options"
+                :padding="0"
+                shadow
+                style="width: 200px;">
+            <router-link class="card-title" to="/createTeam" slot="title">创建团队/企业</router-link>
+            <CellGroup>
+              <Cell title="个人空间" />
+              <Cell title="阿里巴巴有限公司" />
+              <Cell title="腾讯科技有限公司" />
+              <Cell class="nav-out" title="退出" />
+            </CellGroup>
+          </Card>
+        </DropdownMenu>
+      </Dropdown>
+
+      <!-- <el-popover placement="bottom"
                   width="300"
                   v-model="bellPop"
                   trigger="manual">
@@ -51,11 +156,9 @@
             </div>
           </div>
         </div>
-      </el-popover>
+      </el-popover> -->
 
-      <router-link to='/home/user'
-                   class="user-name">陈</router-link>
-      <el-popover placement="bottom"
+      <!-- <el-popover placement="bottom"
                   width="300"
                   v-model="listPop"
                   trigger="manual">
@@ -83,7 +186,7 @@
             <el-tag>剩余130天</el-tag>
           </div>
         </div>
-      </el-popover>
+      </el-popover> -->
 
     </div>
   </div>
@@ -102,7 +205,7 @@ export default {
   },
   methods: {
     handleSelect (e, i) {
-      this.$router.push(this.navPath[e-1])
+      this.$router.push(this.navPath[e - 1])
     },
     clickAddTeam () {
       this.$router.push('/home/addTeam')
@@ -120,10 +223,77 @@ export default {
 <style lang="scss" scoped>
 .nav {
   @include flex-center;
+  position: relative;
   justify-content: space-between;
   box-sizing: border-box;
   padding: 0 30px;
-  justify-content: space-between;
+  border-bottom: 1px solid #e7e7e7;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.05);
+  z-index: 10;
+  &-out {
+    border-top: 1px solid #e7e7e7;
+  }
+  .card-title {
+    color: #409eff;
+  }
+  &-plus,
+  &-help {
+    @include flex-center;
+    height: 48px;
+  }
+  .down-item {
+    @include flex-center;
+    justify-content: flex-start;
+    &-icon {
+      margin-right: 8px;
+    }
+  }
+  .plus-badge {
+    width: 30px;
+    margin-right: 8px;
+  }
+  &-avatar {
+    cursor: pointer;
+  }
+  .upgrade-btn {
+    @include flex-center;
+    height: 24px;
+    padding: 4px 12px;
+    margin-right: 12px;
+    border-radius: 16px;
+    color: #fff;
+    font-size: 12px;
+    background: linear-gradient(to bottom right, #4276ff, #32b6ff);
+    box-shadow: 0 0 2px 0 rgba(36, 100, 147, 0.2);
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0 2px 8px 0 rgba(13, 119, 226, 0.3);
+    }
+  }
+  .nav-icon {
+    margin: 0 8px;
+    &.icon-icon-test {
+      font-size: 24px;
+    }
+  }
+  .plus-icon {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+    background: url('/static/images/circle-plus.ff3746b2.svg') no-repeat;
+    background-size: 100%;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  .line {
+    margin: 0 8px;
+    height: 20px;
+    border-right: 1px solid #cccaca;
+  }
   .fa-user-friends {
     cursor: pointer;
   }
@@ -143,8 +313,8 @@ export default {
   }
   &-list {
     @include flex-center;
-    margin-left: 30px;
-    height: 60px;
+    margin-left: 10px;
+    height: 48px;
     .fa-list-ul {
       margin-right: 10px;
       cursor: pointer;
@@ -182,12 +352,16 @@ export default {
     margin-bottom: 10px;
     justify-content: space-between;
   }
+  &-left {
+    @include flex-center;
+  }
   &-item {
     @include flex-center;
     margin-bottom: 15px;
     justify-content: flex-start;
   }
   &-icon {
+    display: block;
     margin-right: 10px;
     width: 8px;
     height: 8px;
@@ -195,13 +369,6 @@ export default {
     background-color: #409eff;
   }
   &-avatar {
-    @include flex-center;
-    margin-right: 10px;
-    width: 30px;
-    height: 30px;
-    font-size: 12px;
-    color: #fff;
-    border-radius: 50%;
     background-color: #409eff;
   }
   &-info {
@@ -212,7 +379,7 @@ export default {
   &-title {
     font-size: 14px;
     color: #545c64;
-    width: 230px;
+    width: 300px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

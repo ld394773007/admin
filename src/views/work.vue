@@ -1,213 +1,75 @@
 <template>
-  <el-card class="work continar">
-    <div class="work-content">
-      <div class="work-content-header">
-        <el-tabs v-model="activeName"
-                 class="work-content-tabs"
-                 @tab-click="handleClick">
-          <el-tab-pane label="我的任务"
-                       name="1"></el-tab-pane>
-          <el-tab-pane label="我发布的"
-                       name="2"></el-tab-pane>
-          <el-tab-pane label="我关注的"
-                       name="3"></el-tab-pane>
-          <el-tab-pane label="所以任务"
-                       name="4"></el-tab-pane>
-        </el-tabs>
-        <div class="work-content-header-right">
-          <i class="work-icon el-icon-circle-plus-outline"></i>
-          <el-input v-model="searchValue"
-                    placeholder="请输入内容">
-            <el-button slot="append"
-                       icon="el-icon-search"></el-button>
-          </el-input>
+  <div class="work continar">
+    <Menu mode="horizontal"
+          class="work-tabs"
+          :active-name="active">
+      <MenuItem name="1">
+      我的任务
+      </MenuItem>
+      <MenuItem name="2">
+      我发布的
+      </MenuItem>
+      <MenuItem name="3">
+      我参与的
+      </MenuItem>
+      <MenuItem name="4">
+      所有任务
+      </MenuItem>
+    </Menu>
+    <div class="work-tabs-content">
+      <div class="work-tabs-header">
+        <Input class="search-input" v-model="searchValue" suffix="ios-search" placeholder="请输入内容" style="width: auto" />
+        <div class="work-tabs-right">
+          <Dropdown @on-click="clickSortCompletion">
+            <a class="sort-down"
+               href="javascript:void(0)">
+              {{completionStatus}}
+              <Icon type="ios-arrow-down"></Icon>
+            </a>
+            <DropdownMenu slot="list">
+              <DropdownItem name="所有">所有</DropdownItem>
+              <DropdownItem name="未开始">未开始</DropdownItem>
+              <DropdownItem name="进行中">进行中</DropdownItem>
+              <DropdownItem name="已完成">已完成</DropdownItem>
+              <DropdownItem name="已逾期">已逾期</DropdownItem>
+              <DropdownItem name="已关闭">已关闭</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+          <Dropdown @on-click="clickSortTime">
+            <a class="sort-down"
+               href="javascript:void(0)">
+              {{timeValue}}
+              <Icon type="ios-arrow-down"></Icon>
+            </a>
+            <DropdownMenu slot="list">
+              <DropdownItem name="按截止时间排序">按截止时间排序</DropdownItem>
+              <DropdownItem name="按开始时间排序">按开始时间排序</DropdownItem>
+              <DropdownItem name="按紧急时间排序">按紧急时间排序</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
         </div>
       </div>
-      <div class="work-content-body">
-        <el-table ref="singleTable"
-                  :data="tableData"
-                  class="work-table"
-                  :max-height="tableHeight"
-                  highlight-current-row
-                  style="width: 100%">
-          <el-table-column type="index"
-                           label="序号"
-                           width="50">
-          </el-table-column>
-          <el-table-column property="title"
-                           label="标题"
-                           show-overflow-tooltip>
-          </el-table-column>
-          <el-table-column property="date"
-                           label="截止日期"
-                           width="120">
-          </el-table-column>
-          <el-table-column property="author"
-                           width="90"
-                           label="发布人">
-          </el-table-column>
-          <el-table-column property="status"
-                           width="90"
-                           label="状态">
-          </el-table-column>
-          <el-table-column property="level"
-                           width="120"
-                           label="优先级">
-          </el-table-column>
-          <el-table-column label="操作"
-                           width="90">
-            <template slot-scope="scope">
-              <i class="el-icon-more"
-                 @click="clickTableMore(scope.row)"></i>
-            </template>
-          </el-table-column>
-        </el-table>
-      </div>
-    </div>
-    <div class="work-nav">
-      <span class="work-nav-title">项目总数<i>3</i></span>
-      <div class="work-nav-list">
-        <div class="work-nav-item">
-          <div class="work-nav-item-header warning">
-            未开始
+      <div class="work-table">
+        <div class="work-row"
+             v-for="(item,index) in tableData"
+             :key="index">
+          <span class="status-line success"></span>
+          <div class="work-column work-column-title">
+            <p>{{item.title}}</p>
           </div>
-          <div class="work-nav-item-body">
-            1
+          <div class="work-column">
+            <p>项目名称</p>
           </div>
-        </div>
-        <div class="work-nav-item">
-          <div class="work-nav-item-header brand">
-            进行中
+          <div class="work-column">
+            <p>紧急重要</p>
           </div>
-          <div class="work-nav-item-body">
-            1
-          </div>
-        </div>
-        <div class="work-nav-item">
-          <div class="work-nav-item-header success">
-            已完成
-          </div>
-          <div class="work-nav-item-body">
-            1
-          </div>
-        </div>
-        <div class="work-nav-item">
-          <div class="work-nav-item-header danger">
-            已逾期
-          </div>
-          <div class="work-nav-item-body">
-            1
-          </div>
-        </div>
-      </div>
-      <span class="work-nav-title">任务总数<i>3</i></span>
-      <span class="work-nav-subtitle">我的任务</span>
-      <div class="work-nav-list">
-        <div class="work-nav-item">
-          <div class="work-nav-item-header warning">
-            未开始
-          </div>
-          <div class="work-nav-item-body">
-            1
-          </div>
-        </div>
-        <div class="work-nav-item">
-          <div class="work-nav-item-header brand">
-            进行中
-          </div>
-          <div class="work-nav-item-body">
-            1
-          </div>
-        </div>
-        <div class="work-nav-item">
-          <div class="work-nav-item-header success">
-            已完成
-          </div>
-          <div class="work-nav-item-body">
-            1
-          </div>
-        </div>
-        <div class="work-nav-item">
-          <div class="work-nav-item-header danger">
-            已逾期
-          </div>
-          <div class="work-nav-item-body">
-            1
-          </div>
-        </div>
-      </div>
-      <span class="work-nav-subtitle">我发布的</span>
-      <div class="work-nav-list">
-        <div class="work-nav-item">
-          <div class="work-nav-item-header warning">
-            未开始
-          </div>
-          <div class="work-nav-item-body">
-            1
-          </div>
-        </div>
-        <div class="work-nav-item">
-          <div class="work-nav-item-header brand">
-            进行中
-          </div>
-          <div class="work-nav-item-body">
-            1
-          </div>
-        </div>
-        <div class="work-nav-item">
-          <div class="work-nav-item-header success">
-            已完成
-          </div>
-          <div class="work-nav-item-body">
-            1
-          </div>
-        </div>
-        <div class="work-nav-item">
-          <div class="work-nav-item-header danger">
-            已逾期
-          </div>
-          <div class="work-nav-item-body">
-            1
-          </div>
-        </div>
-      </div>
-      <span class="work-nav-subtitle">我关注的</span>
-      <div class="work-nav-list">
-        <div class="work-nav-item">
-          <div class="work-nav-item-header warning">
-            未开始
-          </div>
-          <div class="work-nav-item-body">
-            1
-          </div>
-        </div>
-        <div class="work-nav-item">
-          <div class="work-nav-item-header brand">
-            进行中
-          </div>
-          <div class="work-nav-item-body">
-            1
-          </div>
-        </div>
-        <div class="work-nav-item">
-          <div class="work-nav-item-header success">
-            已完成
-          </div>
-          <div class="work-nav-item-body">
-            1
-          </div>
-        </div>
-        <div class="work-nav-item">
-          <div class="work-nav-item-header danger">
-            已逾期
-          </div>
-          <div class="work-nav-item-body">
-            1
+          <div class="work-column work-column-time">
+            <p>2019-07-23 09:00截止</p>
           </div>
         </div>
       </div>
     </div>
-    <el-dialog :visible.sync="dialogVisible"
+    <!-- <el-dialog :visible.sync="dialogVisible"
                :show-close="false"
                width="90%"
                top="2%"
@@ -415,14 +277,15 @@
           </div>
         </div>
       </div>
-    </el-dialog>
-  </el-card>
+    </el-dialog> -->
+  </div>
 </template>
 
 <script>
 export default {
   data () {
     return {
+      active: '1',
       dialogVisible: false,
       visible: false,
       tableData1: [{
@@ -431,6 +294,7 @@ export default {
         title: '上海市普陀区金沙江路 1518 弄'
       }],
       tableData2: [{
+        title: '阅读分享中的使用案例， 用teambition为新产品发布实际建立一个公示板吧！',
         status: '状态',
         name: '王小虎',
         date: '2016-05-02',
@@ -441,7 +305,7 @@ export default {
       tableData: [{
         date: '2016-05-02',
         author: '王小虎',
-        title: '上海市普陀区金沙江路 1518 弄',
+        title: '阅读分享中的使用案例， 用teambition为新产品发布实际建立一个公示板吧！',
         level: '紧急且重要',
         status: '未开始'
       }, {
@@ -491,11 +355,19 @@ export default {
       active: '1',
       activeName: '1',
       searchValue: '',
+      timeValue: '按截止时间排序',
+      completionStatus: '完成状态',
       tableHeight: 500,
       isfull: false
     }
   },
   methods: {
+    clickSortCompletion (name) {
+      this.completionStatus = name
+    },
+    clickSortTime (name) {
+      this.timeValue = name
+    },
     handleClick () {
 
     },
@@ -562,6 +434,75 @@ export default {
 <style lang="scss" scoped>
 .work {
   position: relative;
+  padding-top: 10px;
+  &-row,
+  &-column {
+    position: relative;
+    display: flex;
+    align-items: center;
+    color: #606266;
+  }
+  &-row {
+    margin-top: 5px;
+    cursor: pointer;
+  }
+  .search-input {
+    width: 360px;
+  }
+  .sort-down {
+    margin-left: 15px;
+  }
+  .status-line {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 5px;
+    height: 48px;
+    background-color: #409eff;
+    opacity: 1;
+    transition: all 0.3s;
+  }
+  &-row:hover {
+    background-color: #f5f7fa;
+    .status-line {
+      width: 8px;
+      opacity: 0.8;
+    }
+  }
+  &-column {
+    display: flex;
+    align-items: center;
+    width: 100px;
+    height: 48px;
+    padding: 0 10px;
+
+    &-title {
+      flex: 1;
+      padding-left: 30px;
+    }
+    &-time {
+      width: 190px;
+    }
+    p {
+      @include text-overflow;
+    }
+  }
+  &-tabs {
+    @include flex-center;
+    margin: 0 auto;
+    background: transparent;
+    &-header {
+      @include flex-center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    &-content {
+      min-height: calc(100vh - 150px);
+      margin-top: 10px;
+      padding: 20px;
+      background-color: #fff;
+    }
+  }
   &-icon {
     cursor: pointer;
   }

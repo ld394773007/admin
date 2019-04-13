@@ -19,9 +19,10 @@ export default {
 <style lang="scss" scoped>
 .body {
   @include flex-center;
-  width: 100%;
-  height: calc(100vh - 60px);
-  background-color: #F2F6FC;
+  align-items: flex-start;
+  margin: 0 auto;
+  height: calc(100vh - 48px);
+  background-color: #ededed;
 }
 </style>
 

@@ -13,10 +13,9 @@
           <el-input class="login-input" clearable show-password v-model="formData.pass" placeholder="请输入密码"></el-input>
         </FormItem>
         <FormItem>
-          <div class="err-message"
-               v-if="message"><i class="err-message-icon el-icon-warning"></i>{{message}}</div>
+          <err-message :value="message"></err-message>
           <a href="javascript:"
-             class="common-btn"
+             class="common-btn login-btn"
              @click="submitForm">登录<i class="fas fa-arrow-alt-circle-right common-btn-icon"></i></a>
         </FormItem>
       </Form>
@@ -34,9 +33,13 @@
 </template>
 
 <script>
+import errMessage from '@/components/errMessage'
 import { checkMobile, checkEmail } from '@/utils'
 
 export default {
+  components: {
+    errMessage
+  },
   data () {
     var validateName = (rule, value, callback) => {
       if (value === '') {
@@ -97,12 +100,8 @@ export default {
 
 <style lang="scss" scoped>
 .login {
-  .err-message {
-    color: #f74555;
-    font-size: 14px;
-    &-icon {
-      margin-right: 4px;
-    }
+  &-btn {
+    margin-top: 16px;
   }
   &-content {
     position: relative;

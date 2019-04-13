@@ -1,0 +1,51 @@
+
+<svg width="260px" height="100px" viewBox="0 0 260 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient x1="-12.361784%" y1="-30.506955%" x2="107.455567%" y2="123.936455%" id="linearGradient-1">
+            <stop stop-color="#D1F3FF" offset="0%"></stop>
+            <stop stop-color="#A4E3FF" offset="100%"></stop>
+        </linearGradient>
+        <polygon id="path-2" points="0 65 77.93 65 77.93 0.774 0 0.774"></polygon>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="card/企业版/normal">
+            <g id="企业版">
+                <g id="box">
+                    <g id="img/com/normal">
+                        <g>
+                            <polygon id="box" fill-opacity="0.2" fill="#3DA8F5" points="0 0 260 0 260 100 0 100"></polygon>
+                            <g id="Group-40" transform="translate(91.000000, 17.000000)">
+                                <polygon id="Fill-1" stroke="#3DA8F5" fill="url(#linearGradient-1)" stroke-linecap="round" stroke-linejoin="round" points="16.5366 15.1988 16.5366 20.5528 8.4656 22.5558 8.4656 64.7258 74.6066 64.7258 74.6066 1.6308"></polygon>
+                                <g id="Group-39" transform="translate(0.000000, 0.226200)">
+                                    <polyline id="Stroke-2" stroke="#3DA8F5" points="74.6061 58.8828 74.6061 30.3708 74.6061 20.9058 74.6061 1.4038 16.5371 14.9728 16.5371 20.9058 16.5371 25.3208 16.5371 58.5808"></polyline>
+                                    <polygon id="Stroke-4" stroke="#3DA8F5" points="8.4655 22.3301 8.4655 25.4131 8.4655 29.8281 8.4655 64.5001 74.6065 64.5001 74.6065 34.8781 74.6065 25.4131 74.6065 5.9111"></polygon>
+                                    <path d="M3.5778,59.9931 L3.5778,64.5001" id="Stroke-6" stroke="#3DA8F5"></path>
+                                    <path d="M1.0895,59.3974 L6.0665,59.3974 C6.4785,59.3974 6.7625,58.9844 6.6155,58.5994 L4.1275,52.0744 C3.9345,51.5694 3.2205,51.5694 3.0275,52.0744 L0.5385,58.5994 C0.3925,58.9844 0.6765,59.3974 1.0895,59.3974" id="Fill-8" fill="#D2EAF9"></path>
+                                    <path d="M1.0895,59.3974 L6.0665,59.3974 C6.4785,59.3974 6.7625,58.9844 6.6155,58.5994 L4.1275,52.0744 C3.9345,51.5694 3.2205,51.5694 3.0275,52.0744 L0.5385,58.5994 C0.3925,58.9844 0.6765,59.3974 1.0895,59.3974 Z" id="Stroke-10" stroke="#3DA8F5" stroke-linecap="round"></path>
+                                    <polyline id="Stroke-12" stroke="#3DA8F5" points="16.5367 58.581 16.5367 50.979 25.4187 50.979 25.4187 58.581"></polyline>
+                                    <path d="M8.4655,58.8818 L74.6065,58.8818" id="Stroke-14" stroke="#3DA8F5"></path>
+                                    <path d="M20.9781,50.9795 L20.9781,58.0945" id="Stroke-16" stroke="#3DA8F5"></path>
+                                    <path d="M35.5699,16.1709 L35.5699,58.8109" id="Stroke-18" stroke="#3DA8F5"></path>
+                                    <path d="M41.3942,24.0635 L41.3942,58.5815" id="Stroke-20" stroke="#3DA8F5"></path>
+                                    <path d="M47.2184,12.7099 L47.2184,58.5809" id="Stroke-22" stroke="#3DA8F5"></path>
+                                    <path d="M53.0436,11.4512 L53.0436,58.5812" id="Stroke-24" stroke="#3DA8F5"></path>
+                                    <path d="M58.8688,9.8183 L58.8688,58.5813" id="Stroke-26" stroke="#3DA8F5"></path>
+                                    <path d="M64.693,42.6719 L64.693,58.5809" id="Stroke-28" stroke="#3DA8F5"></path>
+                                    <path d="M64.693,39.0254 L64.693,40.4274" id="Stroke-30" stroke="#3DA8F5"></path>
+                                    <path d="M64.693,8.3721 L64.693,36.2201" id="Stroke-32" stroke="#3DA8F5"></path>
+                                    <path d="M70.5182,7.2695 L70.5182,58.0945" id="Stroke-34" stroke="#3DA8F5"></path>
+                                    <mask id="mask-3" fill="white">
+                                        <use xlink:href="#path-2"></use>
+                                    </mask>
+                                    <g id="Clip-37"></g>
+                                    <polygon id="Stroke-36" stroke="#3DA8F5" mask="url(#mask-3)" points="8.465 64.5 74.606 64.5 74.606 58.882 8.465 58.882"></polygon>
+                                    <path d="M0.274,64.5 L77.93,64.5" id="Stroke-38" stroke="#3DA8F5" mask="url(#mask-3)"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

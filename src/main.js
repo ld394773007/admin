@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App'
 import iView from 'iview'
-import { Input, Form, FormItem, Button,Checkbox } from 'element-ui'
+import { Input, Form, FormItem, Button,Checkbox,Select, Option, Table, TableColumn, DatePicker } from 'element-ui'
 // import ElementUI from 'element-ui';
 // import 'element-ui/lib/theme-chalk/index.css';
 import 'iview/dist/styles/iview.css'
@@ -14,6 +14,11 @@ Vue.use(Input)
    .use(FormItem)
    .use(Button)
    .use(Checkbox)
+   .use(Select)
+   .use(Option)
+   .use(Table)
+   .use(TableColumn)
+   .use(DatePicker)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

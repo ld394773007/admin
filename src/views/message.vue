@@ -1,72 +1,36 @@
 <template>
   <el-card class="a_message continar">
     <div class="a_message-left">
-      <el-tabs v-model="activeName"
-               class="a_message-tabs"
-               type="border-card"
-               @tab-click="handleClick">
-        <el-tab-pane label="未读信息"
-                     name="unread">
-          <div class="a_message-srcoll">
-            <div class="a_message-list">
-              <span class="a_message-time">2019-09-10</span>
-              <div class="a_message-item"
-                   v-for="i in 100"
-                   :key="i">
-                <div class="a_message-title">张琴更新了工作：首页张琴更新了工作：首页张琴更新了工作：首页张琴更新了工作：首页张琴更新了工作：首页</div>
-                <div class="release-time">发布时间：2019-09-10</div>
-              </div>
-            </div>
+      <div class="a_message-left-header">
+        <Dropdown>
+          <a href="javascript:void(0)">
+            <Icon type="ios-notifications-outline" />
+            全部消息
+            <Icon type="ios-arrow-down"></Icon>
+          </a>
+          <DropdownMenu slot="list">
+            <DropdownItem>全部消息</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+        <Input suffix="ios-search" placeholder="请输入关键词" style="width: auto" />
+      </div>
+      <CellGroup>
+        <Cell v-for="item in 10"
+              :key="item">
+          <div class="message-left"
+               slot="icon">
+            <i class="message-icon"></i>
+            <Avatar class="message-avatar">陈波</Avatar>
           </div>
-        </el-tab-pane>
-        <el-tab-pane label="已读信息"
-                     name="read">
-          <div class="a_message-srcoll">
-            <div class="a_message-list">
-              <span class="a_message-time">2019-09-10</span>
-              <div class="a_message-item"
-                   v-for="i in 10"
-                   :key="i">
-                <div class="a_message-title">张琴更新了工作：首页张琴更新了工作：首页张琴更新了工作：首页张琴更新了工作：首页张琴更新了工作：首页</div>
-                <div class="release-time">发布时间：2019-09-10</div>
-              </div>
-            </div>
+          <p class="message-title">欧阳志远更新了工作内容，欧阳志远更新了工作内容，欧阳志远更新了工作内容，</p>
+          <div slot="label">
+            <span>阿里巴巴上市计划</span>
+            <span class="message-time">2019-09-09 12:09:56</span>
           </div>
-        </el-tab-pane>
-        <el-tab-pane label="@我的"
-                     name="atme">
-          <div class="a_message-srcoll">
-            <div class="a_message-list">
-              <span class="a_message-time">2019-09-10</span>
-              <div class="a_message-item"
-                   v-for="i in 100"
-                   :key="i">
-                <div class="a_message-title">张琴更新了工作：首页张琴更新了工作：首页张琴更新了工作：首页张琴更新了工作：首页张琴更新了工作：首页</div>
-                <div class="release-time">发布时间：2019-09-10</div>
-              </div>
-            </div>
-          </div>
-        </el-tab-pane>
-      </el-tabs>
+        </Cell>
+      </CellGroup>
     </div>
     <div class="a_message-right">
-      <div class="a_message-right-header">
-        <el-select v-model="selectValue"
-                   placeholder="请选择">
-          <el-option v-for="item in options"
-                     :key="item.value"
-                     :label="item.label"
-                     :value="item.value">
-          </el-option>
-        </el-select>
-        <el-input placeholder="请输入内容"
-                  v-model="seachValue"
-                  class="search-input">
-          <el-button slot="append"
-                     icon="el-icon-search"></el-button>
-        </el-input>
-        <el-button type="primary">标记为全部已读</el-button>
-      </div>
       <div class="a_message-right-body">
         <div class="a_message-right-name">
           尊敬的chenbo:
@@ -138,9 +102,9 @@
 
         </div>
         <div class="a_message-right-link">
-            <span>链接</span>
-            <a href="">http://wwww.baidu.com</a>
-          </div>
+          <span>链接</span>
+          <a href="">http://wwww.baidu.com</a>
+        </div>
       </div>
     </div>
   </el-card>
@@ -169,7 +133,9 @@ export default {
 
 <style lang="scss">
 .a_message {
+  display: flex;
   position: relative;
+  margin: 20px 0;
   &-item {
     padding-top: 20px;
   }
@@ -226,20 +192,20 @@ export default {
       overflow: hidden;
     }
   }
-  &-left,
-  &-tabs {
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 400px;
+  &-left {
+    margin-right: 20px;
+    padding-bottom: 20px;
+    width: 380px;
+    background-color: #fff;
+    &-header {
+      @include flex-center;
+      justify-content: space-between;
+      padding: 15px 10px;
+    }
   }
   &-right {
-    position: absolute;
-    left: 400px;
-    right: 0;
-    top: 0;
-    bottom: 0;
+    flex: 1;
+    background-color: #fff;
     &-header {
       @include flex-center;
       justify-content: flex-end;
@@ -271,24 +237,27 @@ export default {
     &-wrap {
       padding: 40px;
       border-radius: 10px;
-      background-color: #F2F6FC;
+      background-color: #f2f6fc;
     }
     &-link {
       display: flex;
       flex-direction: column;
       margin-top: 30px;
       a {
-        color: #409EFF;
+        color: #409eff;
       }
     }
     &-table {
       width: 450px;
       margin: 0 auto;
       margin-top: 30px;
-      &-header, &-body, &-list {
+      &-header,
+      &-body,
+      &-list {
         @include flex-center;
       }
-      &-header, &-list {
+      &-header,
+      &-list {
         border-bottom: 1px solid #606266;
       }
 
@@ -301,9 +270,45 @@ export default {
       &-header {
         .a_message-right-table-item {
           font-weight: bold;
-          color: #303133
+          color: #303133;
         }
       }
+    }
+  }
+  .message {
+    &-left {
+      @include flex-center;
+    }
+    &-icon {
+      display: block;
+      margin-right: 10px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #409eff;
+    }
+    &-avatar {
+      background-color: #409eff;
+    }
+    &-info {
+      flex: 1;
+      @include flex-col-center;
+      align-items: flex-start;
+    }
+    &-title {
+      font-size: 14px;
+      color: #545c64;
+      width: 300px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    &-text {
+      color: #909399;
+      font-size: 12px;
+    }
+    &-time {
+      margin-left: 20px;
     }
   }
 }
