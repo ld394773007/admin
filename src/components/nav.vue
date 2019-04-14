@@ -42,8 +42,9 @@
         <i class="iconfont icon-icon-test nav-icon"></i>
       </router-link>
 
-      <Dropdown trigger="click">
+      <Dropdown trigger="custom" :visible="visible">
         <a href="javascript:"
+           @click="changVisible"
            class="nav-plus">
           <Badge class="plus-badge"
                  dot>
@@ -56,10 +57,10 @@
                 :padding="0"
                 shadow
                 style="width: 400px;">
-            <router-link to="/home/message"
+            <a href="javascript:" @click="clickMoreMessage"
                          slot="extra">
               查看更多
-            </router-link>
+            </a>
             <CellGroup>
               <Cell v-for="item in 10"
                     :key="item">
@@ -197,6 +198,7 @@ export default {
   name: 'header-nav',
   data () {
     return {
+      visible: false,
       listPop: false,
       bellPop: false,
       msg: 'Welcome to Your Vue.js App',
@@ -204,6 +206,15 @@ export default {
     }
   },
   methods: {
+    changVisible(e) {
+      e.stopPropagation()
+      this.visible = true
+    },
+    clickMoreMessage(e) {
+      e.stopPropagation();
+      this.visible = false
+      this.$router.push('/home/message')
+    },
     handleSelect (e, i) {
       this.$router.push(this.navPath[e - 1])
     },
@@ -216,6 +227,9 @@ export default {
       this.bellPop = false
     }
   },
+  created() {
+    document.body.addEventListener('click', this.clickMoreMessage)
+  }
 }
 </script>
 
