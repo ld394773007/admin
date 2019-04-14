@@ -18,7 +18,7 @@
           <err-message :value="message"></err-message>
           <a href="javascript:"
              class="common-btn reset-btn"
-             @click="submitForm('resetForm')">重置密码<i class="fas fa-arrow-alt-circle-right common-btn-icon"></i></a>
+             @click="submitForm('resetForm')">重置密码<i class="iconfont icon-arrow-right-circle-s common-btn-icon"></i></a>
         </el-form-item>
       </el-form>
     </div>
@@ -39,13 +39,13 @@
           <err-message :value="message"></err-message>
           <a href="javascript:"
              class="common-btn reset-btn"
-             @click="sendCode">获取短信验证码<i class="fas fa-arrow-alt-circle-right common-btn-icon"></i></a>
+             @click="sendCode">获取短信验证码<i class="iconfont icon-arrow-right-circle-s common-btn-icon"></i></a>
         </el-form-item>
       </el-form>
       <div class="wechat-login">
         <a href="javascript:"
            class="common-btn plan"
-           @click="register('ruleForm2')">使用其他账号<i class="fas fa-arrow-alt-circle-right common-btn-icon"></i></a>
+           @click="register('ruleForm2')">使用其他账号<i class="iconfont icon-arrow-right-circle-s common-btn-icon"></i></a>
       </div>
     </div>
     <div class="reset-content"
@@ -92,13 +92,13 @@
           <err-message :value="message1"></err-message>
           <a href="javascript:"
              class="common-btn reset-btn"
-             @click="resetSubmit">重置密码<i class="fas fa-arrow-alt-circle-right common-btn-icon"></i></a>
+             @click="resetSubmit">重置密码<i class="iconfont icon-arrow-right-circle-s common-btn-icon"></i></a>
         </el-form-item>
       </el-form>
       <div class="wechat-login">
         <a href="javascript:"
            class="common-btn plan"
-           @click="register('ruleForm2')">使用其他账号<i class="fas fa-arrow-alt-circle-right common-btn-icon"></i></a>
+           @click="register('ruleForm2')">使用其他账号<i class="iconfont icon-arrow-right-circle-s common-btn-icon"></i></a>
       </div>
     </div>
     <div class="reset-content"
@@ -110,7 +110,7 @@
         <span class="reset-text">{{resetForm.email}}, 有效期为24小时</span>
         <a href="javascript:"
            class="common-btn reset-btn"
-           @click="goToEmail">前往邮箱<i class="fas fa-arrow-alt-circle-right common-btn-icon"></i></a>
+           @click="goToEmail">前往邮箱<i class="iconfont icon-arrow-right-circle-s common-btn-icon"></i></a>
         <el-button type="primary"
                    plain
                    class="reset-btn"

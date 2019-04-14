@@ -93,9 +93,10 @@ body {
   }
   &-icon {
     position: absolute;
-    margin-top: 12px;
+    margin-top: 2px;
     margin-left: 8px;
     font-size: 22px;
+    color: #fff !important;
     opacity: 0;
     transition: all 0.3s;
   }
@@ -150,7 +151,7 @@ body {
   &-input {
     flex: 1;
     margin-left: 5px;
-    height: 46px;
+    height: 44px;
     font-size: 16px;
     padding-left: 5px;
     &.disabled {

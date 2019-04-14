@@ -119,13 +119,6 @@ export default {
       editor: null
     };
   },
-  watch: {
-    value(n, o) {
-      if(!o || o == "") {
-        this.setHtml(n);
-      }
-    }
-  },
   methods: {
     // 初始化富文本
     created() {

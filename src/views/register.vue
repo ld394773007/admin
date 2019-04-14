@@ -25,7 +25,7 @@
         <el-form-item>
           <a href="javascript:"
              class="common-btn"
-             @click="submitForm('ruleForm2')">{{!isLogin ? '即刻开始' : '登录'}}<i class="fas fa-arrow-alt-circle-right common-btn-icon"></i></a>
+             @click="submitForm('ruleForm2')">{{!isLogin ? '即刻开始' : '登录'}}<i class="iconfont icon-arrow-right-circle-s common-btn-icon"></i></a>
         </el-form-item>
       </el-form>
       <div class="wechat-login"
@@ -108,7 +108,7 @@
         <el-form-item>
           <a href="javascript:"
              class="common-btn"
-             @click="register('ruleForm2')">注册<i class="fas fa-arrow-alt-circle-right common-btn-icon"></i></a>
+             @click="register('ruleForm2')">注册<i class="iconfont icon-arrow-right-circle-s common-btn-icon"></i></a>
         </el-form-item>
       </el-form>
       <div class="clause">
@@ -120,7 +120,7 @@
            v-if="!isLogin">
         <a href="javascript:"
            class="common-btn plan"
-           @click="register('ruleForm2')">其他号码登录<i class="fas fa-arrow-alt-circle-right common-btn-icon"></i></a>
+           @click="register('ruleForm2')">其他号码登录<i class="iconfont icon-arrow-right-circle-s common-btn-icon"></i></a>
       </div>
     </div>
     <create-team :current="current" @next-step="nextStep"></create-team>

@@ -44,13 +44,55 @@ export default new Router({
           path: 'team',
           name: 'team',
           component: () => import('@/views/team')
+        },
+        {
+          path: 'enterprise',
+          name: 'enterprise',
+          component: () => import('@/views/enterprise/index'),
+          children: [
+            {
+              path: 'info',
+              name: 'enterpriseInfo',
+              component: () => import('@/views/enterprise/info')
+            },
+            {
+              path: 'pay',
+              name: 'enterprisePay',
+              component: () => import('@/views/enterprise/pay')
+            },
+            {
+              path: 'ascription',
+              name: 'enterpriseAscription',
+              component: () => import('@/views/enterprise/ascription')
+            },
+            {
+              path: 'delete',
+              name: 'enterpriseDelete',
+              component: () => import('@/views/enterprise/delete')
+            },
+            {
+              path: 'power',
+              name: 'enterprisePower',
+              component: () => import('@/views/enterprise/power')
+            },
+            {
+              path: 'project',
+              name: 'enterpriseProject',
+              component: () => import('@/views/enterprise/project')
+            }
+          ]
         }
       ]
     },
     {
       path: '/createTeam',
       name: 'createTeam',
-      component: () => import('@/components/createTeam')
+      component: () => import('@/views/createTeam')
+    },
+    {
+      path: '/code',
+      name: 'code',
+      component: () => import('@/components/codeInput')
     },
     {
       path: '/login',
@@ -71,7 +113,6 @@ export default new Router({
       path: '/register',
       name: 'register',
       component: () => import('@/views/register')
-    },
-
+    }
   ]
 })

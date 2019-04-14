@@ -16,7 +16,7 @@
           <err-message :value="message"></err-message>
           <a href="javascript:"
              class="common-btn login-btn"
-             @click="submitForm">登录<i class="fas fa-arrow-alt-circle-right common-btn-icon"></i></a>
+             @click="submitForm">登录<i class="iconfont icon-arrow-right-circle-s common-btn-icon"></i></a>
         </FormItem>
       </Form>
 
