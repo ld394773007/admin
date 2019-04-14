@@ -123,7 +123,7 @@
            @click="register('ruleForm2')">其他号码登录<i class="iconfont icon-arrow-right-circle-s common-btn-icon"></i></a>
       </div>
     </div>
-    <create-team :current="current" @next-step="nextStep"></create-team>
+    <create-team  v-if="showCreate" :current="current" @next-step="nextStep"></create-team>
   </div>
 </template>
 
@@ -138,6 +138,7 @@ export default {
       isLogin: false,
       isSuccess: false,
       checked: false,
+      showCreate: false,
       countryValue: '1',
       countryCode: '',
       current: 0,
@@ -155,14 +156,7 @@ export default {
       this.$router.push('/home')
     },
     submitForm (formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          this.isSuccess = true
-        } else {
-          console.log('error submit!!');
-          return false;
-        }
-      });
+      this.isSuccess = true
     },
     register (formName) {
       this.$refs[formName].validate((valid) => {

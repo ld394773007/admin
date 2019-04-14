@@ -37,7 +37,7 @@
       </Dropdown>
 
       <i class="line"></i>
-      <i class="iconfont icon-group nav-icon"></i>
+      <i @click="$router.push('/home/enterprise/info')" class="iconfont icon-group nav-icon"></i>
       <router-link to="/home/team">
         <i class="iconfont icon-icon-test nav-icon"></i>
       </router-link>
@@ -230,6 +230,9 @@ export default {
   border-bottom: 1px solid #e7e7e7;
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.05);
   z-index: 10;
+  .icon-group  {
+    cursor: pointer;
+  }
   &-out {
     border-top: 1px solid #e7e7e7;
   }

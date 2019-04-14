@@ -129,7 +129,7 @@ export default {
   },
   data () {
     return {
-      current: 3,
+      current: 0,
       form: {
         name: 'dsada',
         num: '1',
