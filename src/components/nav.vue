@@ -4,14 +4,15 @@
       <img class="logo"
            src="/static/images/导航/u31.png">
       <Menu mode="horizontal"
-            active-name="1">
+            @on-select="selectMenu"
+            :active-name="activeName">
         <MenuItem name="1">
         首页
         </MenuItem>
         <MenuItem name="2">
         项目
         </MenuItem>
-        <MenuItem name="2">
+        <MenuItem name="3">
         wiki
         </MenuItem>
         <MenuItem name="4">
@@ -29,8 +30,14 @@
         <DropdownMenu slot="list">
           <DropdownItem>
             <div class="down-item">
-              <i class="iconfont icon-group down-item-icon"></i>
+              <i @click="showProjectPop = true" class="iconfont icon-group down-item-icon"></i>
               项目
+            </div>
+          </DropdownItem>
+                    <DropdownItem>
+            <div class="down-item" @click="showTestPop = true">
+              <i  class="iconfont icon-group down-item-icon"></i>
+              任务
             </div>
           </DropdownItem>
         </DropdownMenu>
@@ -122,82 +129,24 @@
           </Card>
         </DropdownMenu>
       </Dropdown>
-
-      <!-- <el-popover placement="bottom"
-                  width="300"
-                  v-model="bellPop"
-                  trigger="manual">
-        <div class="bell-wrap"
-             slot="reference"
-             @click="bellPop = !bellPop">
-          <i class="fa fa-bell-o"></i>
-        </div>
-        <div class="message-content">
-          <div class="message-header">
-            <h3 class="message-header-title">消息中心</h3>
-            <a href="javascript:"
-               @click="clickMore"
-               class="load-more">查看更多</a>
-          </div>
-          <div class="message-list">
-            <div class="message-item"
-                 v-for="i in 10"
-                 :key="i">
-              <i class="message-icon"></i>
-              <div class="message-avatar">
-                陈
-              </div>
-              <div class="message-info">
-                <div class="message-title">欧阳志愿更新了工作项，提供登录接口给甲方，签订合同，修改维护记录</div>
-                <div class="message-text">
-                  <span class="message-plan">阿里巴巴上市计划</span>
-                  <span class="message-time">2019-09-09 12:09:00</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </el-popover> -->
-
-      <!-- <el-popover placement="bottom"
-                  width="300"
-                  v-model="listPop"
-                  trigger="manual">
-        <div class="nav-list"
-             @click="listPop = !listPop"
-             slot="reference">
-          <i class="fa fa-list-ul"></i>
-          <span>阿里巴巴科技有限公司</span>
-        </div>
-
-        <div class="nav-list-pop">
-          <a href="javascript:"
-             @click="clickAddTeam"
-             class="add-team">创建企业/团队</a>
-          <div class="nav-list-pop_item">
-            <span class="item-left">个人空间</span>
-            <el-tag>永久免费</el-tag>
-          </div>
-          <div class="nav-list-pop_item">
-            <span class="item-left">阿里巴巴科技有限公司</span>
-            <el-tag type="danger">已过期10天</el-tag>
-          </div>
-          <div class="nav-list-pop_item">
-            <span class="item-left">腾讯科技有限公司</span>
-            <el-tag>剩余130天</el-tag>
-          </div>
-        </div>
-      </el-popover> -->
-
     </div>
+    <Modal width="90%" title="新建任务" v-model="showTestPop">
+      <create-test></create-test>
+    </Modal>
   </div>
 </template>
 
 <script>
+import createTest from './createTest'
 export default {
   name: 'header-nav',
+  components: {
+    createTest
+  },
   data () {
     return {
+      showTestPop: false,
+      showProjectPop: false,
       visible: false,
       listPop: false,
       bellPop: false,
@@ -205,7 +154,22 @@ export default {
       navPath: ['/home', '/home/project', '/home/wiki', '/home/admin', '/home/kanban']
     }
   },
+  computed: {
+    activeName() {
+      let {fullPath} = this.$route
+      return String(this.navPath.indexOf(fullPath) + 1)
+    }
+  },
   methods: {
+    selectMenu(name) {
+      switch(name) {
+        case '1':
+          this.$router.push('/home')
+          break
+        case '2':
+          this.$router.push('/home/project')
+      }
+    },
     changVisible(e) {
       e.stopPropagation()
       this.visible = true
@@ -228,7 +192,9 @@ export default {
     }
   },
   created() {
-    document.body.addEventListener('click', this.clickMoreMessage)
+    document.body.addEventListener('click', () => {
+      this.visible = false
+    })
   }
 }
 </script>

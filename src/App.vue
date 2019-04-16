@@ -220,7 +220,24 @@ body {
 .ivu-avatar-string {
   position: static !important;
 }
+.ivu-avatar {
+  @include flex-center;
+}
 .user-avatar {
   background-color:#cdd081;
+}
+.p10 {
+  .el-card__body {
+    padding: 10px;
+  }
+}
+.show-table {
+  overflow: initial;
+  .el-table__body-wrapper {
+    overflow: initial;
+  }
+}
+.el-table__row:hover  .show-table-action{
+  opacity: 1 !important;
 }
 </style>

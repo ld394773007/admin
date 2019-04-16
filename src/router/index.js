@@ -41,6 +41,28 @@ export default new Router({
           component: () => import('@/views/message')
         },
         {
+          path: 'test',
+          name: 'testIndex',
+          component: () => import('@/views/test/index'),
+          children: [
+            {
+              path: '',
+              name: 'test',
+              component: () => import('@/views/test/test')
+            },
+            {
+              path: 'personnel',
+              name: 'personnel',
+              component: () => import('@/views/test/personnel')
+            },
+            {
+              path: 'document',
+              name: 'document',
+              component: () => import('@/views/test/document')
+            },
+          ]
+        },
+        {
           path: 'team',
           name: 'team',
           component: () => import('@/views/team')

@@ -5,17 +5,20 @@
              class="search-input"
              placeholder="请输入内容"
              style="width: auto" />
-      <CellGroup>
-        <Cell title="所有成员">
+      <CellGroup @on-click="changeActive">
+        <Cell name="1"
+              title="所有成员">
           <i style="font-size:23px"
              class="iconfont icon-chengyuan1"
              slot="icon"></i>
         </Cell>
-        <Cell title="未分配部门的成员">
+        <Cell name="2"
+              title="未分配部门的成员">
           <i class="iconfont icon-application-for-membership"
              slot="icon"></i>
         </Cell>
-        <Cell title="停用的成员">
+        <Cell name="3"
+              title="停用的成员">
           <i style="font-size:16px"
              class="iconfont icon-shanchuchengyuan"
              slot="icon"></i>
@@ -29,12 +32,13 @@
       </div>
       <el-tree :data="data2"
                node-key="id"
+               @node-click="changeActive2"
                default-expand-all>
       </el-tree>
     </div>
     <div class="team-right">
       <div class="team-header">
-        <h2>所有成员</h2>
+        <h2>{{title}}</h2>
         <div class="team-header-right">
           <Dropdown trigger="click">
             <el-button type="text"
@@ -45,7 +49,12 @@
             </DropdownMenu>
           </Dropdown>
           <el-button type="text"
-                     icon="el-icon-circle-plus" @click="modal2 = true">添加成员</el-button>
+                     icon="el-icon-circle-plus"
+                     @click="modal2 = true">添加成员</el-button>
+          <el-button type="text"
+                     icon="el-icon-circle-plus">添加部门</el-button>
+          <el-button type="text"
+                     icon="el-icon-more">更多</el-button>
         </div>
       </div>
       <el-table ref="multipleTable"
@@ -53,38 +62,52 @@
                 tooltip-effect="dark"
                 style="width: 100%"
                 height="60vh"
+                v-if="active < 4"
                 class="team-table">
-        <el-table-column type="selection"
-                         width="55">
-        </el-table-column>
+
         <el-table-column prop="name"
-                         label="姓名"
-                         width="120">
-        </el-table-column>
-        <el-table-column prop="role"
-                         label="企业角色"
-                         width="120">
+                         label="姓名">
         </el-table-column>
 
         <el-table-column prop="department"
                          label="部门"
                          show-overflow-tooltip>
         </el-table-column>
-        <el-table-column prop="job"
+        <el-table-column prop="role"
+                         label="企业角色">
+        </el-table-column>
+
+      </el-table>
+      <el-table ref="multipleTable"
+                :data="tableData"
+                tooltip-effect="dark"
+                style="width: 100%"
+                height="60vh"
+                v-else
+                class="team-table">
+        <el-table-column label="部门成员">
+          <template slot-scope="scope">
+            <div class="table-name">
+              <Avatar>{{scope.row.name}}</Avatar>
+              <div>
+                <p>{{scope.row.name}}</p>
+                <span>khgjkshfbklgjvjkxcgxjl</span>
+              </div>
+            </div>
+
+
+          </template>
+        </el-table-column>
+
+        <el-table-column prop="department"
                          label="职位"
                          show-overflow-tooltip>
         </el-table-column>
-        <el-table-column prop="sex"
-                         label="性别"
-                         show-overflow-tooltip>
+        <el-table-column prop="role"
+                         label="电话">
         </el-table-column>
-        <el-table-column prop="phone"
-                         label="电话"
-                         show-overflow-tooltip>
-        </el-table-column>
-        <el-table-column prop="email"
-                         label="邮箱"
-                         show-overflow-tooltip>
+        <el-table-column prop="role"
+                         label="操作">
         </el-table-column>
       </el-table>
       <div class="team-pagination">
@@ -101,29 +124,33 @@
       <div class="modal-content">
         <div class="modal-header">
           <h3>账号邀请</h3>
-          <a href="javascript:" @click="modal = true"><i class="iconfont icon-ico"></i>通过链接邀请</a>
+          <a href="javascript:"
+             @click="modal = true"><i class="iconfont icon-ico"></i>通过链接邀请</a>
         </div>
         <div class="modal-center">
           <Input />
           <Divider class="modal-divider" />
           <CellGroup>
-                <Cell title="Only show titles" >
-                  <Avatar slot="icon">陈波</Avatar>
-                  <Button slot="extra">加入</Button>
-                </Cell>
-            </CellGroup>
+            <Cell title="Only show titles">
+              <Avatar slot="icon">陈波</Avatar>
+              <Button slot="extra">加入</Button>
+            </Cell>
+          </CellGroup>
         </div>
       </div>
     </Modal>
-        <Modal v-model="modal"
+    <Modal v-model="modal"
            footer-hide
            width="360"
            :styles="{top: '30%'}"
            title="邀请成员">
-      <div class="modal-content1" style="text-algin:center">
+      <div class="modal-content1"
+           style="text-algin:center">
         <span class="modal-text">分享企业链接邀请成员</span>
         <span class="modal-text">有效日期：2019-03-10 11:33</span>
-        <Input search enter-button="复制链接" value="http://www.baidu.com" />
+        <Input search
+               enter-button="复制链接"
+               value="http://www.baidu.com" />
       </div>
     </Modal>
   </div>
@@ -133,27 +160,28 @@
 export default {
   data () {
     return {
+      active: '1',
       modal2: false,
       modal: false,
       serchValue: '',
       data2: [{
-        id: 1,
+        id: 4,
         label: '市场部',
         children: [{
-          id: 3,
+          id: 5,
           label: '营销组',
         }, {
-          id: 4,
+          id: 6,
           label: '公关组',
         }]
       }, {
-        id: 2,
+        id: 7,
         label: '技术部',
         children: [{
-          id: 5,
+          id: 8,
           label: '技术组'
         }, {
-          id: 6,
+          id: 9,
           label: '运维组'
         }]
       }],
@@ -237,7 +265,23 @@ export default {
       multipleSelection: []
     };
   },
+  computed: {
+    title () {
+      if(this.active > 3) {
+        return this.text
+      }
+      return this.active == '1' ? '所有成员' : this.active == '2' ? '未分配部门的成员' : '停用的成员'
+    }
+  },
   methods: {
+    changeActive2(n) {
+      this.active = n.id
+      this.text = n.label
+    },
+    changeActive (n) {
+      console.log(n)
+      this.active = n
+    },
     checkTreeNode (data, e) {
       console.log(data, e)
     },
@@ -257,6 +301,7 @@ export default {
 
 <style lang="scss" scoped>
 .modal {
+
   &-content1 {
     @include flex-col-center;
     padding-bottom: 20px;
@@ -292,7 +337,16 @@ export default {
   display: flex;
   justify-content: center;
   margin-top: 20px;
-
+  .table-name {
+    @include flex-center;
+    & > div {
+      margin-left: 10px;
+      span {
+        @include text-overflow;
+        font-size: 12px;
+      }
+    }
+  }
   &-btn-wrap {
     margin-left: 20px;
   }

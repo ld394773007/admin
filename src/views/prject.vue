@@ -1,71 +1,39 @@
 <template>
-  <el-card class="prject continar">
-    <div class="prject-header">
-      <div class="prject-input">
-        <div class="prject-time">
-          <el-date-picker v-model="form.startTime"
-                          class="prject-start-time"
-                          type="date"
-                          placeholder="选择开始时间">
-          </el-date-picker>
-          <span class="prject-time-line">-</span>
-          <el-date-picker v-model="form.endTime"
-                          class="prject-end-time"
-                          type="date"
-                          placeholder="选择结束时间">
-          </el-date-picker>
-        </div>
-        <el-select v-model="form.level"
-                   class="prject-level"
-                   placeholder="优先级选择">
-          <el-option label="一般"
-                     value="1">
-          </el-option>
-          <el-option label="紧急"
-                     value="2">
-          </el-option>
-          <el-option label="紧急且重要"
-                     value="3">
-          </el-option>
-        </el-select>
-        <el-select v-model="form.status"
-                   class="prject-status"
-                   placeholder="项目状态选择">
-          <el-option label="未开始"
-                     value="1">
-          </el-option>
-          <el-option label="已完成"
-                     value="2">
-          </el-option>
-          <el-option label="已逾期"
-                     value="3">
-          </el-option>
-        </el-select>
-        <el-select v-model="form.sort"
-                   class="prject-sort"
-                   placeholder="排序方式">
-          <el-option label="未开始"
-                     value="1">
-          </el-option>
-          <el-option label="已完成"
-                     value="2">
-          </el-option>
-          <el-option label="已逾期"
-                     value="3">
-          </el-option>
-        </el-select>
-        <el-input placeholder="请输入内容"
-                  v-model="form.search"
-                  class="prject-search">
-          <el-button slot="append"
-                     icon="el-icon-search"></el-button>
-        </el-input>
-      </div>
-      <div class="prject-header-right">
-        <i class="far fa-chart-bar"
-           @click="type = !type"></i>
-        <el-button type="primary">新建项目</el-button>
-      </div>
+  <div class="prject continar">
+    <div class="prject-nav">
+      <CellGroup>
+        <Cell title="所有项目"
+              extra="20">
+          <Icon type="md-star"
+                slot="icon" />
+        </Cell>
+        <Cell title="未开始项目">
+          <Icon type="ios-clock-outline"
+                slot="icon" />
+        </Cell>
+        <Cell title="进行中的项目"
+              extra="1">
+          <Icon type="logo-buffer"
+                slot="icon" />
+        </Cell>
+        <Cell title="已完成的项目">
+          <Icon type="md-copy"
+                slot="icon" />
+        </Cell>
+        <Cell title="已逾期的项目"
+              extra="1">
+          <Icon type="md-calendar"
+                slot="icon" />
+        </Cell>
+        <Cell title="已归档的项目">
+          <Icon type="ios-filing"
+                slot="icon" />
+        </Cell>
+        <Cell title="查看甘特图">
+          <Icon type="ios-stats"
+                slot="icon" />
+        </Cell>
+      </CellGroup>
     </div>
     <div class="prject-content">
       <div v-if="type"
@@ -110,25 +78,28 @@
       <div v-else
            class="prject-list">
         <el-card class="prject-item"
-                 v-for="item in 30"
+
+                 v-for="item in 6"
                  :key="item">
-          <div class="prject-item-header">
-            <p class="prject-item-title">点点项目标题</p>
-            <span class="prject-item-avatar">陈</span>
-          </div>
-          <div class="prject-item-img">
-            <img src=""
-                 class="prject-item-image">
-          </div>
-          <div class="prject-item-info">
-            <el-tag type="danger">紧急且重要</el-tag>
-            <el-tag type="success">23/60</el-tag>
-            <span class="prject-item-overdue">
-              15
-            </span>
-          </div>
-          <div class="prject-item-time">
-            <span>2019-03-10</span> - <span>2019-04-10</span>
+          <div @click="$router.push('/home/test')">
+            <div class="prject-item-header">
+              <p class="prject-item-title">点点项目标题</p>
+              <span class="prject-item-avatar">陈</span>
+            </div>
+            <div class="prject-item-img">
+              <img src=""
+                   class="prject-item-image">
+            </div>
+            <div class="prject-item-info">
+              <Tag color="red">紧急且重要</Tag>
+              <Tag color="green">23/60</Tag>
+              <span class="prject-item-overdue">
+                15
+              </span>
+            </div>
+            <div class="prject-item-time">
+              <span>2019-03-10</span> - <span>2019-04-10</span>
+            </div>
           </div>
         </el-card>
       </div>
@@ -139,7 +110,7 @@
         </el-pagination>
       </div>
     </div>
-  </el-card>
+  </div>
 </template>
 
 <script>
@@ -177,23 +148,21 @@ export default {
 <style lang="scss" scoped>
 .prject {
   position: relative;
+  display: flex;
+  margin-top: 20px;
+  &-nav {
+    margin-right: 20px;
+    width: 280px;
+    background-color: #fff;
+  }
   .fa-chart-bar {
     font-size: 24px;
     color: #409eff;
   }
   &-pagination {
     @include flex-center;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 20px;
   }
   &-list {
-    position: absolute;
-    left: 20px;
-    right: 0;
-    top: 0;
-    bottom: 80px;
     overflow-y: auto;
     @include flex-center;
     flex-wrap: wrap;
@@ -201,9 +170,10 @@ export default {
   }
   &-item {
     @include flex-col-center;
-    margin: 0 10px;
+    margin: 0 5px;
     margin-bottom: 30px;
-    width: 300px;
+    width: 280px;
+    cursor: pointer;
     &-img {
       @include flex-center;
       margin-bottom: 10px;
@@ -267,12 +237,12 @@ export default {
     }
   }
   &-content {
-    position: absolute;
-    padding: 0 20px;
-    left: 0;
-    right: 0;
-    top: 80px;
-    bottom: 0;
+    padding: 0 15px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 8px;
+    flex: 1;
+    background-color: #fff;
   }
   &-input,
   &-time {
