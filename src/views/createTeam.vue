@@ -103,9 +103,16 @@
             <img src="/static/images/basic.1a03bd6a.svg">
           </div>
           <div class="edition-item-content">
-            <p>企业版</p>
-            <span>10人一下免费使用</span>
+            <h3>企业专业版</h3>
             <i>适用于任何规模的团队或企业</i>
+            <p>企业版所有功能</p>
+            <p>敏捷研发专业模板</p>
+            <p>测试管理应用</p>
+            <p>自定义工作</p>
+            <p>任务表格视图</p>
+            <p>任务自定义视图</p>
+            <p>企业应用开发平台</p>
+            <p>支持单点登录（AD，SAML）</p>
           </div>
         </div>
         <div class="step-btn-wrap">
@@ -178,6 +185,7 @@ export default {
   .edition-item {
     margin-top: 20px;
     margin-bottom: 20px;
+    padding-bottom: 20px;
     width: 260px;
     box-sizing: border-box;
     display: inline-block;
@@ -197,15 +205,17 @@ export default {
       @include flex-col-center;
       color: #383838;
       line-height: 20px;
-
+      h3 {
+        font-weight: normal;
+      }
       p {
-        font-size: 16px;
+        font-size: 14px;
         margin-bottom: 4px;
       }
       span,
       i {
         font-size: 12px;
-        margin-bottom: 4px;
+        margin-bottom: 10px;
       }
       i {
         color: #a6a6a6;

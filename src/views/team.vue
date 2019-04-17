@@ -67,6 +67,12 @@
 
         <el-table-column prop="name"
                          label="姓名">
+          <template slot-scope="scope">
+            <div style="display:flex;align-items:center;">
+              <Avatar>{{scope.row.name}}</Avatar>
+              <span style="margin-left:10px;">{{scope.row.name}}</span>
+            </div>
+          </template>
         </el-table-column>
 
         <el-table-column prop="department"
@@ -94,7 +100,6 @@
                 <span>khgjkshfbklgjvjkxcgxjl</span>
               </div>
             </div>
-
 
           </template>
         </el-table-column>
@@ -267,14 +272,14 @@ export default {
   },
   computed: {
     title () {
-      if(this.active > 3) {
+      if (this.active > 3) {
         return this.text
       }
       return this.active == '1' ? '所有成员' : this.active == '2' ? '未分配部门的成员' : '停用的成员'
     }
   },
   methods: {
-    changeActive2(n) {
+    changeActive2 (n) {
       this.active = n.id
       this.text = n.label
     },
@@ -301,7 +306,6 @@ export default {
 
 <style lang="scss" scoped>
 .modal {
-
   &-content1 {
     @include flex-col-center;
     padding-bottom: 20px;

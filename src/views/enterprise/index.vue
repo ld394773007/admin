@@ -1,7 +1,7 @@
 <template>
   <div class="enterprise continar">
     <div class="enterprise-left">
-      <Menu class="enterprise-menu" theme="light" :open-names="['1', '2']">
+      <Menu active-name="1-1" class="enterprise-menu" theme="light" :open-names="['1', '2']">
         <Submenu name="1">
           <template slot="title">
             基础信息

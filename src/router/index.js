@@ -60,6 +60,11 @@ export default new Router({
               name: 'document',
               component: () => import('@/views/test/document')
             },
+            {
+              path: 'indo',
+              name: 'info',
+              component: () => import('@/views/test/info')
+            },
           ]
         },
         {
@@ -105,6 +110,16 @@ export default new Router({
           ]
         }
       ]
+    },
+    {
+      path: '/order',
+      name: 'order',
+      component: () => import('@/views/order')
+    },
+    {
+      path: '/pay',
+      name: 'pay',
+      component: () => import('@/views/pay')
     },
     {
       path: '/createTeam',

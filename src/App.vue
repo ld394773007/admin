@@ -240,4 +240,9 @@ body {
 .el-table__row:hover  .show-table-action{
   opacity: 1 !important;
 }
+.text-center-input {
+  input {
+    text-align: center;
+  }
+}
 </style>

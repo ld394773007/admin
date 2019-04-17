@@ -1,5 +1,5 @@
 <template>
-  <el-card class="user continar">
+  <div class="user continar">
     <div class="user-left">
       <Card class="user-info">
         <div class="user-info-wrap">
@@ -147,7 +147,7 @@
         </div>
       </div>
     </div>
-  </el-card>
+  </div>
 </template>
 
 <script>

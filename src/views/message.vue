@@ -1,109 +1,113 @@
 <template>
   <el-card class="a_message continar">
-    <div class="a_message-left">
-      <div class="a_message-left-header">
-        <Dropdown>
-          <a href="javascript:void(0)">
-            <Icon type="ios-notifications-outline" />
-            全部消息
-            <Icon type="ios-arrow-down"></Icon>
-          </a>
-          <DropdownMenu slot="list">
-            <DropdownItem>全部消息</DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-        <Input suffix="ios-search" placeholder="请输入关键词" style="width: auto" />
+    <div class="a_message-content">
+      <div class="a_message-left">
+        <div class="a_message-left-header">
+          <Dropdown>
+            <a href="javascript:void(0)">
+              <Icon type="ios-notifications-outline" />
+              全部消息
+              <Icon type="ios-arrow-down"></Icon>
+            </a>
+            <DropdownMenu slot="list">
+              <DropdownItem>全部消息</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+          <Input suffix="ios-search"
+                 placeholder="请输入关键词"
+                 style="width: auto" />
+        </div>
+        <CellGroup>
+          <Cell v-for="item in 10"
+                :key="item">
+            <div class="message-left"
+                 slot="icon">
+              <i class="message-icon"></i>
+              <Avatar class="message-avatar">陈波</Avatar>
+            </div>
+            <p class="message-title">欧阳志远更新了工作内容，欧阳志远更新了工作内容，欧阳志远更新了工作内容，</p>
+            <div slot="label">
+              <span>阿里巴巴上市计划</span>
+              <span class="message-time">2019-09-09 12:09:56</span>
+            </div>
+          </Cell>
+        </CellGroup>
       </div>
-      <CellGroup>
-        <Cell v-for="item in 10"
-              :key="item">
-          <div class="message-left"
-               slot="icon">
-            <i class="message-icon"></i>
-            <Avatar class="message-avatar">陈波</Avatar>
+      <div class="a_message-right">
+        <div class="a_message-right-body">
+          <div class="a_message-right-name">
+            尊敬的chenbo:
           </div>
-          <p class="message-title">欧阳志远更新了工作内容，欧阳志远更新了工作内容，欧阳志远更新了工作内容，</p>
-          <div slot="label">
-            <span>阿里巴巴上市计划</span>
-            <span class="message-time">2019-09-09 12:09:56</span>
+          <div class="a_message-right-content">
+            软件开发云上有您的新动态
           </div>
-        </Cell>
-      </CellGroup>
-    </div>
-    <div class="a_message-right">
-      <div class="a_message-right-body">
-        <div class="a_message-right-name">
-          尊敬的chenbo:
-        </div>
-        <div class="a_message-right-content">
-          软件开发云上有您的新动态
-        </div>
-        <div class="a_message-right-wrap">
-          <div class="a_message-right-info">
-            <div class="a_message-right-info-item">
-              <span class="a_message-right-info-left">
-                项目：
-              </span>
-              <span class="a_message-right-info-left">
-                练成项目
-              </span>
-            </div>
-            <div class="a_message-right-info-item">
-              <span class="a_message-right-info-left">
-                工作项：
-              </span>
-              <span class="a_message-right-info-left">
-                练成机械质量检测系统
-              </span>
-            </div>
-            <div class="a_message-right-info-item">
-              <span class="a_message-right-info-left">
-                修改人：
-              </span>
-              <span class="a_message-right-info-left">
-                chengbo
-              </span>
-            </div>
-            <div class="a_message-right-info-item">
-              <span class="a_message-right-info-left">
-                修改时间：
-              </span>
-              <span class="a_message-right-info-left">
-                20193-03-10
-              </span>
-            </div>
-          </div>
-          <div class="a_message-right-table">
-            <div class="a_message-right-table-header">
-              <div class="a_message-right-table-item">
-                修改字段
+          <div class="a_message-right-wrap">
+            <div class="a_message-right-info">
+              <div class="a_message-right-info-item">
+                <span class="a_message-right-info-left">
+                  项目：
+                </span>
+                <span class="a_message-right-info-left">
+                  练成项目
+                </span>
               </div>
-              <div class="a_message-right-table-item">
-                修改前
+              <div class="a_message-right-info-item">
+                <span class="a_message-right-info-left">
+                  工作项：
+                </span>
+                <span class="a_message-right-info-left">
+                  练成机械质量检测系统
+                </span>
               </div>
-              <div class="a_message-right-table-item">
-                修改后
+              <div class="a_message-right-info-item">
+                <span class="a_message-right-info-left">
+                  修改人：
+                </span>
+                <span class="a_message-right-info-left">
+                  chengbo
+                </span>
+              </div>
+              <div class="a_message-right-info-item">
+                <span class="a_message-right-info-left">
+                  修改时间：
+                </span>
+                <span class="a_message-right-info-left">
+                  20193-03-10
+                </span>
               </div>
             </div>
-            <div class="a_message-right-table-body">
-              <div class="a_message-right-table-list">
+            <div class="a_message-right-table">
+              <div class="a_message-right-table-header">
                 <div class="a_message-right-table-item">
-                  修改后
+                  修改字段
                 </div>
                 <div class="a_message-right-table-item">
-                  修改后
+                  修改前
                 </div>
                 <div class="a_message-right-table-item">
                   修改后
                 </div>
               </div>
+              <div class="a_message-right-table-body">
+                <div class="a_message-right-table-list">
+                  <div class="a_message-right-table-item">
+                    修改后
+                  </div>
+                  <div class="a_message-right-table-item">
+                    修改后
+                  </div>
+                  <div class="a_message-right-table-item">
+                    修改后
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
 
-        </div>
-        <div class="a_message-right-link">
-          <span>链接</span>
-          <a href="">http://wwww.baidu.com</a>
+          </div>
+          <div class="a_message-right-link">
+            <span>链接</span>
+            <a href="">http://wwww.baidu.com</a>
+          </div>
         </div>
       </div>
     </div>
@@ -133,9 +137,11 @@ export default {
 
 <style lang="scss">
 .a_message {
-  display: flex;
   position: relative;
   margin: 20px 0;
+  &-content {
+    display: flex;
+  }
   &-item {
     padding-top: 20px;
   }
