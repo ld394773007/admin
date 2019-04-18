@@ -182,7 +182,13 @@ export default {
       treeList: [
         {
           id: 1,
-          label: '标题'
+          label: '标题',
+          children: [
+            {
+              id: 2,
+              label: '标题2'
+            }
+          ]
         }
       ],
       peopleList: [
