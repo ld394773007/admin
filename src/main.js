@@ -17,7 +17,9 @@ import {
   Table,
   TableColumn,
   DatePicker,
-  Card
+  Card,
+  Tabs,
+  TabPane
 } from 'element-ui'
 // import ElementUI from 'element-ui';
 // import 'element-ui/lib/theme-chalk/index.css';
@@ -27,6 +29,8 @@ import router from './router'
 // Vue.use(ElementUI);
 Vue.use(iView)
 Vue.use(Input)
+  .use(Tabs)
+  .use(TabPane)
   .use(Card)
   .use(Tree)
   .use(Icon)

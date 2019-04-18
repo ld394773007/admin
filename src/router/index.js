@@ -21,6 +21,16 @@ export default new Router({
           component: () => import('@/views/work')
         },
         {
+          path: 'wiki',
+          name: 'wiki',
+          component: () => import('@/views/wiki')
+        },
+        {
+          path: 'addWiki',
+          name: 'addWiki',
+          component: () => import('@/views/addWiki')
+        },
+        {
           path: 'project',
           name: 'project',
           component: () => import('@/views/prject')

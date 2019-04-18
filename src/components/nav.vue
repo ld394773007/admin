@@ -67,18 +67,17 @@
       <img class="logo"
            src="/static/images/导航/u31.png">
       <Menu mode="horizontal"
-            @on-select="selectMenu"
             :active-name="activeName">
-        <MenuItem name="1">
+        <MenuItem name="1" to="/home">
         首页
         </MenuItem>
-        <MenuItem name="2">
+        <MenuItem name="2" to="/home/project">
         项目
         </MenuItem>
-        <MenuItem name="3">
+        <MenuItem name="3" to="/home/wiki">
         wiki
         </MenuItem>
-        <MenuItem name="4">
+        <MenuItem name="4" to="/home/static">
         数据
         </MenuItem>
       </Menu>
@@ -293,15 +292,6 @@ export default {
     }
   },
   methods: {
-    selectMenu (name) {
-      switch (name) {
-        case '1':
-          this.$router.push('/home')
-          break
-        case '2':
-          this.$router.push('/home/project')
-      }
-    },
     changVisible (e) {
       e.stopPropagation()
       this.visible = true

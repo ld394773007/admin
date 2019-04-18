@@ -10,9 +10,13 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "echarts": "^4.2.1",
     "element-ui": "^2.7.0",
     "iview": "^3.3.3",
+    "textarea-caret": "^3.1.0",
+    "v-charts": "^1.19.0",
     "vue": "^2.5.2",
+    "vue-at": "^2.3.2",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {

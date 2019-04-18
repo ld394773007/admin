@@ -21,7 +21,7 @@ export default {
   @include flex-center;
   align-items: flex-start;
   margin: 0 auto;
-  height: calc(100vh - 48px);
+  min-height: calc(100vh - 48px);
   background-color: #ededed;
 }
 </style>

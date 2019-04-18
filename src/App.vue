@@ -224,7 +224,7 @@ body {
   @include flex-center;
 }
 .user-avatar {
-  background-color:#cdd081;
+  background-color: #cdd081;
 }
 .p10 {
   .el-card__body {
@@ -237,12 +237,42 @@ body {
     overflow: initial;
   }
 }
-.el-table__row:hover  .show-table-action{
+.el-table__row:hover .show-table-action {
   opacity: 1 !important;
 }
 .text-center-input {
   input {
     text-align: center;
   }
+}
+.el-tabs__nav-wrap::after {
+  display: none;
+}
+.custom-tree-node:hover .more-icon {
+  opacity: 1 !important;
+}
+.wiki-form-select {
+  .ivu-select-selection {
+    border-color: transparent;
+  }
+  .ivu-select-arrow {
+    opacity: 0;
+  }
+  input::-webkit-input-placeholder, .ivu-select-placeholder {
+    /* WebKit browsers */
+    color: #999 !important;
+    font-size: 14px !important;
+  }
+  &.ivu-select-visible {
+    .ivu-select-selection {
+      border-color: #57a3f3;
+    }
+    .ivu-select-arrow {
+      opacity: 1;
+    }
+  }
+}
+.ivu-cell, .el-tabs__content {
+  overflow: initial !important;
 }
 </style>
