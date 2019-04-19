@@ -81,10 +81,7 @@ export default {
         'alignright',
         '|',
         'img',
-        '|',
-        'undo',
-        'redo',
-        'fullscreen'
+        '|'
       ]
     },
     colors: {

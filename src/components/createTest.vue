@@ -3,6 +3,16 @@
     <div class="create-test-header">
 
     </div>
+    <div class="input-wrap">
+      <Select v-model="model1"
+              style="width:200px;margin-right:10px;">
+        <Option value="1">项目一</Option>
+        <Option value="2">项目二</Option>
+        <Option value="3">项目三</Option>
+        <Option value="4">项目四</Option>
+      </Select>
+      <Input v-model="value" placeholder="项目名称"/>
+    </div>
     <div class="create-test-body">
       <div class="create-test-body-left">
         <Tabs value="1"
@@ -11,17 +21,20 @@
                    name="1">
             <editor v-model="form.dec"></editor>
             <Select class="create-test-tag"
+                    placeholder="请选择标签"
                     v-model="tagValue"
                     multiple>
               <Option v-for="item in tagList"
                       :value="item.value"
                       :key="item.value">{{ item.label }}</Option>
             </Select>
-            <Upload :default-file-list="defaultList"
-                    action="//jsonplaceholder.typicode.com/posts/">
-              <Button class="create-test-upload"
-                      icon="ios-cloud-upload-outline">添加附件</Button>
-            </Upload>
+            <div style="width:300px">
+              <Upload :default-file-list="defaultList"
+                      action="//jsonplaceholder.typicode.com/posts/">
+                <Button class="create-test-upload"
+                        icon="ios-cloud-upload-outline">添加附件</Button>
+              </Upload>
+            </div>
           </TabPane>
         </Tabs>
       </div>
@@ -78,6 +91,7 @@
                 <div class="add-tx">
                   <el-button class="add-btn"
                              type="text"
+                             style="padding-bottom:0;height:34px"
                              icon="el-icon-plus">添加提醒</el-button>
                   <div class="add-item">
                     <div class="add-item-text">任务结束3分钟后提醒李四</div>
@@ -102,6 +116,8 @@ export default {
   },
   data () {
     return {
+      model1: '1',
+      value: '',
       defaultList: [
         {
           name: 'img1.jpg',
@@ -158,6 +174,11 @@ export default {
   &-tag {
     margin-top: 20px;
     margin-bottom: 20px;
+  }
+  .input-wrap {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
   }
   .add-btn {
     padding-top: 0;

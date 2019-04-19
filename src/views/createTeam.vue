@@ -12,6 +12,9 @@
            src="https://dn-st.teambition.net/web/release/images/teambition-logo@2x.773fd502.png"
            alt=""
            srcset="">
+      <Icon class="close-icon"
+            :size="28"
+            type="md-close" />
     </div>
     <div class="create-team-body">
       <div class="create-team-step">

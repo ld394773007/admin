@@ -39,7 +39,9 @@ export default {
 <style lang="scss" scoped>
 .enterprise {
   display: flex;
+  width: 1300px;
   margin-top: 20px;
+  margin-bottom: 20px;
   &-menu {
     width: 100% !important;
   }

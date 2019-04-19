@@ -2,7 +2,7 @@
   <div class="prject continar">
     <div class="prject-nav">
       <CellGroup>
-        <Cell title="所有项目"
+        <Cell selected title="所有项目"
               extra="20">
           <Icon type="md-star"
                 slot="icon" />
@@ -79,11 +79,12 @@
            class="prject-list">
         <el-card class="prject-item"
 
-                 v-for="item in 6"
+                 v-for="item in 9"
                  :key="item">
+          <i class="gd-text" v-if="item ==1 ">已归档</i>
           <div @click="$router.push('/home/test')">
             <div class="prject-item-header">
-              <p class="prject-item-title">点点项目标题</p>
+              <p class="prject-item-title" :class="{gd: item == 1}">点点项目标题</p>
               <span class="prject-item-avatar">陈</span>
             </div>
             <div class="prject-item-img">
@@ -170,19 +171,33 @@ export default {
   }
   &-item {
     @include flex-col-center;
-    margin: 0 5px;
-    margin-bottom: 30px;
+    position: relative;
+    margin-right: 10px;
+    margin-bottom: 20px;
     width: 280px;
+    overflow: hidden;
     cursor: pointer;
+    & .gd-text {
+      position: absolute;
+      text-align: center;
+      padding-top: 20px;
+      width: 80px;
+      left: -21px;
+      top: -9px;
+      font-size: 12px;
+      background-color: #fff;
+      border-bottom: 1px solid #ccc;
+      transform: rotate(-40deg);
+    }
     &-img {
       @include flex-center;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
       width: 100%;
     }
     &-image {
-      margin: 10px auto;
+      margin: 5px auto;
       width: 80px;
-      height: 80px;
+      height: 50px;
       background-color: #ccc;
     }
     &-header {
@@ -193,8 +208,12 @@ export default {
       width: 200px;
       margin-right: 30px;
       overflow: hidden;
+      font-weight: bold;
       text-overflow: ellipsis;
       white-space: nowrap;
+      &.gd {
+        text-indent: 36px;
+      }
     }
     &-avatar {
       @include flex-center;

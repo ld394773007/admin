@@ -35,96 +35,95 @@
       <div class="user-content"
            v-if="active == 1">
         <p class="user-content-title">个人信息</p>
-        <el-form ref="form"
+        <Form ref="form"
                  :model="form"
                  label-position="left"
-                 label-width="100px">
-          <el-form-item label="头像">
+                 :label-width="60">
+          <FormItem label="头像">
             <div class="user-avatar-upload">
               <Avatar class="user-info-avatar">陈波</Avatar>
               <Upload action="//jsonplaceholder.typicode.com/posts/">
                 <Button type="info">更换头像</Button>
               </Upload>
             </div>
-          </el-form-item>
-          <el-form-item label="姓名">
-            <el-input class="form-input"
-                      v-model="form.name"></el-input>
-          </el-form-item>
-          <el-form-item label="电话">
-            <el-input class="form-input"
-                      v-model="form.phone"></el-input>
-          </el-form-item>
-          <el-form-item label="生日">
-            <el-date-picker class="form-input"
+          </FormItem>
+          <FormItem label="姓名">
+            <Input class="form-input"
+                      v-model="form.name"></Input>
+          </FormItem>
+          <FormItem label="电话">
+            <Input class="form-input"
+                      v-model="form.phone"></Input>
+          </FormItem>
+          <FormItem label="生日">
+            <DatePicker class="form-input"
                             v-model="form.birthday"
                             type="date"
                             placeholder="选择日期">
-            </el-date-picker>
-          </el-form-item>
-          <el-form-item label="地址">
-            <el-input class="form-input"
-                      v-model="form.address"></el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-button type="primary"
-                       @click="onSubmit">立即创建</el-button>
-            <el-button>取消</el-button>
-          </el-form-item>
-        </el-form>
+            </DatePicker>
+          </FormItem>
+          <FormItem label="地址">
+            <Input class="form-input"
+                      v-model="form.address"></Input>
+          </FormItem>
+          <FormItem>
+            <Button type="primary"
+                    style="margin-left: 36px;margin-right: 10px"
+                       @click="onSubmit">立即创建</Button>
+            <Button>取消</Button>
+          </FormItem>
+        </Form>
       </div>
       <div class="user-content"
            v-if="active == 2">
         <p class="user-content-title">账号密码</p>
-        <el-form ref="formTwo"
+        <Form ref="formTwo"
                  :model="form"
                  label-position="left"
-                 label-width="100px">
-          <el-form-item label="email">
+                 :label-width="80">
+          <FormItem label="email">
             <div class="form-wrap">
-              <el-input class="form-input"
-                        v-model="formTwo.email"></el-input>
-              <el-button class="form-wrap-btn">为验证</el-button>
+              <Input class="form-input"
+                        v-model="formTwo.email"></Input>
+              <Button class="form-wrap-btn">为验证</Button>
             </div>
-          </el-form-item>
-          <el-form-item>
-            <el-button class="form-wrap-btn">发送邮件</el-button>
-          </el-form-item>
-          <el-form-item label="电话">
+            <Button style="margin-top:10px" class="form-wrap-btn">发送邮件</Button>
+          </FormItem>
+          <FormItem label="电话">
             <div class="form-wrap">
-              <el-input class="form-input"
-                        v-model="formTwo.phone"></el-input>
-              <el-button class="form-wrap-btn">确认绑定</el-button>
+              <Input class="form-input"
+                        v-model="formTwo.phone"></Input>
+              <Button class="form-wrap-btn">确认绑定</Button>
             </div>
-          </el-form-item>
-          <el-form-item label="旧密码">
-            <el-input class="form-input"
+          </FormItem>
+          <FormItem label="旧密码">
+            <Input class="form-input"
                       type="password"
-                      v-model="formTwo.password"></el-input>
-          </el-form-item>
-          <el-form-item label="新密码">
-            <el-input type="password"
+                      v-model="formTwo.password"></Input>
+          </FormItem>
+          <FormItem label="新密码">
+            <Input type="password"
                       class="form-input"
-                      v-model="formTwo.oldPassword"></el-input>
-          </el-form-item>
-          <el-form-item label="确认新密码">
-            <el-input type="password"
+                      v-model="formTwo.oldPassword"></Input>
+          </FormItem>
+          <FormItem label="确认新密码">
+            <Input type="password"
                       class="form-input"
-                      v-model="formTwo.repassword"></el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-button>取消</el-button>
-            <el-button type="primary"
-                       @click="onSave">保存</el-button>
-          </el-form-item>
-        </el-form>
+                      v-model="formTwo.repassword"></Input>
+          </FormItem>
+          <FormItem>
+            <Button >取消</Button>
+            <Button type="primary"
+                       @click="onSave">保存</Button>
+          </FormItem>
+        </Form>
       </div>
       <div class="user-content"
            v-if="active == 3">
            <p class="user-content-title">微信绑定</p>
         <div class="flex-center flex-start">
           <i class="iconfont icon-wechat user-wechart"></i>
-          <el-button type="primary">绑定</el-button>
+          <Button type="primary">绑定</Button>
         </div>
       </div>
       <div class="user-content"

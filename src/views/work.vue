@@ -1,21 +1,11 @@
 <template>
   <div class="work continar">
-    <Menu mode="horizontal"
-          class="work-tabs"
-          :active-name="active">
-      <MenuItem name="1">
-      我的任务
-      </MenuItem>
-      <MenuItem name="2">
-      我发布的
-      </MenuItem>
-      <MenuItem name="3">
-      我参与的
-      </MenuItem>
-      <MenuItem name="4">
-      所有任务
-      </MenuItem>
-    </Menu>
+    <el-tabs class="work-tabs" v-model="active">
+      <el-tab-pane label="我的任务" name="1"></el-tab-pane>
+      <el-tab-pane label="我发布的" name="2"></el-tab-pane>
+      <el-tab-pane label="我参与的" name="3"></el-tab-pane>
+      <el-tab-pane label="所有任务" name="4"></el-tab-pane>
+    </el-tabs>
     <div class="work-tabs-content">
       <div class="work-tabs-header">
         <Input class="search-input"
@@ -24,31 +14,31 @@
                placeholder="请输入内容"
                style="width: auto" />
         <div class="work-tabs-right">
-          <Dropdown @on-click="clickSortCompletion">
+          <Dropdown trigger="click" @on-click="clickSortCompletion">
             <a class="sort-down"
                href="javascript:void(0)">
               {{completionStatus}}
               <Icon type="ios-arrow-down"></Icon>
             </a>
-            <DropdownMenu slot="list">
-              <DropdownItem name="所有">所有</DropdownItem>
-              <DropdownItem name="未开始">未开始</DropdownItem>
-              <DropdownItem name="进行中">进行中</DropdownItem>
-              <DropdownItem name="已完成">已完成</DropdownItem>
-              <DropdownItem name="已逾期">已逾期</DropdownItem>
-              <DropdownItem name="已关闭">已关闭</DropdownItem>
+            <DropdownMenu  slot="list">
+              <DropdownItem name="所有" :selected="completionStatus == '所有'"><span>所有 <i v-if="completionStatus == '所有'" class="el-icon-check"></i></span></DropdownItem>
+              <DropdownItem name="未开始" :selected="completionStatus == '未开始'"><span>未开始 <i v-if="completionStatus == '未开始'" class="el-icon-check"></i></span></DropdownItem>
+              <DropdownItem name="进行中" :selected="completionStatus == '进行中'"><span>进行中 <i v-if="completionStatus == '进行中'" class="el-icon-check"></i></span></DropdownItem>
+              <DropdownItem name="已完成" :selected="completionStatus == '已完成'"><span>已完成 <i v-if="completionStatus == '已完成'" class="el-icon-check"></i></span></DropdownItem>
+              <DropdownItem name="已逾期" :selected="completionStatus == '已逾期'"><span>已逾期 <i v-if="completionStatus == '已逾期'" class="el-icon-check"></i></span></DropdownItem>
+              <DropdownItem name="已关闭" :selected="completionStatus == '已关闭'"><span>已关闭 <i v-if="completionStatus == '已关闭'" class="el-icon-check"></i></span></DropdownItem>
             </DropdownMenu>
           </Dropdown>
-          <Dropdown @on-click="clickSortTime">
+          <Dropdown trigger="click" @on-click="clickSortTime">
             <a class="sort-down"
                href="javascript:void(0)">
               {{timeValue}}
               <Icon type="ios-arrow-down"></Icon>
             </a>
             <DropdownMenu slot="list">
-              <DropdownItem name="按截止时间排序">按截止时间排序</DropdownItem>
-              <DropdownItem name="按开始时间排序">按开始时间排序</DropdownItem>
-              <DropdownItem name="按紧急时间排序">按紧急时间排序</DropdownItem>
+              <DropdownItem name="按截止时间排序" :selected="timeValue == '按截止时间排序'"><span>按截止时间排序 <i v-if="timeValue == '按截止时间排序'" class="el-icon-check"></i></span></DropdownItem>
+              <DropdownItem name="按开始时间排序" :selected="timeValue == '按开始时间排序'"><span>按开始时间排序<i v-if="timeValue == '按开始时间排序'" class="el-icon-check"></i></span></DropdownItem>
+              <DropdownItem name="按紧急时间排序" :selected="timeValue == '按紧急时间排序'"><span>按紧急时间排序<i v-if="timeValue == '按紧急时间排序'" class="el-icon-check"></i></span></DropdownItem>
             </DropdownMenu>
           </Dropdown>
         </div>
@@ -74,7 +64,7 @@
         </div>
       </div>
     </div>
-  <test-dialog v-model="dialogVisible"></test-dialog>
+    <test-dialog v-model="dialogVisible"></test-dialog>
   </div>
 </template>
 
@@ -216,7 +206,7 @@ export default {
   &-row:hover {
     background-color: #f5f7fa;
     .status-line {
-      width: 8px;
+      width: 2px;
       opacity: 0.8;
     }
   }
@@ -248,10 +238,16 @@ export default {
       margin-bottom: 20px;
     }
     &-content {
-      min-height: calc(100vh - 150px);
-      margin-top: 10px;
+      box-sizing: border-box;
+      min-height: calc(100vh - 110px);
+      padding-bottom: 30px;
       padding: 20px;
       background-color: #fff;
+      border-radius: 5px;
+      overflow-y: auto;
+      .el-icon-check {
+        margin-left: 16px;
+      }
     }
   }
   &-icon {

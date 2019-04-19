@@ -14,6 +14,9 @@
           <span class="test-time">创建于2019-03-24 19:55:23</span>
         </div>
         <span class="test-status">当前状态：已完成</span>
+
+      </div>
+      <div class="test-dialog-right">
         <div class="test-status-down">
           <span>跳转状态为：</span>
           <Dropdown>
@@ -26,14 +29,12 @@
             </DropdownMenu>
           </Dropdown>
         </div>
-      </div>
-      <div class="test-dialog-right">
         <el-button type="text"
                    icon="el-icon-edit">启用编辑</el-button>
         <el-button type="text"
                    icon="el-icon-delete">删除任务</el-button>
         <Icon style="margin-left: 15px"
-              size="28"
+              size="24"
               @click="close"
               class="close-btn"
               type="md-close" />
@@ -54,15 +55,14 @@
         </div>
         <div class="test-dialog-content">
           <div class="test-dialog-tabs">
-            <Tabs :value="active"
-                  @on-click="handleClick">
-              <TabPane label="描述信息"
+            <el-tabs  v-model="active">
+              <el-tab-pane label="描述信息"
                        name="1">
                 <div class="test-dialog-tabs-content">
                   这里是描述内容
                 </div>
-              </TabPane>
-              <TabPane label="标签一"
+              </el-tab-pane>
+              <el-tab-pane label="子任务"
                        name="2">
                 <div class="test-dialog-tabs-content">
                   <div class="add-child-btn"><i class="el-icon-circle-plus-outline"></i>新建子项目</div>
@@ -85,8 +85,8 @@
                     </el-table-column>
                   </el-table>
                 </div>
-              </TabPane>
-              <TabPane label="标签二"
+              </el-tab-pane>
+              <el-tab-pane label="操作历史"
                        name="3">
                 <div class="test-dialog-tabs-content">
                   <el-table :data="tableData"
@@ -102,12 +102,8 @@
                                      label="操作人"
                                      width="120">
                     </el-table-column>
-                    <el-table-column prop="type"
-                                     label="操作类型"
-                                     width="120">
-                    </el-table-column>
                     <el-table-column prop="status"
-                                     label="操作状态"
+                                     label="字段"
                                      width="120">
                     </el-table-column>
                     <el-table-column prop="before"
@@ -120,13 +116,13 @@
                     </el-table-column>
                   </el-table>
                 </div>
-              </TabPane>
-            </Tabs>
+              </el-tab-pane>
+            </el-tabs >
           </div>
 
           <div class="test-dialog-info">
-            <Tabs value="1">
-              <TabPane label="基本信息"
+            <el-tabs  value="1">
+              <el-tab-pane label="基本信息"
                        name="1">
                 <div class="test-dialog-info-list">
                   <div class="test-dialog-info-item">
@@ -189,8 +185,8 @@
                     </div>
                   </div>
                 </div>
-              </TabPane>
-            </Tabs>
+              </el-tab-pane>
+            </el-tabs >
           </div>
         </div>
         <div class="test-dialog-tag">
@@ -203,12 +199,9 @@
           <span>附件：</span>
           <div class="test-dailog-upload-input">
             <span>贵大工训原型.rar</span>
-            <Icon size="20"
-                  type="ios-eye" />
             <Icon size="18"
+                  class="md-download"
                   type="md-download" />
-            <Icon size="20"
-                  type="md-close" />
             <!-- <Upload class="upload-demo"
                     action="https://jsonplaceholder.typicode.com/posts/">
               <Button size="small"
@@ -258,24 +251,6 @@ export default {
         date: '2016-05-02',
         author: '王小虎',
         title: '阅读分享中的使用案例， 用teambition为新产品发布实际建立一个公示板吧！',
-        level: '紧急且重要',
-        status: '未开始'
-      }, {
-        date: '2016-05-02',
-        author: '王小虎',
-        title: '上海市普陀区金沙江路 1518 弄',
-        level: '紧急且重要',
-        status: '未开始'
-      }, {
-        date: '2016-05-02',
-        author: '王小虎',
-        title: '上海市普陀区金沙江路 1518 弄',
-        level: '紧急且重要',
-        status: '未开始'
-      }, {
-        date: '2016-05-02',
-        author: '王小虎',
-        title: '上海市普陀区金沙江路 1518 弄',
         level: '紧急且重要',
         status: '未开始'
       }, {
@@ -380,6 +355,17 @@ export default {
     justify-content: flex-start;
     align-items: flex-start;
   }
+  &-tag {
+    align-items: center;
+  }
+  &-upload:hover {
+    .md-download {
+      opacity: 1;
+    }
+  }
+  .md-download {
+    opacity: 0;
+  }
   &-content {
     display: flex;
     justify-content: space-between;
@@ -387,7 +373,7 @@ export default {
     width: 100%;
   }
   &-tabs {
-    width: 62%;
+    flex: 1;
     &-content {
       width: 100%;
     }
@@ -401,7 +387,6 @@ export default {
     }
     &-left {
       width: 80px;
-      text-align: right;
     }
     &-right,
     &-span {
@@ -429,6 +414,7 @@ export default {
   &-header {
     @include flex-center;
     justify-content: space-between;
+    border-bottom: 1px solid #dcdee2;
   }
   &-left {
     @include flex-center;
@@ -444,10 +430,12 @@ export default {
   border-right: 1px solid #dcdfe6;
   &-down {
     @include flex-center;
+    margin-right: 10px;
   }
 }
 .test-title {
   font-size: 20px;
+  font-weight: bold;
   margin-right: 10px;
 }
 .test-tag {

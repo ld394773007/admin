@@ -17,7 +17,7 @@ export default {
 }
 
 body {
-  font-size: 14px;
+  font-size: 12px;
 }
 
 i {
@@ -245,9 +245,6 @@ body {
     text-align: center;
   }
 }
-.el-tabs__nav-wrap::after {
-  display: none;
-}
 .custom-tree-node:hover .more-icon {
   opacity: 1 !important;
 }
@@ -274,5 +271,30 @@ body {
 }
 .ivu-cell, .el-tabs__content {
   overflow: initial !important;
+}
+.information-progress {
+  .ivu-progress-outer{
+    width: 90% !important;
+  }
+}
+.ivu-input, .ivu-btn {
+  font-size: 14px;
+}
+.ivu-input:focus {
+  box-shadow: none !important;
+}
+.common-tree {
+  .el-tree-node__content {
+    height: 38px;
+  }
+}
+.message-card {
+  .ivu-card-body {
+    height: 300px;
+    overflow-y: auto;
+  }
+}
+.prject .el-card__body {
+  padding: 10px 20px !important;
 }
 </style>

@@ -32,13 +32,14 @@
       </div>
       <el-tree :data="data2"
                node-key="id"
+               class="common-tree"
                @node-click="changeActive2"
                default-expand-all>
       </el-tree>
     </div>
     <div class="team-right">
       <div class="team-header">
-        <h2>{{title}}</h2>
+        <h1>{{title}}</h1>
         <div class="team-header-right">
           <Dropdown trigger="click">
             <el-button type="text"
@@ -52,16 +53,45 @@
                      icon="el-icon-circle-plus"
                      @click="modal2 = true">添加成员</el-button>
           <el-button type="text"
-                     icon="el-icon-circle-plus">添加部门</el-button>
-          <el-button type="text"
-                     icon="el-icon-more">更多</el-button>
+                     @click="modal3 = true"
+                     icon="el-icon-circle-plus">添加子部门</el-button>
+          <Dropdown trigger="custom" :visible="visible">
+            <el-button type="text"
+                       @click="visible = true"
+                       icon="el-icon-more">更多</el-button>
+            <DropdownMenu slot="list">
+              <Card title="Options"
+                    :padding="0"
+                    shadow
+                    style="width: 200px;">
+                <p style="text-align:center;" slot="title">
+                  部门菜单
+                </p>
+                <a href="javascript:"
+                   slot="extra"
+                   @click="visible = false"
+                   >
+                  <i style="font-size: 18px;font-weight:bold;" class="el-icon-close"></i>
+                </a>
+                <CellGroup>
+                  <Cell title="显示子部门成员">
+                    <i-switch v-model="switchValue"
+                              slot="extra" />
+                  </Cell>
+                  <Cell title="编辑部门" />
+                </CellGroup>
+
+              </Card>
+              <DropdownItem><span style="color:red;font-size:14px">删除部门</span></DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
         </div>
       </div>
       <el-table ref="multipleTable"
                 :data="tableData"
                 tooltip-effect="dark"
                 style="width: 100%"
-                height="60vh"
+                height="70vh"
                 v-if="active < 4"
                 class="team-table">
 
@@ -88,7 +118,7 @@
                 :data="tableData"
                 tooltip-effect="dark"
                 style="width: 100%"
-                height="60vh"
+                height="70vh"
                 v-else
                 class="team-table">
         <el-table-column label="部门成员">
@@ -144,6 +174,18 @@
         </div>
       </div>
     </Modal>
+        <Modal v-model="modal3"
+           footer-hide
+           width="360"
+           title="创建子部门">
+      <div class="modal-content" style="min-height: 140px;">
+        <div class="modal-center">
+          <Input placeholder="子部门名称" />
+          <span class="modal-center-span">隶属于：营销部</span>
+          <Button class="modal-center-btn" type="primary">创建</Button>
+        </div>
+      </div>
+    </Modal>
     <Modal v-model="modal"
            footer-hide
            width="360"
@@ -166,9 +208,12 @@ export default {
   data () {
     return {
       active: '1',
+      visible: false,
       modal2: false,
+      modal3: false,
       modal: false,
       serchValue: '',
+      switchValue: false,
       data2: [{
         id: 4,
         label: '市场部',
@@ -320,6 +365,15 @@ export default {
   &-content {
     min-height: 500px;
   }
+  &-center-span {
+    display: block;
+    margin: 10px 0;
+    font-size: 14px;
+    color: #808695;
+  }
+  &-center-btn {
+    width: 100%;
+  }
   &-header {
     @include flex-center;
     justify-content: space-between;
@@ -355,6 +409,7 @@ export default {
     margin-left: 20px;
   }
   .search-input {
+    width: 250px !important;
     margin-left: 20px;
     margin-bottom: 10px;
   }
@@ -368,6 +423,7 @@ export default {
     margin-right: 20px;
     padding: 20px 0;
     width: 300px;
+    height: calc(100vh - 90px);
     background-color: #fff;
   }
   &-right {

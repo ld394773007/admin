@@ -5,8 +5,9 @@
       <div class="wiki-left-header">
         <Input suffix="ios-search"
                placeholder="请输入关键字"
-               style="width: auto" />
-        <Button type="primary" @click="$router.push('/home/addWiki')">创建词条</Button>
+               style="width: 150px;margin-right:10px;" />
+        <Button type="primary"
+                @click="$router.push('/home/addWiki')">创建词条</Button>
       </div>
       <el-tabs v-model="activeName">
         <el-tab-pane label="所有Wiki"
@@ -14,18 +15,19 @@
           <el-tree :data="treeList"
                    node-key="id">
             <div class="custom-tree-node"
-                  slot-scope="{ node, data }">
+                 slot-scope="{ node, data }">
               <span>{{ node.label }}</span>
               <div class="custom-tree-icon">
-              <Dropdown slot="extra" @on-click="clickDown">
-                <Icon type="md-more"
-                      class="more-icon" />
-                <DropdownMenu slot="list">
-                  <DropdownItem name="/addWiki">创建子词条</DropdownItem>
-                  <DropdownItem>分享</DropdownItem>
-                  <DropdownItem>删除</DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
+                <Dropdown slot="extra"
+                          @on-click="clickDown">
+                  <Icon type="md-more"
+                        class="more-icon" />
+                  <DropdownMenu slot="list">
+                    <DropdownItem name="/addWiki">创建子词条</DropdownItem>
+                    <DropdownItem>分享</DropdownItem>
+                    <DropdownItem>删除</DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
               </div>
             </div>
           </el-tree>
@@ -38,7 +40,7 @@
     </div>
     <div class="wiki-right">
       <div class="wiki-right-header">
-        <h1>标题</h1>
+        <h4>标题</h4>
         <div class="wiki-right-action">
           <el-button class="wiki-action-btn"
                      icon="el-icon-edit"
@@ -85,35 +87,9 @@
       <div class="wiki-form">
         <div class="wiki-form-item">
           <label>标签</label>
-          <div class="wiki-form-content">
-            <Select v-model="value1"
-                    style="width: 400px"
-                    class="wiki-form-tag wiki-form-select"
-                    multiple
-                    placeholder="暂无标签"
-                    :max-tag-count="4"
-                    :max-tag-placeholder="maxTagPlaceholder">
-              <Option v-for="item in tagList"
-                      :value="item.id"
-                      :key="item.id">{{ item.name }}</Option>
-            </Select>
-          </div>
-        </div>
-        <div class="wiki-form-item">
-          <label>抄送人</label>
-          <div class="wiki-form-content">
-            <Select v-model="value2"
-                    style="width: 400px"
-                    class="wiki-form-csr wiki-form-select"
-                    multiple
-                    filterable
-                    placeholder="未设置抄送人"
-                    :max-tag-count="4"
-                    :max-tag-placeholder="maxTagPlaceholder">
-              <Option v-for="item in peopleList"
-                      :value="item.id"
-                      :key="item.id">{{ item.name }}</Option>
-            </Select>
+          <div class="wiki-form-content wiki-form-tag">
+            <Tag>标签一</Tag>
+            <Tag>标签二</Tag>
           </div>
         </div>
         <div class="wiki-form-item">
@@ -189,6 +165,10 @@ export default {
               label: '标题2'
             }
           ]
+        },
+        {
+          id: 3,
+          label: '标题3'
         }
       ],
       peopleList: [
@@ -247,7 +227,7 @@ export default {
     }
   },
   methods: {
-    clickDown(name) {
+    clickDown (name) {
       this.$router.push('/home' + name)
     },
     insert (e) {
@@ -316,9 +296,13 @@ export default {
     }
   }
   &-form {
+
     &-content {
       display: flex;
       flex-direction: column;
+    }
+    &-tag {
+      flex-direction:initial;
     }
     &-item {
       @include flex-center;

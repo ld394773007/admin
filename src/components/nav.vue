@@ -77,7 +77,7 @@
         <MenuItem name="3" to="/home/wiki">
         wiki
         </MenuItem>
-        <MenuItem name="4" to="/home/static">
+        <MenuItem name="4" to="/home/information">
         数据
         </MenuItem>
       </Menu>
@@ -114,8 +114,7 @@
         <i class="iconfont icon-icon-test nav-icon"></i>
       </router-link>
 
-      <Dropdown trigger="custom"
-                :visible="visible">
+      <Dropdown>
         <a href="javascript:"
            @click="changVisible"
            class="nav-plus">
@@ -129,7 +128,7 @@
           <Card title="消息中心"
                 :padding="0"
                 shadow
-                style="width: 400px;">
+                class="message-card">
             <a href="javascript:"
                @click="clickMoreMessage"
                slot="extra">
@@ -160,7 +159,7 @@
           <i class="iconfont icon-help nav-icon"></i>
         </a>
         <DropdownMenu slot="list">
-          <DropdownItem>帮助中心</DropdownItem>
+          <DropdownItem><router-link to="/home/help">帮助中心</router-link></DropdownItem>
         </DropdownMenu>
       </Dropdown>
 
@@ -201,20 +200,20 @@
         </DropdownMenu>
       </Dropdown>
     </div>
-    <Modal width="90%"
-           title="新建任务"
+    <Modal width="550px"
+           title="新建项目"
            :styles="{top: '20px'}"
            v-model="showProjectPop">
       <div class="add-project">
         <Form :model="formItem"
-              :label-width="100">
-          <FormItem label="项目名称">
-            <Input style="width:300px"
+              :label-width="0">
+          <FormItem>
+            <Input style="width:510px"
                    v-model="formItem.name"
                    placeholder="请输入项目名称"></Input>
           </FormItem>
-          <FormItem label="项目优先级">
-            <Select style="width:300px"
+          <FormItem>
+            <Select placeholder="请选择项目优先级" style="width:510px"
                     v-model="formItem.level">
               <Option value="1">一般</Option>
               <Option value="2">重要</Option>
@@ -222,24 +221,23 @@
               <Option value="3">紧急且重要</Option>
             </Select>
           </FormItem>
-          <FormItem label="开始结束时间">
-            <Row>
-              <Col span="5">
+          <FormItem >
+            <div class="time-input">
               <DatePicker type="date"
-                          placeholder="Select date"
+                          style="width: 250px"
+                          placeholder="选择开始时间"
                           v-model="formItem.startTime"></DatePicker>
-              </Col>
-              <Col span="2"
-                   style="text-align: center">-</Col>
-              <Col span="5">
+                <span>-</span>
               <TimePicker type="time"
-                          placeholder="Select time"
+                          style="width: 250px"
+                          placeholder="选择结束时间"
                           v-model="formItem.endTime"></TimePicker>
-              </Col>
-            </Row>
+            </div>
           </FormItem>
-          <FormItem label="项目简介">
-            <editor v-model="formItem.dec"></editor>
+          <FormItem>
+            <div style="width: 510px">
+              <editor v-model="formItem.dec"></editor>
+            </div>
           </FormItem>
           <!-- <FormItem>
             <Button type="primary">Submit</Button>
@@ -325,6 +323,13 @@ export default {
 <style lang="scss" scoped>
 .level-popup {
   color: #383838;
+  .time-input {
+    @include flex-center;
+    width: 510px;
+    span {
+      margin: 0 10px;
+    }
+  }
   &-title {
     margin-top: 8px;
     margin-bottom: 24px;
@@ -548,6 +553,9 @@ export default {
   }
 }
 .message {
+  &-card {
+    width: 400px;
+  }
   &-header {
     @include flex-center;
     margin-bottom: 10px;
@@ -578,6 +586,7 @@ export default {
     align-items: flex-start;
   }
   &-title {
+    margin-bottom: 8px;
     font-size: 14px;
     color: #545c64;
     width: 300px;
@@ -593,4 +602,5 @@ export default {
     margin-left: 20px;
   }
 }
+
 </style>

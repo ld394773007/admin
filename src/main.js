@@ -12,6 +12,7 @@ import {
   Tree,
   Button,
   Checkbox,
+  CheckboxGroup,
   Select,
   Option,
   Table,
@@ -30,6 +31,7 @@ import router from './router'
 Vue.use(iView)
 Vue.use(Input)
   .use(Tabs)
+  .use(CheckboxGroup)
   .use(TabPane)
   .use(Card)
   .use(Tree)

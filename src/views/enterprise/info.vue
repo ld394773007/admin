@@ -21,12 +21,15 @@
         </el-select>
       </el-form-item>
       <el-form-item label="企业简介">
-        <editor v-model="form.info"></editor>
+        <div class="editor-wrap">
+          <editor v-model="form.info"></editor>
+        </div>
       </el-form-item>
       <el-form-item>
         <el-button type="primary"
+                   class="info-btn"
                    @click="onSubmit">立即创建</el-button>
-        <el-button>取消</el-button>
+        <el-button class="info-btn">取消</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -55,11 +58,21 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .info {
   width: 700px;
   &-input {
-    width: 300px;
+    width: 510px;
+    height: 38px;
+    .el-input__inner {
+      height: 38px;
+    }
+  }
+  .editor-wrap {
+    width: 510px;
+  }
+  .info-btn {
+    height: 38px;
   }
 }
 </style>

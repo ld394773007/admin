@@ -26,6 +26,28 @@ export default new Router({
           component: () => import('@/views/wiki')
         },
         {
+          path: 'information',
+          name: 'information',
+          component: () => import('@/views/information')
+        },
+        {
+          path: 'help',
+          name: 'help',
+          component: () => import('@/views/help/index'),
+          children: [
+            {
+              path:'',
+              name: 'accountList',
+              component: () => import('@/views/help/accountList')
+            },
+            {
+              path:'account',
+              name: 'account',
+              component: () => import('@/views/help/account')
+            }
+          ]
+        },
+        {
           path: 'addWiki',
           name: 'addWiki',
           component: () => import('@/views/addWiki')
