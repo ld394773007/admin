@@ -1,6 +1,6 @@
 <template>
   <div ref="page"
-       class="document continar">
+       class="document container">
     <div class="document-header">
       <div class="document-title"> <span @click="isChild = false">文件库</span> <i v-if="isChild"
            class="iconfont el-icon-arrow-right"></i>{{isChild ? '文件' : ''}}</div>

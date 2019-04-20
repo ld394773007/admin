@@ -1,5 +1,5 @@
 <template>
-  <div class="team continar">
+  <div class="team container">
     <div class="team-left">
       <Input suffix="ios-search"
              class="search-input"
@@ -39,7 +39,7 @@
     </div>
     <div class="team-right">
       <div class="team-header">
-        <h1>{{title}}</h1>
+        <h4>{{title}}</h4>
         <div class="team-header-right">
           <Dropdown trigger="click">
             <el-button type="text"

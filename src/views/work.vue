@@ -1,5 +1,5 @@
 <template>
-  <div class="work continar">
+  <div class="work container">
     <el-tabs class="work-tabs" v-model="active">
       <el-tab-pane label="我的任务" name="1"></el-tab-pane>
       <el-tab-pane label="我发布的" name="2"></el-tab-pane>

@@ -1,5 +1,5 @@
 <template>
-  <div class="personnel continar">
+  <div class="personnel container">
     <div class="personnel-header">
       <p class="personnel-header-title">所有成员·1</p>
       <el-button class="personnel-header-btn"

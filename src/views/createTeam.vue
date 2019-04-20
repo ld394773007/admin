@@ -13,6 +13,7 @@
            alt=""
            srcset="">
       <Icon class="close-icon"
+            @click="$router.go(-1)"
             :size="28"
             type="md-close" />
     </div>
@@ -236,6 +237,7 @@ export default {
     right: 32px;
     top: 50%;
     transform: translateY(-50%);
+    cursor: pointer;
   }
   &-btn {
     margin-top: 20px;

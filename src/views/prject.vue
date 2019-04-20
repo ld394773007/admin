@@ -1,5 +1,5 @@
 <template>
-  <div class="prject continar">
+  <div class="prject container">
     <div class="prject-nav">
       <CellGroup>
         <Cell selected title="所有项目"

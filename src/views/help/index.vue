@@ -1,5 +1,5 @@
 <template>
-  <div class="help continar">
+  <div class="help container">
     <div class="help-left">
       <Menu active-name="1-1" class="help-menu" theme="light" :open-names="['1', '2']">
         <Submenu name="1">

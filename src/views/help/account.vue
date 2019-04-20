@@ -19,17 +19,19 @@ export default {
 <style lang="scss" scoped>
 .info {
   h2 {
+    font-size: 12px;
     margin-bottom: 20px;
   }
   p {
+    font-size: 12px;
     margin-bottom: 10px;
   }
   .info-item {
     &-title {
-      font-size: 18px;
+      font-size: 12px;
     }
     &-subtitle {
-      font-size: 14px;
+      font-size: 12px;
       font-weight: bold;
     }
   }

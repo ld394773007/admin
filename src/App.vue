@@ -40,9 +40,10 @@ button {
 
 body {
   color: #383838;
+  font-size: 12px;
 }
 
-.continar {
+.container {
   margin: 0 auto;
   width: 1200px;
 }
@@ -189,7 +190,7 @@ body {
   }
 }
 .el-input {
-  font-size: 16px;
+  font-size: 12px;
 }
 .claer-border input {
   border: none;
@@ -255,10 +256,11 @@ body {
   .ivu-select-arrow {
     opacity: 0;
   }
-  input::-webkit-input-placeholder, .ivu-select-placeholder {
+  input::-webkit-input-placeholder,
+  .ivu-select-placeholder {
     /* WebKit browsers */
     color: #999 !important;
-    font-size: 14px !important;
+    font-size: 12px !important;
   }
   &.ivu-select-visible {
     .ivu-select-selection {
@@ -269,16 +271,18 @@ body {
     }
   }
 }
-.ivu-cell, .el-tabs__content {
+.ivu-cell,
+.el-tabs__content {
   overflow: initial !important;
 }
 .information-progress {
-  .ivu-progress-outer{
+  .ivu-progress-outer {
     width: 90% !important;
   }
 }
-.ivu-input, .ivu-btn {
-  font-size: 14px;
+.ivu-input,
+.ivu-btn {
+  font-size: 12px;
 }
 .ivu-input:focus {
   box-shadow: none !important;
@@ -296,5 +300,37 @@ body {
 }
 .prject .el-card__body {
   padding: 10px 20px !important;
+}
+.body {
+  .ivu-cell-title,
+  .ivu-menu,
+  .el-button,
+  .el-form-item__label,
+  .ivu-menu-item,
+  .el-table,
+  .el-tree-node__label {
+    font-size: 12px !important;
+  }
+  .el-table__header {
+    font-weight: bold;
+  }
+}
+.ivu-select-item-selected {
+  position: relative;
+  &::after {
+    content: '\e611';
+    position: absolute;
+    right: 10px;
+    font-family: element-icons!important;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    vertical-align: baseline;
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+  }
 }
 </style>

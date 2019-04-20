@@ -1,5 +1,5 @@
 <template>
-  <div class="enterprise continar">
+  <div class="enterprise container">
     <div class="enterprise-left">
       <Menu active-name="1-1" class="enterprise-menu" theme="light" :open-names="['1', '2']">
         <Submenu name="1">

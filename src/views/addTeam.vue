@@ -1,5 +1,5 @@
 <template>
-  <el-card class="add-team continar">
+  <el-card class="add-team container">
     <div class="add-team-content">
       <img class="logo" src="/static/images/创建企业_团队/u116.png">
       <el-form :model="ruleForm"

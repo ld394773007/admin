@@ -1,5 +1,5 @@
 <template>
-  <div class="user continar">
+  <div class="user container">
     <div class="user-left">
       <Card class="user-info">
         <div class="user-info-wrap">
@@ -214,7 +214,7 @@ export default {
     &-title {
       display: flex;
       align-items: center;
-      font-size: 18px;
+      font-size: 12px;
       font-weight: 600;
       height: 36px;
       color: grey;
@@ -281,7 +281,7 @@ export default {
     background-color: #fff;
     &-title {
       margin-bottom: 20px;
-      font-size: 18px;
+      font-size: 12px;
       font-weight: 600;
     }
   }

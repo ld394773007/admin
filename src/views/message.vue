@@ -1,5 +1,5 @@
 <template>
-  <el-card class="a_message continar">
+  <el-card class="a_message container">
     <div class="a_message-content">
       <div class="a_message-left">
         <div class="a_message-left-header">

@@ -31,6 +31,46 @@ export default new Router({
           component: () => import('@/views/information')
         },
         {
+          path: 'statistics',
+          name: 'statistics',
+          component: () => import('@/views/information/statistics')
+        },
+        {
+          path: 'trend',
+          name: 'trend',
+          component: () => import('@/views/information/trend')
+        },
+        {
+          path: 'ring',
+          name: 'ring',
+          component: () => import('@/views/information/ring')
+        },
+        {
+          path: 'histogram',
+          name: 'histogram',
+          component: () => import('@/views/information/histogram')
+        },
+        {
+          path: 'gk',
+          name: 'gk',
+          component: () => import('@/views/information/gk')
+        },
+        {
+          path: 'line',
+          name: 'line',
+          component: () => import('@/views/information/line')
+        },
+        {
+          path: 'table',
+          name: 'table',
+          component: () => import('@/views/information/table')
+        },
+        {
+          path: 'progress',
+          name: 'progress',
+          component: () => import('@/views/information/progress')
+        },
+        {
           path: 'help',
           name: 'help',
           component: () => import('@/views/help/index'),

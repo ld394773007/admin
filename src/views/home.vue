@@ -21,8 +21,10 @@ export default {
   @include flex-center;
   align-items: flex-start;
   margin: 0 auto;
+  padding-bottom: 30px;
   min-height: calc(100vh - 48px);
   background-color: #ededed;
+  overflow-y: auto;
 }
 </style>
 

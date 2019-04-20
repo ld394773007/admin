@@ -22,6 +22,7 @@ export default {
 <style lang="scss" scoped>
 .list {
   h2 {
+    font-size: 12px;
     margin-bottom: 20px;
   }
 }

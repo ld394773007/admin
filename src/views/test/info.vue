@@ -1,5 +1,5 @@
 <template>
-  <div class="info continar">
+  <div class="info container">
     <Form :model="form"
           class="info-form"
           :label-width="100">

@@ -94,25 +94,14 @@
       </div>
     </Card>
     <Card class="item"
-          title="任务按执行者分布">
-      <router-link to="/home/table"
+          title="项目进展走势图">
+      <router-link to="/home/trend"
                    slot="extra">
         <Icon size="20"
               type="ios-expand" />
       </router-link>
       <div class="content">
-        <el-table :data="tableData"
-                  style="width: 100%">
-          <el-table-column type="index"
-                           width="50">
-          </el-table-column>
-          <el-table-column prop="name"
-                           label="项目名称">
-          </el-table-column>
-          <el-table-column prop="num"
-                           label="人均吐纳率">
-          </el-table-column>
-        </el-table>
+       <ve-line :data="lineData1"></ve-line>
       </div>
     </Card>
     <Card class="item"
@@ -175,6 +164,17 @@ export default {
           { '日期': '04-01', '任务': 9, '任务2': 9 },
           { '日期': '04-02', '任务': 12, '任务2': 19 },
           { '日期': '04-03', '任务': 4, '任务2': 29 },
+          { '日期': '04-04', '任务': 28, '任务2': 9 },
+          { '日期': '04-05', '任务': 21, '任务2': 3 },
+          { '日期': '04-06', '任务': 8, '任务2': 9 }
+        ]
+      },
+      lineData1: {
+        columns: ['日期', '任务', '任务2'],
+        rows: [
+          { '日期': '04-01', '任务': 0, '任务2': 0 },
+          { '日期': '04-02', '任务': 0, '任务2': 0 },
+          { '日期': '04-03', '任务': 0, '任务2': 0 },
           { '日期': '04-04', '任务': 28, '任务2': 9 },
           { '日期': '04-05', '任务': 21, '任务2': 3 },
           { '日期': '04-06', '任务': 8, '任务2': 9 }
