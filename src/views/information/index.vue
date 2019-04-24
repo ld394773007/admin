@@ -94,7 +94,7 @@
       </div>
     </Card>
     <Card class="item"
-          title="任务按执行者分布">
+          title="人均吐纳率">
       <router-link to="/home/table"
                    slot="extra">
         <Icon size="20"
@@ -116,7 +116,7 @@
       </div>
     </Card>
     <Card class="item"
-          title="人均吐纳率">
+          title="项目进度">
       <router-link to="/home/progress"
                    slot="extra">
         <Icon size="20"

@@ -2,29 +2,38 @@
   <div class="chart container">
     <div class="chart-header">
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item :to="{ path: '/home/information' }">数据</el-breadcrumb-item>
-        <el-breadcrumb-item>期间完成任务</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/test/statistics' }">统计</el-breadcrumb-item>
+        <el-breadcrumb-item>任务燃尽图</el-breadcrumb-item>
       </el-breadcrumb>
       <i class="close-btn el-icon-close" @click="$router.go(-1)"></i>
     </div>
     <div class="chart-body">
       <div class="chart-left">
         <Card class="chart-content">
-          <ve-histogram :settings="histogramSetting" :data="histogramData"></ve-histogram>
+          <ve-line :data="lineData"></ve-line>
         </Card>
         <Card class="chart-table">
           <p class="chart-table-title">详情表</p>
           <el-table max-height="250"
                     border
-                    :data="histogramData.rows"
+                    :data="tableData"
                     style="width: 100%">
             <el-table-column type="index"
                              width="50">
             </el-table-column>
+            <el-table-column prop="date"
+                             label="时间">
+            </el-table-column>
+            <el-table-column prop="test"
+                             label="任务">
+            </el-table-column>
             <el-table-column prop="name"
                              label="执行者">
             </el-table-column>
-            <el-table-column prop="test"
+            <el-table-column prop="status"
+                             label="变动类型">
+            </el-table-column>
+            <el-table-column prop="num"
                              label="任务数">
             </el-table-column>
           </el-table>
@@ -46,7 +55,8 @@
           <Form :model="form"
                 label-position="top">
             <FormItem label="时间范围">
-              <Select placeholder="请选择时间范围" v-model="form.time">
+              <Select placeholder="请选择时间范围"
+                      v-model="form.time">
                 <Option value="1">过去七天</Option>
                 <Option value="2">过去一个月</Option>
                 <Option value="3">过去三个月</Option>
@@ -56,9 +66,7 @@
             <FormItem label="执行者">
               <Select placeholder="请选择执行者"
                       v-model="form.name"
-                      filterable
-                      :max-tag-count="3"
-                      multiple>
+                      filterable>
                 <Option v-for="item in 10"
                         :value="item"
                         :key="item">执行者{{ item }}</Option>
@@ -73,30 +81,40 @@
 </template>
 
 <script>
-import VeHistogram from 'v-charts/lib/histogram.common'
+import VeLine from 'v-charts/lib/line.common'
 export default {
   components: {
-    VeHistogram
+    VeLine
   },
   data () {
     return {
-      histogramSetting: {
-        labelMap: {
-          'name': '执行者',
-          'test': '任务数'
-        },
+      ringSetting: {
+        radius: [40, 100]
       },
-      histogramData: {
-        columns: ['name', 'test'],
+      lineData: {
+        columns: ['日期', '任务', '任务2'],
         rows: [
-          { name: '陈波', test: 2 },
-          { name: '待领取', test: 10 }
+          { '日期': '04-01', '任务': 9, '任务2': 9 },
+          { '日期': '04-02', '任务': 12, '任务2': 19 },
+          { '日期': '04-03', '任务': 4, '任务2': 29 },
+          { '日期': '04-04', '任务': 28, '任务2': 9 },
+          { '日期': '04-05', '任务': 21, '任务2': 3 },
+          { '日期': '04-06', '任务': 8, '任务2': 9 }
         ]
       },
       form: {
         name: '',
         time: ''
-      }
+      },
+      tableData: [
+        {
+          date: '今天 18:00',
+          test: '在这里收集产品方案',
+          name: '陈波',
+          status: '新增',
+          num: '+1'
+        }
+      ]
     }
   }
 }
@@ -104,7 +122,6 @@ export default {
 
 <style lang="scss" scoped>
 .chart {
-  margin-top: 20px;
   &-header {
     @include flex-center;
     justify-content: space-between;

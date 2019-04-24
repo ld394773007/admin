@@ -3,7 +3,7 @@
     <el-header>
       <div class="header">
         <img class="logo"
-             src="/static/images/创建企业_团队/u116.png">
+             src="/static/images/logo.svg">
         <div class="nav-list">
           <div class="nav-item">产品</div>
           <div class="nav-item">价格</div>

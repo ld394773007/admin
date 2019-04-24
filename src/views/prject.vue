@@ -81,14 +81,14 @@
 
                  v-for="item in 9"
                  :key="item">
-          <i class="gd-text" v-if="item ==1 ">已归档</i>
-          <div @click="$router.push('/home/test')">
+          <i class="gd-text" v-if="item ==1 "></i>
+          <div @click="$router.push('/test')">
             <div class="prject-item-header">
               <p class="prject-item-title" :class="{gd: item == 1}">点点项目标题</p>
               <span class="prject-item-avatar">陈</span>
             </div>
             <div class="prject-item-img">
-              <img src=""
+              <img src="/static/images/项目/u1300.png"
                    class="prject-item-image">
             </div>
             <div class="prject-item-info">
@@ -99,7 +99,7 @@
               </span>
             </div>
             <div class="prject-item-time">
-              <span>2019-03-10</span> - <span>2019-04-10</span>
+              <span>2019-03-10</span><i></i><span>2019-04-10</span>
             </div>
           </div>
         </el-card>
@@ -149,11 +149,14 @@ export default {
 <style lang="scss" scoped>
 .prject {
   position: relative;
+  width: 1200px;
   display: flex;
   margin-top: 20px;
   &-nav {
     margin-right: 20px;
     width: 280px;
+    height: calc(100vh - 88px);
+    border-radius: 5px;
     background-color: #fff;
   }
   .fa-chart-bar {
@@ -162,10 +165,11 @@ export default {
   }
   &-pagination {
     @include flex-center;
+    justify-content: flex-end;
   }
   &-list {
-    overflow-y: auto;
     @include flex-center;
+    padding: 10px;
     flex-wrap: wrap;
     justify-content: flex-start;
   }
@@ -175,19 +179,22 @@ export default {
     margin-right: 10px;
     margin-bottom: 20px;
     width: 280px;
-    overflow: hidden;
     cursor: pointer;
+    overflow: initial;
+    &:nth-child(3n) {
+      margin-right: 0;
+    }
     & .gd-text {
       position: absolute;
       text-align: center;
       padding-top: 20px;
       width: 80px;
-      left: -21px;
-      top: -9px;
-      font-size: 12px;
-      background-color: #fff;
-      border-bottom: 1px solid #ccc;
-      transform: rotate(-40deg);
+      height: 80px;
+      left: -8px;
+      top: -10px;
+      background: url('/static/images/gd.png') no-repeat;
+      background-size: 100%;
+      transform: rotate(-21deg);
     }
     &-img {
       @include flex-center;
@@ -195,6 +202,7 @@ export default {
       width: 100%;
     }
     &-image {
+
       margin: 5px auto;
       width: 80px;
       height: 50px;
@@ -238,8 +246,17 @@ export default {
       color: #fff;
     }
     &-time {
+      @include flex-center;
+      text-align: center;
       margin-top: 10px;
       font-size: 12px;
+      i {
+        display: block;
+        margin: 0 5px;
+        width: 20px;
+        height: 1px;
+        background-color: #303133;
+      }
     }
   }
   &-header {
@@ -256,8 +273,8 @@ export default {
     }
   }
   &-content {
-    padding: 0 15px;
-    padding-top: 20px;
+    padding: 0 9px;
+    padding-top: 10px;
     padding-bottom: 20px;
     border-radius: 8px;
     flex: 1;

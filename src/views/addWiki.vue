@@ -6,7 +6,7 @@
              v-model="form.name"
              class="add-wiki-name">
       <div class="add-wiki-editor-wrap">
-        <editor :height="450"
+        <editor :height="280"
                 ref="editor"
                 v-model="form.content"></editor>
         <div class="editor-icon">
@@ -26,6 +26,7 @@
       </div>
       <Select v-model="form.tags"
               multiple
+              filterable
               placeholder="添加一个标签"
               class="add-wiki-select"
               style="width:100%">
@@ -124,11 +125,7 @@ export default {
 .add-wiki {
   box-sizing: border-box;
   padding: 20px 30px;
-  width: 1200px;
-  margin: 10px auto;
-  box-shadow: 0 10px 20px -10px #112037;
-  height: calc(85vh);
-  border-radius: 5px;
+  width: 100%;
   background-color: #fff;
   .add-link {
     padding-right: 40px;
@@ -165,7 +162,7 @@ export default {
       .editor-icon {
         position: absolute;
 
-        left: 640px;
+        left: 520px;
         top: 4px;
         z-index: 9999;
         cursor: pointer;

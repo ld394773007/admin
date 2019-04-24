@@ -2,6 +2,7 @@
   <div class="nav">
     <Modal v-model="dialogVisible"
            footer-hide
+           :styles="{top: '20px'}"
            width="800">
       <p slot="header"
          style="text-align:center;font-size:16px;">
@@ -65,7 +66,7 @@
     </Modal>
     <div class="nav-left">
       <img class="logo"
-           src="/static/images/导航/u31.png">
+           src="/static/images/logo.svg">
       <Menu mode="horizontal"
             :active-name="activeName">
         <MenuItem name="1" to="/home">
@@ -172,7 +173,7 @@
           <Avatar class="nav-avatar user-avatar">陈波</Avatar>
         </Badge>
       </router-link>
-      <Dropdown trigger="click">
+      <Dropdown class="hide-dropdown"  trigger="click">
         <a href="javascript:"
            class="nav-list">
           <Icon type="ios-list"
@@ -246,7 +247,7 @@
         </Form>
       </div>
     </Modal>
-    <Modal width="90%"
+    <Modal width="1200px"
            title="新建任务"
            :styles="{top: '20px'}"
            v-model="showTestPop">
@@ -432,7 +433,8 @@ export default {
   border-bottom: 1px solid #e7e7e7;
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.05);
   z-index: 10;
-
+  width: 100%;
+  min-width: 1200px;
   .icon-group {
     cursor: pointer;
   }

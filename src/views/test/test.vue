@@ -59,8 +59,8 @@ export default {
   box-sizing: border-box;
   @include flex-center;
   width: 100%;
-  max-width: 1500px;
   margin: 0 auto;
+  margin-bottom: 20px;
   padding: 0 5px;
   &-item {
     margin-bottom: 10px;

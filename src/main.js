@@ -20,7 +20,11 @@ import {
   DatePicker,
   Card,
   Tabs,
-  TabPane
+  TabPane,
+  Header,
+  Container,
+  Breadcrumb,
+  BreadcrumbItem
 } from 'element-ui'
 // import ElementUI from 'element-ui';
 // import 'element-ui/lib/theme-chalk/index.css';
@@ -31,6 +35,10 @@ import router from './router'
 Vue.use(iView)
 Vue.use(Input)
   .use(Tabs)
+  .use(Breadcrumb)
+  .use(BreadcrumbItem)
+  .use(Container)
+  .use(Header)
   .use(CheckboxGroup)
   .use(TabPane)
   .use(Card)

@@ -69,6 +69,13 @@ body {
 .el-button {
   height: 46px;
 }
+.common-dialog {
+  margin-bottom: 0;
+  .el-dialog__body {
+    padding: 20px;
+    padding-top: 5px;
+  }
+}
 .common-btn {
   position: relative;
   display: block;
@@ -149,6 +156,7 @@ body {
 }
 .common-phone {
   @include flex-center;
+  width: 100%;
   &-input {
     flex: 1;
     margin-left: 5px;
@@ -203,7 +211,7 @@ body {
   display: none;
 }
 .iconfont {
-  font-size: 20px;
+  font-size: 16px;
   color: #a6a6a6;
 }
 .ivu-badge-dot {
@@ -321,7 +329,7 @@ body {
     content: '\e611';
     position: absolute;
     right: 10px;
-    font-family: element-icons!important;
+    font-family: element-icons !important;
     speak: none;
     font-style: normal;
     font-weight: 400;
@@ -331,6 +339,63 @@ body {
     vertical-align: baseline;
     display: inline-block;
     -webkit-font-smoothing: antialiased;
+  }
+}
+.ivu-cell-with-link {
+  .ivu-cell-arrow {
+    display: none;
+  }
+}
+.el-tabs__nav-wrap::after {
+  height: 1px;
+  .hide-line & {
+    opacity: 0;
+  }
+}
+.hide-line {
+  .el-tabs__active-bar,
+  .ivu-tabs-ink-bar {
+    opacity: 0;
+  }
+  .ivu-tabs-bar {
+    border-color: transparent;
+  }
+  .el-tabs__item.is-active,
+  .ivu-tabs-nav .ivu-tabs-tab-active {
+    color: #303133;
+  }
+}
+.el-button--text {
+  padding: 0;
+  height: auto;
+}
+.el-card {
+  border-color: transparent;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1) !important;
+}
+.el-tree-node__expand-icon::before {
+  content: '\e604';
+  font-weight: bold;
+}
+.ivu-card {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  &:hover {
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  }
+}
+.common-tree {
+  .el-tree-node__expand-icon {
+    display: none;
+  }
+}
+.el-tree-node.is-expanded {
+  .team-tree-icon {
+    transform: rotate(0) !important;
+  }
+}
+.hide-dropdown {
+  .ivu-select-dropdown {
+    padding: 0;
   }
 }
 </style>

@@ -31,16 +31,6 @@ export default new Router({
           component: () => import('@/views/information')
         },
         {
-          path: 'statistics',
-          name: 'statistics',
-          component: () => import('@/views/information/statistics')
-        },
-        {
-          path: 'trend',
-          name: 'trend',
-          component: () => import('@/views/information/trend')
-        },
-        {
           path: 'ring',
           name: 'ring',
           component: () => import('@/views/information/ring')
@@ -111,33 +101,6 @@ export default new Router({
           path: 'message',
           name: 'message',
           component: () => import('@/views/message')
-        },
-        {
-          path: 'test',
-          name: 'testIndex',
-          component: () => import('@/views/test/index'),
-          children: [
-            {
-              path: '',
-              name: 'test',
-              component: () => import('@/views/test/test')
-            },
-            {
-              path: 'personnel',
-              name: 'personnel',
-              component: () => import('@/views/test/personnel')
-            },
-            {
-              path: 'document',
-              name: 'document',
-              component: () => import('@/views/test/document')
-            },
-            {
-              path: 'indo',
-              name: 'info',
-              component: () => import('@/views/test/info')
-            },
-          ]
         },
         {
           path: 'team',
@@ -222,6 +185,73 @@ export default new Router({
       path: '/register',
       name: 'register',
       component: () => import('@/views/register')
-    }
+    },
+    {
+      path: '/test',
+      name: 'testIndex',
+      component: () => import('@/views/test/index'),
+      children: [
+        {
+          path: '',
+          name: 'test',
+          component: () => import('@/views/test/test')
+        },
+        {
+          path: 'personnel',
+          name: 'personnel',
+          component: () => import('@/views/test/personnel')
+        },
+        {
+          path: 'document',
+          name: 'document',
+          component: () => import('@/views/test/document')
+        },
+        {
+          path: 'indo',
+          name: 'info',
+          component: () => import('@/views/test/info')
+        },
+        {
+          path: 'statistics',
+          name: 'statistics',
+          component: () => import('@/views/statistics')
+        },
+        {
+          path: 'trend',
+          name: 'statisticsTrend',
+          component: () => import('@/views/statistics/trend')
+        },
+        {
+          path: 'ring',
+          name: 'statisticsRing',
+          component: () => import('@/views/statistics/ring')
+        },
+        {
+          path: 'histogram',
+          name: 'statisticsHistogram',
+          component: () => import('@/views/statistics/histogram')
+        },
+        {
+          path: 'gk',
+          name: 'statisticsGk',
+          component: () => import('@/views/statistics/gk')
+        },
+        {
+          path: 'line',
+          name: 'statisticsLine',
+          component: () => import('@/views/statistics/line')
+        },
+        {
+          path: 'table',
+          name: 'statisticsTable',
+          component: () => import('@/views/statistics/table')
+        },
+        {
+          path: 'progress',
+          name: 'statisticsProgress',
+          component: () => import('@/views/statistics/progress')
+        }
+      ]
+    },
   ]
 })

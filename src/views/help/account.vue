@@ -1,5 +1,9 @@
 <template>
   <div class="info">
+    <el-breadcrumb separator-class="el-icon-arrow-right">
+      <el-breadcrumb-item :to="{ path: '/home/help' }"><span class="breadcrumb-text">账号相关</span></el-breadcrumb-item>
+      <el-breadcrumb-item><span class="breadcrumb-text">注册账号</span></el-breadcrumb-item>
+    </el-breadcrumb>
     <h2>注册账号</h2>
     <div class="info-item">
       <p class="info-item-title">一、注册账号</p>
@@ -18,7 +22,11 @@ export default {
 
 <style lang="scss" scoped>
 .info {
+  .breadcrumb-text {
+    font-size: 12px;
+  }
   h2 {
+    margin-top: 20px;
     font-size: 12px;
     margin-bottom: 20px;
   }

@@ -11,10 +11,11 @@
         <Option value="3">项目三</Option>
         <Option value="4">项目四</Option>
       </Select>
-      <Input v-model="value" placeholder="项目名称"/>
+      <Input v-model="value"
+             placeholder="项目名称" />
     </div>
     <div class="create-test-body">
-      <div class="create-test-body-left">
+      <div class="create-test-body-left hide-line">
         <Tabs value="1"
               class="create-test-left">
           <TabPane label="描述信息"
@@ -38,33 +39,25 @@
           </TabPane>
         </Tabs>
       </div>
-      <div class="create-test-body-right">
+      <div class="create-test-body-right hide-line">
         <Tabs value="1"
               class="create-test-right">
           <TabPane label="基本信息"
                    name="1">
             <Form :model="form"
                   :label-width="80">
+              <FormItem label="处理人">
+                <Select v-model="form.clr"
+                        placeholder="选择处理人"
+                        filterable>
+                  <Option v-for="item in nameList"
+                          :value="item.value"
+                          :key="item.value">{{ item.label }}</Option>
+                </Select>
+              </FormItem>
               <FormItem label="父任务">
                 <Select v-model="form.select">
                   <Option value="beijing">推进改革开放工作</Option>
-                </Select>
-              </FormItem>
-              <FormItem label="处理人">
-                <Select v-model="form.clr"
-                        filterable>
-                  <Option v-for="item in nameList"
-                          :value="item.value"
-                          :key="item.value">{{ item.label }}</Option>
-                </Select>
-              </FormItem>
-              <FormItem label="抄送人">
-                <Select v-model="form.csr"
-                        multiple
-                        filterable>
-                  <Option v-for="item in nameList"
-                          :value="item.value"
-                          :key="item.value">{{ item.label }}</Option>
                 </Select>
               </FormItem>
               <FormItem label="优先级">
@@ -87,6 +80,18 @@
                             placeholder="选择结束时间"
                             style="width: 268px"></DatePicker>
               </FormItem>
+
+              <FormItem label="抄送人">
+                <Select v-model="form.csr"
+                        placeholder="选择抄送人"
+                        multiple
+                        filterable>
+                  <Option v-for="item in nameList"
+                          :value="item.value"
+                          :key="item.value">{{ item.label }}</Option>
+                </Select>
+              </FormItem>
+
               <FormItem label="提醒">
                 <div class="add-tx">
                   <el-button class="add-btn"

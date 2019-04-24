@@ -1,11 +1,12 @@
 <template>
   <div class="chart container">
-    <!-- <div class="chart-header">
-      <Breadcrumb separator=">">
-        <BreadcrumbItem to="/home/information">Home</BreadcrumbItem>
-        <BreadcrumbItem>Breadcrumb</BreadcrumbItem>
-    </Breadcrumb>
-    </div> -->
+    <div class="chart-header">
+      <el-breadcrumb separator="/">
+        <el-breadcrumb-item :to="{ path: '/home/information' }">数据</el-breadcrumb-item>
+        <el-breadcrumb-item>项目进度</el-breadcrumb-item>
+      </el-breadcrumb>
+      <i class="close-btn el-icon-close" @click="$router.go(-1)"></i>
+    </div>
     <Card class="chart-body">
       <div class="chart-body-header">
         <span class="success">完成数</span>
@@ -82,6 +83,16 @@ export default {
 <style lang="scss" scoped>
 .chart {
   margin-top: 20px;
+  &-header {
+    @include flex-center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    .close-btn {
+      font-weight: bold;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  }
   &-body-header {
     display: flex;
     justify-content: flex-end;

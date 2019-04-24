@@ -228,6 +228,7 @@ export default {
   }
   .step-content {
     @include flex-col-center;
+    width: 350px;
   }
   .logo {
     width: 92px;
@@ -291,7 +292,11 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 30px;
     padding-top: 90px;
+    box-sizing: border-box;
+    height: calc(100vh - 60px);
+    overflow-y: auto
   }
 }
 </style>

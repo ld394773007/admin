@@ -1,6 +1,7 @@
 <template>
   <div class="team container">
-    <div class="team-left">
+    <div class="team-left"
+         ref="left">
       <Input suffix="ios-search"
              class="search-input"
              placeholder="请输入内容"
@@ -35,6 +36,14 @@
                class="common-tree"
                @node-click="changeActive2"
                default-expand-all>
+        <span class="custom-tree-node"
+              slot-scope="{ node, data }">
+          <div>
+            <i class="iconfont icon-lingdaitie3"></i>
+            <span>{{ node.label }}</span>
+          </div>
+          <i v-if="data.children" class="iconfont icon-circle-down team-tree-icon"></i>
+        </span>
       </el-tree>
     </div>
     <div class="team-right">
@@ -54,24 +63,28 @@
                      @click="modal2 = true">添加成员</el-button>
           <el-button type="text"
                      @click="modal3 = true"
+                     v-if="active >= 4"
                      icon="el-icon-circle-plus">添加子部门</el-button>
-          <Dropdown trigger="custom" :visible="visible">
+          <Dropdown trigger="custom"
+                    :visible="visible">
             <el-button type="text"
                        @click="visible = true"
+                       v-if="active >= 4"
                        icon="el-icon-more">更多</el-button>
             <DropdownMenu slot="list">
               <Card title="Options"
                     :padding="0"
                     shadow
                     style="width: 200px;">
-                <p style="text-align:center;" slot="title">
+                <p style="text-align:center;"
+                   slot="title">
                   部门菜单
                 </p>
                 <a href="javascript:"
                    slot="extra"
-                   @click="visible = false"
-                   >
-                  <i style="font-size: 18px;font-weight:bold;" class="el-icon-close"></i>
+                   @click="visible = false">
+                  <i style="font-size: 18px;font-weight:bold;"
+                     class="el-icon-close"></i>
                 </a>
                 <CellGroup>
                   <Cell title="显示子部门成员">
@@ -91,7 +104,6 @@
                 :data="tableData"
                 tooltip-effect="dark"
                 style="width: 100%"
-                height="70vh"
                 v-if="active < 4"
                 class="team-table">
 
@@ -118,7 +130,6 @@
                 :data="tableData"
                 tooltip-effect="dark"
                 style="width: 100%"
-                height="70vh"
                 v-else
                 class="team-table">
         <el-table-column label="部门成员">
@@ -174,15 +185,17 @@
         </div>
       </div>
     </Modal>
-        <Modal v-model="modal3"
+    <Modal v-model="modal3"
            footer-hide
            width="360"
            title="创建子部门">
-      <div class="modal-content" style="min-height: 140px;">
+      <div class="modal-content"
+           style="min-height: 140px;">
         <div class="modal-center">
           <Input placeholder="子部门名称" />
           <span class="modal-center-span">隶属于：营销部</span>
-          <Button class="modal-center-btn" type="primary">创建</Button>
+          <Button class="modal-center-btn"
+                  type="primary">创建</Button>
         </div>
       </div>
     </Modal>
@@ -214,6 +227,7 @@ export default {
       modal: false,
       serchValue: '',
       switchValue: false,
+      height: 0,
       data2: [{
         id: 4,
         label: '市场部',
@@ -279,31 +293,8 @@ export default {
         sex: '男',
         phone: '13009898776',
         email: 'hellokiuyy@163.com'
-      }, {
-        name: '王小虎',
-        role: '拥有者',
-        department: '技术部门',
-        job: '副总经理',
-        sex: '男',
-        phone: '13009898776',
-        email: 'hellokiuyy@163.com'
-      }, {
-        name: '王小虎',
-        role: '拥有者',
-        department: '技术部门',
-        job: '副总经理',
-        sex: '男',
-        phone: '13009898776',
-        email: 'hellokiuyy@163.com'
-      }, {
-        name: '王小虎',
-        role: '拥有者',
-        department: '技术部门',
-        job: '副总经理',
-        sex: '男',
-        phone: '13009898776',
-        email: 'hellokiuyy@163.com'
-      }, {
+      },
+      {
         name: '王小虎',
         role: '拥有者',
         department: '技术部门',
@@ -345,6 +336,10 @@ export default {
           </span>
         </span>);
     }
+  },
+  mounted () {
+    this.height = this.$refs.left.clientHeight * (80 / 100)
+    console.log(this.height)
   }
 }
 </script>
@@ -395,6 +390,19 @@ export default {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  .custom-tree-node {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding-left: 10px;
+    width: 100%;
+    .team-tree-icon {
+      margin-right: 30px;
+      transform: rotate(-90deg);
+    }
+  }
+
   .table-name {
     @include flex-center;
     & > div {
@@ -424,12 +432,14 @@ export default {
     padding: 20px 0;
     width: 300px;
     height: calc(100vh - 90px);
+    border-radius: 5px;
     background-color: #fff;
   }
   &-right {
     flex: 1;
     padding: 20px;
     background-color: #fff;
+    border-radius: 5px;
     .search-input {
       width: 300px;
     }

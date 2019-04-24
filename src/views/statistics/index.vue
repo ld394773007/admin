@@ -2,7 +2,7 @@
   <div class="information container">
     <Card class="item"
           title="任务按执行者分布">
-      <router-link to="/home/ring"
+      <router-link to="/test/ring"
                    slot="extra">
         <Icon size="20"
               type="ios-expand" />
@@ -14,7 +14,7 @@
     </Card>
     <Card class="item"
           title="期间完成任务">
-      <router-link to="/home/histogram"
+      <router-link to="/test/histogram"
                    slot="extra">
         <Icon size="20"
               type="ios-expand" />
@@ -25,7 +25,7 @@
     </Card>
     <Card class="item"
           title="概览报表">
-      <router-link to="/home/gk"
+      <router-link to="/test/gk"
                    slot="extra">
         <Icon size="20"
               type="ios-expand" />
@@ -84,7 +84,7 @@
     </Card>
     <Card class="item"
           title="任务燃尽图">
-      <router-link to="/home/line"
+      <router-link to="/test/line"
                    slot="extra">
         <Icon size="20"
               type="ios-expand" />
@@ -95,7 +95,7 @@
     </Card>
     <Card class="item"
           title="项目进展走势图">
-      <router-link to="/home/trend"
+      <router-link to="/test/trend"
                    slot="extra">
         <Icon size="20"
               type="ios-expand" />
@@ -105,8 +105,8 @@
       </div>
     </Card>
     <Card class="item"
-          title="人均吐纳率">
-      <router-link to="/home/progress"
+          title="项目进度">
+      <router-link to="/test/progress"
                    slot="extra">
         <Icon size="20"
               type="ios-expand" />
@@ -255,7 +255,16 @@ export default {
 .information {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 20px;
+  &-header {
+    @include flex-center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    .close-btn {
+      font-weight: bold;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  }
   .item {
     margin: 0 20px;
     margin-bottom: 20px;

@@ -2,7 +2,7 @@
   <div class="chart container">
     <div class="chart-header">
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item :to="{ path: '/home/information' }">数据</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/test/statistics' }">统计</el-breadcrumb-item>
         <el-breadcrumb-item>期间完成任务</el-breadcrumb-item>
       </el-breadcrumb>
       <i class="close-btn el-icon-close" @click="$router.go(-1)"></i>
@@ -104,7 +104,6 @@ export default {
 
 <style lang="scss" scoped>
 .chart {
-  margin-top: 20px;
   &-header {
     @include flex-center;
     justify-content: space-between;

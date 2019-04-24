@@ -1,59 +1,32 @@
 <template>
   <div class="chart container">
-    <!-- <div class="chart-header">
-      <Breadcrumb separator=">">
-        <BreadcrumbItem to="/home/information">Home</BreadcrumbItem>
-        <BreadcrumbItem>Breadcrumb</BreadcrumbItem>
-    </Breadcrumb>
-    </div> -->
+    <div class="chart-header">
+      <el-breadcrumb separator="/">
+        <el-breadcrumb-item :to="{ path: '/test/statistics' }">统计</el-breadcrumb-item>
+        <el-breadcrumb-item>任务按执行者分布</el-breadcrumb-item>
+      </el-breadcrumb>
+      <i class="close-btn el-icon-close" @click="$router.go(-1)"></i>
+    </div>
     <div class="chart-body">
       <div class="chart-left">
         <Card class="chart-content">
-          <ve-line :data="lineData"></ve-line>
+          <ve-ring :data="ringData"
+                   :settings="ringSetting"></ve-ring>
         </Card>
         <Card class="chart-table">
-          <p class="chart-table-title">创建的任务详情表</p>
+          <p class="chart-table-title">详情表</p>
           <el-table max-height="250"
                     border
-                    :data="tableData"
+                    :data="ringData.rows"
                     style="width: 100%">
             <el-table-column type="index"
                              width="50">
             </el-table-column>
-            <el-table-column prop="date"
-                             label="创建时间">
-            </el-table-column>
-            <el-table-column prop="test"
-                             label="任务">
-            </el-table-column>
             <el-table-column prop="name"
                              label="执行者">
             </el-table-column>
-          </el-table>
-          <div class="chart-pagination">
-            <el-pagination background
-                           layout="prev, pager, next"
-                           :total="1000">
-            </el-pagination>
-          </div>
-        </Card>
-        <Card class="chart-table">
-          <p class="chart-table-title">完成的任务详情表</p>
-          <el-table max-height="250"
-                    border
-                    :data="tableData"
-                    style="width: 100%">
-            <el-table-column type="index"
-                             width="50">
-            </el-table-column>
-            <el-table-column prop="date"
-                             label="创建时间">
-            </el-table-column>
             <el-table-column prop="test"
-                             label="任务">
-            </el-table-column>
-            <el-table-column prop="name"
-                             label="执行者">
+                             label="任务数">
             </el-table-column>
           </el-table>
           <div class="chart-pagination">
@@ -100,38 +73,27 @@
 </template>
 
 <script>
-import VeLine from 'v-charts/lib/line.common'
+import VeRing from 'v-charts/lib/ring.common'
 export default {
   components: {
-    VeLine
+    VeRing
   },
   data () {
     return {
       ringSetting: {
         radius: [40, 100]
       },
-      lineData: {
-        columns: ['日期', '累计任务总数', '累计完成任务数'],
+      ringData: {
+        columns: ['name', 'test'],
         rows: [
-          { '日期': '04-01', '累计任务总数': 0, '累计完成任务数': 0 },
-          { '日期': '04-02', '累计任务总数': 0, '累计完成任务数': 0 },
-          { '日期': '04-03', '累计任务总数': 0, '累计完成任务数': 0 },
-          { '日期': '04-04', '累计任务总数': 28, '累计完成任务数': 9 },
-          { '日期': '04-05', '累计任务总数': 21, '累计完成任务数': 3 },
-          { '日期': '04-06', '累计任务总数': 8, '累计完成任务数': 9 }
+          { name: '陈波', test: 2 },
+          { name: '待领取', test: 10 },
         ]
       },
       form: {
         name: '',
         time: ''
-      },
-      tableData: [
-        {
-          date: '今天 18:00',
-          test: '在这里收集产品方案',
-          name: '陈波'
-        }
-      ]
+      }
     }
   }
 }
@@ -139,7 +101,17 @@ export default {
 
 <style lang="scss" scoped>
 .chart {
-  margin-top: 20px;
+  &-header {
+    @include flex-center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    .close-btn {
+      font-weight: bold;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  }
+
   &-table-title {
     text-align: center;
     margin-bottom: 10px;
@@ -176,9 +148,6 @@ export default {
       position: absolute;
       right: 0;
     }
-  }
-  &-table {
-    margin-bottom: 10px;
   }
 }
 </style>

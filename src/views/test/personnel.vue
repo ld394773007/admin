@@ -117,7 +117,7 @@ export default {
 
 <style lang="scss" scoped>
 .personnel {
-  width: 800px;
+  width: 1200px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   background-color: #fff;
   border-radius: 5px;
@@ -164,7 +164,7 @@ export default {
   &-body {
     padding: 0 20px;
     padding-bottom: 20px;
-    height: 70vh;
+    height: calc(100vh - 160px);
   }
 }
 </style>

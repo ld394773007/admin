@@ -483,8 +483,10 @@ export default {
 <style lang="scss" scoped>
 .document {
   background-color: #fff;
-  width: 960px;
-  height: 80vh;
+  width: 1200px;
+  height: calc(100vh - 88px);
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
   padding: 0 20px;
   overflow: hidden;
   .show-table-action {

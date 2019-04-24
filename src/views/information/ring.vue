@@ -1,11 +1,12 @@
 <template>
   <div class="chart container">
-    <!-- <div class="chart-header">
-      <Breadcrumb separator=">">
-        <BreadcrumbItem to="/home/information">Home</BreadcrumbItem>
-        <BreadcrumbItem>Breadcrumb</BreadcrumbItem>
-    </Breadcrumb>
-    </div> -->
+    <div class="chart-header">
+      <el-breadcrumb separator="/">
+        <el-breadcrumb-item :to="{ path: '/home/information' }">数据</el-breadcrumb-item>
+        <el-breadcrumb-item>任务按执行者分布</el-breadcrumb-item>
+      </el-breadcrumb>
+      <i class="close-btn el-icon-close" @click="$router.go(-1)"></i>
+    </div>
     <div class="chart-body">
       <div class="chart-left">
         <Card class="chart-content">
@@ -46,7 +47,8 @@
           <Form :model="form"
                 label-position="top">
             <FormItem label="时间范围">
-              <Select placeholder="请选择时间范围" v-model="form.time">
+              <Select placeholder="请选择时间范围"
+                      v-model="form.time">
                 <Option value="1">过去七天</Option>
                 <Option value="2">过去一个月</Option>
                 <Option value="3">过去三个月</Option>
@@ -100,6 +102,17 @@ export default {
 <style lang="scss" scoped>
 .chart {
   margin-top: 20px;
+  &-header {
+    @include flex-center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    .close-btn {
+      font-weight: bold;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  }
+
   &-table-title {
     text-align: center;
     margin-bottom: 10px;

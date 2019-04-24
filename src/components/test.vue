@@ -1,9 +1,10 @@
 <template>
   <el-dialog :visible.sync="value"
              :show-close="false"
-             width="90%"
-             top="2%"
+             width="1200px"
+             top="10px"
              :fullscreen="isfull"
+             class="test-dialog"
              custom-class="common-dialog">
     <div class="test-dialog-header"
          slot="title">
@@ -18,7 +19,7 @@
       </div>
       <div class="test-dialog-right">
         <div class="test-status-down">
-          <span>跳转状态为：</span>
+          <span>变更状态为：</span>
           <Dropdown>
             <a href="javascript:void(0)">
               已完成
@@ -30,6 +31,7 @@
           </Dropdown>
         </div>
         <el-button type="text"
+                   @click="onChange"
                    icon="el-icon-edit">启用编辑</el-button>
         <el-button type="text"
                    icon="el-icon-delete">删除任务</el-button>
@@ -55,17 +57,17 @@
         </div>
         <div class="test-dialog-content">
           <div class="test-dialog-tabs">
-            <el-tabs  v-model="active">
+            <el-tabs v-model="active">
               <el-tab-pane label="描述信息"
-                       name="1">
+                           name="1">
                 <div class="test-dialog-tabs-content">
                   这里是描述内容
                 </div>
               </el-tab-pane>
               <el-tab-pane label="子任务"
-                       name="2">
+                           name="2">
                 <div class="test-dialog-tabs-content">
-                  <div class="add-child-btn"><i class="el-icon-circle-plus-outline"></i>新建子项目</div>
+                  <el-button icon="el-icon-circle-plus-outline" type="text">新建子任务</el-button>
                   <el-table :data="tableData1"
                             max-height="400"
                             style="width: 100%">
@@ -87,7 +89,7 @@
                 </div>
               </el-tab-pane>
               <el-tab-pane label="操作历史"
-                       name="3">
+                           name="3">
                 <div class="test-dialog-tabs-content">
                   <el-table :data="tableData"
                             max-height="400"
@@ -117,14 +119,38 @@
                   </el-table>
                 </div>
               </el-tab-pane>
-            </el-tabs >
+            </el-tabs>
           </div>
 
-          <div class="test-dialog-info">
-            <el-tabs  value="1">
+          <div class="test-dialog-info hide-line ">
+            <el-tabs value="1">
               <el-tab-pane label="基本信息"
-                       name="1">
+                           name="1">
                 <div class="test-dialog-info-list">
+                  <div class="test-dialog-info-item">
+                    <span class="test-dialog-info-left">
+                      处理人：
+                    </span>
+                    <span class="test-dialog-info-right">
+                      章三
+                    </span>
+                  </div>
+                  <div class="test-dialog-info-item">
+                    <span class="test-dialog-info-left">
+                      父任务：
+                    </span>
+                    <span class="test-dialog-info-right">
+                      推进改革开放工作
+                    </span>
+                  </div>
+                  <div class="test-dialog-info-item">
+                    <span class="test-dialog-info-left">
+                      优先级：
+                    </span>
+                    <span class="test-dialog-info-right">
+                      紧急且重要
+                    </span>
+                  </div>
                   <div class="test-dialog-info-item">
                     <span class="test-dialog-info-left">
                       开始时间：
@@ -142,22 +168,7 @@
                       2019-03-23 19:00:00
                     </span>
                   </div>
-                  <div class="test-dialog-info-item">
-                    <span class="test-dialog-info-left">
-                      处理人：
-                    </span>
-                    <span class="test-dialog-info-right">
-                      章三
-                    </span>
-                  </div>
-                  <div class="test-dialog-info-item">
-                    <span class="test-dialog-info-left">
-                      优先级：
-                    </span>
-                    <span class="test-dialog-info-right">
-                      紧急且重要
-                    </span>
-                  </div>
+
                   <div class="test-dialog-info-item">
                     <span class="test-dialog-info-left">
                       抄送人：
@@ -166,14 +177,7 @@
                       李四，王五
                     </span>
                   </div>
-                  <div class="test-dialog-info-item">
-                    <span class="test-dialog-info-left">
-                      父任务：
-                    </span>
-                    <span class="test-dialog-info-right">
-                      推进改革开放工作
-                    </span>
-                  </div>
+
                   <div class="test-dialog-info-item">
                     <span class="test-dialog-info-left">
                       提醒：
@@ -186,7 +190,7 @@
                   </div>
                 </div>
               </el-tab-pane>
-            </el-tabs >
+            </el-tabs>
           </div>
         </div>
         <div class="test-dialog-tag">
@@ -281,6 +285,10 @@ export default {
     }
   },
   methods: {
+    onChange () {
+      console.log(111)
+      this.$emit('change')
+    },
     close () {
       this.$emit('input', false)
     },
@@ -334,26 +342,32 @@ export default {
   cursor: pointer;
 }
 .test-dialog {
+  font-size: 12px;
   &-item {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
     &-left {
-      font-size: 16px;
+      font-size: 12px;
       margin-right: 10px;
       font-weight: bold;
     }
     &-right {
       @include text-overflow;
+      font-size: 12px;
       width: 70%;
     }
   }
   &-upload,
   &-tag {
     @include flex-center;
-    margin-top: 20px;
+    margin-top: 10px;
     justify-content: flex-start;
     align-items: flex-start;
+    & > span {
+      color: #808695;
+      font-weight: bold;
+    }
   }
   &-tag {
     align-items: center;
@@ -386,6 +400,8 @@ export default {
       display: flex;
     }
     &-left {
+      font-weight: bold;
+      color: #303133;
       width: 80px;
     }
     &-right,
@@ -431,6 +447,10 @@ export default {
   &-down {
     @include flex-center;
     margin-right: 10px;
+    color: #409eff;
+    a {
+      color: #409eff;
+    }
   }
 }
 .test-title {

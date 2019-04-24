@@ -17,21 +17,30 @@
                  placeholder="请输入关键词"
                  style="width: auto" />
         </div>
-        <CellGroup>
-          <Cell v-for="item in 10"
-                :key="item">
-            <div class="message-left"
-                 slot="icon">
-              <i class="message-icon"></i>
-              <Avatar class="message-avatar">陈波</Avatar>
-            </div>
-            <p class="message-title">欧阳志远更新了工作内容，欧阳志远更新了工作内容，欧阳志远更新了工作内容，</p>
-            <div slot="label">
-              <span>阿里巴巴上市计划</span>
-              <span class="message-time">2019-09-09 12:09:56</span>
-            </div>
-          </Cell>
-        </CellGroup>
+        <div class="message-list">
+          <CellGroup>
+            <Cell v-for="item in 9"
+                  :key="item">
+              <div class="message-left"
+                   slot="icon">
+                <i class="message-icon"></i>
+                <Avatar class="message-avatar">陈波</Avatar>
+              </div>
+              <p class="message-title">欧阳志远更新了工作内容，欧阳志远更新了工作内容，欧阳志远更新了工作内容，</p>
+              <div slot="label">
+                <span>阿里巴巴上市计划</span>
+                <span class="message-time">2019-09-09 12:09:56</span>
+              </div>
+            </Cell>
+          </CellGroup>
+        </div>
+        <div class="message-pagination">
+          <el-pagination background
+                         pager-count="5"
+                         layout="prev, pager, next"
+                         :total="1000">
+          </el-pagination>
+        </div>
       </div>
       <div class="a_message-right">
         <div class="a_message-right-body">
@@ -139,6 +148,7 @@ export default {
 .a_message {
   position: relative;
   margin: 20px 0;
+  height: calc(100vh - 88px);
   &-content {
     display: flex;
   }
@@ -282,6 +292,13 @@ export default {
     }
   }
   .message {
+    &-list {
+      height: 70vh;
+    }
+    &-pagination {
+      @include flex-center;
+      margin-top: 10px;
+    }
     &-left {
       @include flex-center;
     }
@@ -302,6 +319,7 @@ export default {
       align-items: flex-start;
     }
     &-title {
+      margin-bottom: 8px;
       font-size: 14px;
       color: #545c64;
       width: 300px;

@@ -7,7 +7,7 @@
                placeholder="请输入关键字"
                style="width: 150px;margin-right:10px;" />
         <Button type="primary"
-                @click="$router.push('/home/addWiki')">创建词条</Button>
+                @click="showAdd = true">创建词条</Button>
       </div>
       <el-tabs v-model="activeName">
         <el-tab-pane label="所有Wiki"
@@ -18,12 +18,11 @@
                  slot-scope="{ node, data }">
               <span>{{ node.label }}</span>
               <div class="custom-tree-icon">
-                <Dropdown slot="extra"
-                          @on-click="clickDown">
+                <Dropdown slot="extra">
                   <Icon type="md-more"
                         class="more-icon" />
                   <DropdownMenu slot="list">
-                    <DropdownItem name="/addWiki">创建子词条</DropdownItem>
+                    <DropdownItem> <span @click="showAdd = true">创建子词条</span></DropdownItem>
                     <DropdownItem>分享</DropdownItem>
                     <DropdownItem>删除</DropdownItem>
                   </DropdownMenu>
@@ -136,19 +135,25 @@
         </div>
       </div>
     </div>
+    <Modal v-model="showAdd" footer-hide  width="1200px" :styles="{top: '10px'}" title="创建词条">
+        <add-wiki></add-wiki>
+    </Modal>
   </div>
 </template>
 
 <script>
 import AtTa from '@/components/At/AtTextarea'
 import editor from '@/components/editor'
+import addWiki from './addWiki'
 export default {
   components: {
     editor,
-    AtTa
+    AtTa,
+    addWiki
   },
   data () {
     return {
+      showAdd: false,
       value: '',
       value1: [],
       value2: [],
@@ -259,7 +264,6 @@ export default {
   display: flex;
   margin: 20px auto;
   width: 1200px;
-  min-height: 86vh;
   border-radius: 5px;
   .custom-tree {
     &-node {
@@ -281,6 +285,7 @@ export default {
         line-height: 24px;
         p {
           color: #293040;
+          font-size: 12px;
           margin-right: 10px;
           font-weight: 700;
         }
@@ -310,7 +315,7 @@ export default {
       margin-bottom: 20px;
       label {
         width: 80px;
-        font-size: 16px;
+        font-size: 12px;
         font-weight: bold;
       }
     }
@@ -336,7 +341,7 @@ export default {
     }
   }
   &-html {
-    height: 150px;
+    height: 100px;
   }
   &-action-btn {
     color: #333;
@@ -358,8 +363,10 @@ export default {
   }
   &-right {
     flex: 1;
-    padding: 5px 30px;
+    box-sizing: border-box;
+    padding: 10px 30px;
     border-radius: 5px;
+    min-height: calc(100vh - 88px);
     background-color: #fff;
     &-text {
       @include flex-center;
