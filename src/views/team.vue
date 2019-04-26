@@ -42,7 +42,8 @@
             <i class="iconfont icon-lingdaitie3"></i>
             <span>{{ node.label }}</span>
           </div>
-          <i v-if="data.children" class="iconfont icon-circle-down team-tree-icon"></i>
+          <i v-if="data.children"
+             class="iconfont icon-circle-down team-tree-icon"></i>
         </span>
       </el-tree>
     </div>
@@ -93,7 +94,8 @@
                               slot="extra" />
                   </Cell>
                   <Cell title="编辑部门" />
-                  <Cell class="cell-delete" title="删除部门">
+                  <Cell class="cell-delete"
+                        title="删除部门">
                     <span style="color:red;font-size:12px">删除部门</span>
                   </Cell>
                 </CellGroup>
@@ -107,6 +109,7 @@
                 tooltip-effect="dark"
                 style="width: 100%"
                 v-if="active < 4"
+                @row-click="rowClick"
                 class="team-table">
 
         <el-table-column prop="name"
@@ -133,6 +136,7 @@
                 tooltip-effect="dark"
                 style="width: 100%"
                 v-else
+                @row-click="rowClick"
                 class="team-table">
         <el-table-column label="部门成员">
           <template slot-scope="scope">
@@ -151,7 +155,7 @@
                          label="职位"
                          show-overflow-tooltip>
         </el-table-column>
-        <el-table-column prop="role"
+        <el-table-column prop="phone"
                          label="电话">
         </el-table-column>
         <el-table-column prop="role"
@@ -215,6 +219,159 @@
                value="http://www.baidu.com" />
       </div>
     </Modal>
+    <Modal v-model="show"
+           width="800px"
+           :styles="{top: '5%'}"
+           footer-hide
+           @on-visible-change="onVisibleChange"
+           title="企业成员信息">
+      <div class="team-info">
+        <div class="team-info-header">
+          <div class="team-info-header-left">
+            <Avatar class="team-info-avatar"
+                    style="background-color: #87d068"
+                    size="large">{{selectData.name}}</Avatar>
+            <span>{{selectData.name}}</span>
+          </div>
+          <div class="team-info-header-right">
+            <div class="team-info-email">
+              <Icon type="ios-mail-outline"
+                    size="16" /><span>{{selectData.email}}</span></div>
+            <div class="team-info-phone">
+              <Icon type="md-phone-portrait" /><span>{{selectData.phone}}</span></div>
+          </div>
+        </div>
+        <div class="team-info-title">
+          <h3>详细资料</h3>
+          <el-button type="text"
+                     icon="el-icon-edit"
+                     @click="edit = true">编辑</el-button>
+        </div>
+        <div class="team-info-content">
+          <Row class="team-info-row">
+            <Col span="8">
+            <span>姓名</span>
+            <p>{{selectData.name}}</p>
+            </Col>
+            <Col span="8">
+            <span>司龄</span>
+            <p>2年</p>
+            </Col>
+            <Col span="8">
+            <span>职位</span>
+            <p>{{selectData.position}}</p>
+            </Col>
+          </Row>
+          <Row class="team-info-row">
+            <Col span="8">
+            <span>员工类型</span>
+            <p>{{selectData.type}}</p>
+            </Col>
+            <Col span="8">
+            <span>办公地点</span>
+            <p>北京 故宫</p>
+            </Col>
+            <Col span="8">
+            <span>电子邮箱</span>
+            <p>{{selectData.email}}</p>
+            </Col>
+          </Row>
+          <Row class="team-info-row">
+            <Col span="8">
+            <span>电话</span>
+            <p>{{selectData.phone}}</p>
+            </Col>
+            <Col span="8">
+            <span>生日</span>
+            <p>{{selectData.birthday}}</p>
+            </Col>
+            <Col span="8">
+            <span>部门</span>
+            <p>{{selectData.department}}</p>
+            </Col>
+          </Row>
+        </div>
+      </div>
+    </Modal>
+    <Modal v-model="edit"
+           :styles="{top: '5%'}"
+           title="编辑企业成员信息">
+      <div class="team-popup">
+        <Form :model="selectData"
+              label-position="top">
+          <Row :gutter="16">
+            <Col span="12">
+            <FormItem label="姓名">
+              <Input placeholder="请填写姓名"
+                     v-model="selectData.name"></Input>
+            </FormItem>
+            </Col>
+            <Col span="12">
+            <FormItem label="电子邮件">
+              <Input placeholder="请填写电子邮件"
+                     v-model="selectData.email"></Input>
+            </FormItem>
+            </Col>
+          </Row>
+          <Row :gutter="16">
+            <Col span="12">
+            <FormItem label="生日">
+              <Input placeholder="请选择生日"
+                     v-model="selectData.birthday"></Input>
+            </FormItem>
+            </Col>
+            <Col span="12">
+            <FormItem label="入职时间">
+              <Input placeholder="请选择入职时间"
+                     v-model="selectData.entryTime"></Input>
+            </FormItem>
+            </Col>
+          </Row>
+          <Row :gutter="16">
+            <Col span="12">
+            <FormItem label="员工类型">
+              <Select placeholder="请选择员工类型"
+                      v-model="selectData.type">
+                <Option value="全职">全职</Option>
+                <Option value="兼职">兼职</Option>
+              </Select>
+            </FormItem>
+            </Col>
+            <Col span="12">
+            <FormItem label="公司职位">
+              <Select placeholder="请选择公司职位"
+                      v-model="selectData.position">
+                <Option value="总经理">总经理</Option>
+                <Option value="主管">主管</Option>
+                <Option value="员工">员工</Option>
+              </Select>
+            </FormItem>
+            </Col>
+          </Row>
+
+          <FormItem label="部门">
+            <Select placeholder="请选择部门"
+                    v-model="selectData.department">
+              <Option value="技术部">技术部</Option>
+              <Option value="产品部">产品部</Option>
+              <Option value="销售部">销售部</Option>
+            </Select>
+          </FormItem>
+          <FormItem label="工作地点">
+            <Cascader placeholder="请选择工作地点"
+                      :data="addressData"
+                      change-on-select
+                      v-model="selectData.address"></Cascader>
+          </FormItem>
+        </Form>
+      </div>
+      <div slot="footer">
+        <Button type="primary"
+                size="large"
+                long
+                @click="edit = false">保存</Button>
+      </div>
+    </Modal>
   </div>
 </template>
 
@@ -222,6 +379,9 @@
 export default {
   data () {
     return {
+      show: false,
+      edit: false,
+      selectData: {},
       active: '1',
       visible: false,
       modal2: false,
@@ -256,54 +416,124 @@ export default {
         label: 'label'
       },
       tableData: [{
+        id: 1,
+        birthday: '2016-05-02',
+        entryTime: '2019-05-01',
+        position: "总经理",
+        type: "全职",
         name: '王小虎',
+        department: '技术部',
+        phone: '13899200937',
+        email: '3947738882@qq.com',
         role: '拥有者',
-        department: '技术部门',
-        job: '副总经理',
-        sex: '男',
-        phone: '13009898776',
-        email: 'hellokiuyy@163.com'
+        address: ['beijing', 'gugong']
       }, {
-        name: '王小虎',
+        id: 2,
+        birthday: '2011-03-02',
+        entryTime: '2017-04-01',
+        position: "员工",
+        type: "全职",
+        name: '李四',
+        department: '销售部',
+        phone: '13899200937',
+        email: '22222@qq.com',
         role: '拥有者',
-        department: '技术部门',
-        job: '副总经理',
-        sex: '男',
-        phone: '13009898776',
-        email: 'hellokiuyy@163.com'
+        address: ['jiangsu', 'nanjing', 'fuzimiao']
       }, {
-        name: '王小虎',
+        id: 3,
+        birthday: '1990-05-02',
+        entryTime: '2014-04-01',
+        position: "主管",
+        type: "兼职",
+        name: '王五',
+        department: '产品部',
+        phone: '13899200937',
+        email: '1111111@qq.com',
         role: '拥有者',
-        department: '技术部门',
-        job: '副总经理',
-        sex: '男',
-        phone: '13009898776',
-        email: 'hellokiuyy@163.com'
+        address: ['jiangsu', 'suzhou', 'shizilin']
       }, {
-        name: '王小虎',
+        id: 4,
+        birthday: '1990-05-02',
+        entryTime: '2014-04-01',
+        position: "主管",
+        type: "兼职",
+        name: '王五',
+        department: '产品部',
+        phone: '13899200937',
+        email: '1111111@qq.com',
         role: '拥有者',
-        department: '技术部门',
-        job: '副总经理',
-        sex: '男',
-        phone: '13009898776',
-        email: 'hellokiuyy@163.com'
+        address: ['jiangsu', 'suzhou', 'shizilin']
       }, {
-        name: '王小虎',
+        id: 5,
+        birthday: '1990-05-02',
+        entryTime: '2014-04-01',
+        position: "主管",
+        type: "兼职",
+        name: '王五',
+        department: '产品部',
+        phone: '13899200937',
+        email: '1111111@qq.com',
         role: '拥有者',
-        department: '技术部门',
-        job: '副总经理',
-        sex: '男',
-        phone: '13009898776',
-        email: 'hellokiuyy@163.com'
-      },
-      {
-        name: '王小虎',
+        address: ['jiangsu', 'suzhou', 'shizilin']
+      }, {
+        id: 6,
+        birthday: '1990-05-02',
+        entryTime: '2014-04-01',
+        position: "主管",
+        type: "兼职",
+        name: '王五',
+        department: '产品部',
+        phone: '13899200937',
+        email: '1111111@qq.com',
         role: '拥有者',
-        department: '技术部门',
-        job: '副总经理',
-        sex: '男',
-        phone: '13009898776',
-        email: 'hellokiuyy@163.com'
+        address: ['jiangsu', 'suzhou', 'shizilin']
+      }],
+      addressData: [{
+        value: 'beijing',
+        label: '北京',
+        children: [
+          {
+            value: 'gugong',
+            label: '故宫'
+          },
+          {
+            value: 'tiantan',
+            label: '天坛'
+          },
+          {
+            value: 'wangfujing',
+            label: '王府井'
+          }
+        ]
+      }, {
+        value: 'jiangsu',
+        label: '江苏',
+        children: [
+          {
+            value: 'nanjing',
+            label: '南京',
+            children: [
+              {
+                value: 'fuzimiao',
+                label: '夫子庙',
+              }
+            ]
+          },
+          {
+            value: 'suzhou',
+            label: '苏州',
+            children: [
+              {
+                value: 'zhuozhengyuan',
+                label: '拙政园',
+              },
+              {
+                value: 'shizilin',
+                label: '狮子林',
+              }
+            ]
+          }
+        ],
       }],
       multipleSelection: []
     };
@@ -317,6 +547,15 @@ export default {
     }
   },
   methods: {
+    onVisibleChange (t) {
+      if (!t) {
+        this.selectData = {}
+      }
+    },
+    rowClick (row, column) {
+      this.selectData = row
+      this.show = true
+    },
     changeActive2 (n) {
       this.active = n.id
       this.text = n.label
@@ -348,7 +587,6 @@ export default {
 
 <style lang="scss" scoped>
 .modal {
-
   &-content1 {
     @include flex-col-center;
     padding-bottom: 20px;
@@ -393,8 +631,47 @@ export default {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  &-info {
+    padding: 0 40px;
+    &-title {
+      @include flex-center;
+      justify-content: space-between;
+      margin: 10px 0;
+    }
+    &-email,
+    &-phone {
+      span {
+        margin-left: 6px;
+      }
+    }
+    &-avatar {
+      margin-right: 10px;
+    }
+    &-header {
+      @include flex-center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      &-left {
+        @include flex-center;
+      }
+    }
+    &-row {
+      padding: 20px 0;
+      border-bottom: 1px solid #dcdee2;
+      &:last-child {
+        border: none;
+      }
+      span {
+        color: #515a6e;
+      }
+      p {
+        margin-top: 4px;
+        color: #17233d;
+      }
+    }
+  }
   .cell-delete {
-    border-top: 1px solid #EBEEF5;
+    border-top: 1px solid #ebeef5;
   }
   .custom-tree-node {
     display: flex;
@@ -455,7 +732,7 @@ export default {
     align-items: center;
     justify-content: space-between;
     padding-bottom: 10px;
-    border-bottom: 1px solid #EBEEF5;
+    border-bottom: 1px solid #ebeef5;
   }
 }
 </style>

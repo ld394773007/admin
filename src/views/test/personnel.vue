@@ -86,6 +86,7 @@
     </el-dialog>
     <Modal v-model="show"
            width="800px"
+           :styles="{top: '5%'}"
            footer-hide
            @on-visible-change="onVisibleChange"
            title="企业成员信息">
@@ -158,6 +159,7 @@
       </div>
     </Modal>
     <Modal v-model="edit"
+           :styles="{top: '5%'}"
            title="编辑企业成员信息">
       <div class="personnel-popup">
         <Form :model="selectData"
