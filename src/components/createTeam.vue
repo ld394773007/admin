@@ -6,7 +6,7 @@
         返回
       </div>
       <img class="logo"
-           src="https://dn-st.teambition.net/web/release/images/teambition-logo@2x.773fd502.png"
+           src="/static/images/logo.svg"
            alt=""
            srcset="">
       <Icon class="close-icon"

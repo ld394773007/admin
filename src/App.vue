@@ -1,12 +1,73 @@
 <template>
   <div id="app">
     <router-view />
+    <Drawer placement="left"
+            @on-close="changeShowNav"
+            :closable="false"
+            :value="showNav">
+      <div class="navbar">
+        <div class="user">
+          <Avatar size="large" style="background-color: #2d8cf0">陈波</Avatar>
+          <span class="user-name">陈波</span>
+        </div>
+        <el-menu @select="selectNav" router :default-active="$route.fullPath">
+          <el-menu-item to="/home" index="/home">
+          <i class="iconfont icon-home"></i>
+          首页
+          </el-menu-item>
+          <el-menu-item to="/home/project" index="/home/project">
+          <i class="iconfont icon-project-o"></i>
+          项目
+          </el-menu-item>
+          <el-menu-item to="/home/wiki" index="/home/wiki">
+          <i class="iconfont icon-wikipedia"></i>
+          wiki
+          </el-menu-item>
+          <el-menu-item to="/home/project" index="/home/project">
+          <i class="iconfont icon-shuju"></i>
+          数据
+          </el-menu-item>
+          <el-menu-item to="/home/enterprise/info" index="/home/enterprise/info">
+          <i class="iconfont icon-group"></i>
+          管理后台
+          </el-menu-item>
+          <el-menu-item to="/home/team" index="/home/team">
+          <i class="iconfont icon-icon-test"></i>
+          团队
+          </el-menu-item>
+          <el-menu-item to="/home/message" index="/home/message">
+          <i class="iconfont icon-lingdang"></i>
+          通知
+          </el-menu-item>
+          <el-menu-item index="/home/rili">
+          <i class="iconfont icon-rili"></i>
+          日历
+          </el-menu-item>
+          <el-menu-item to="/home/help" index="/home/help">
+          <i class="iconfont icon-help"></i>
+          帮助
+          </el-menu-item>
+        </el-menu>
+      </div>
+    </Drawer>
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
-  name: 'App'
+  name: 'App',
+  computed: {
+    showNav () {
+      return this.$store.state.showNav
+    }
+  },
+  methods: {
+    ...mapMutations(['changeShowNav']),
+    selectNav() {
+      this.changeShowNav()
+    }
+  },
 }
 </script>
 
@@ -54,19 +115,30 @@ body {
   font-size: 20px;
   margin-right: 8px;
 }
+.navbar{
+  .user {
+    display: flex;
+    align-items: center;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 16px;
+    &-name {
+      margin-left: 10px;
+    }
+  }
+}
 .flex-center {
   @include flex-center;
 }
-
+.ivu-drawer-body {
+  padding: 0;
+}
 .flex-start {
   justify-content: flex-start;
 }
 
 .el-input__inner {
   line-height: 46px;
-  height: 46px;
-}
-.el-button {
   height: 46px;
 }
 .common-dialog {
@@ -279,7 +351,7 @@ body {
     }
   }
 }
-.ivu-cell,
+.ivu-el-menu-item,
 .el-tabs__content {
   overflow: initial !important;
 }
@@ -310,7 +382,7 @@ body {
   padding: 10px 20px !important;
 }
 .body {
-  .ivu-cell-title,
+  .ivu-el-menu-item-title,
   .ivu-menu,
   .el-button,
   .el-form-item__label,
@@ -341,8 +413,8 @@ body {
     -webkit-font-smoothing: antialiased;
   }
 }
-.ivu-cell-with-link {
-  .ivu-cell-arrow {
+.ivu-el-menu-item-with-link {
+  .ivu-el-menu-item-arrow {
     display: none;
   }
 }
@@ -396,6 +468,175 @@ body {
 .hide-dropdown {
   .ivu-select-dropdown {
     padding: 0;
+  }
+}
+.prject-nav {
+  .ivu-el-menu-item {
+    padding: 14px 16px;
+  }
+}
+.level-popup {
+  color: #383838;
+  .time-input {
+    @include flex-center;
+    width: 510px;
+    span {
+      margin: 0 10px;
+    }
+  }
+  &-title {
+    margin-top: 8px;
+    margin-bottom: 24px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  &-btn {
+    border-color: #409eff;
+    color: #409eff;
+  }
+  &-item {
+    margin-right: 32px;
+    color: #383838;
+    font-weight: 600;
+    p {
+      font-size: 36px;
+      line-height: 38px;
+    }
+  }
+  &-info {
+    &-header {
+      @include flex-center;
+      margin-bottom: 16px;
+    }
+    & > span {
+      font-size: 12px;
+      color: #a6a6a6;
+    }
+  }
+  &-card {
+    @include flex-center;
+    &-left {
+      padding-left: 16px;
+      padding-right: 32px;
+      height: 80px;
+      border-right: 1px solid #e5e5e5;
+    }
+    &-right {
+      flex: 1;
+      @include flex-center;
+      justify-content: space-between;
+      padding-left: 32px;
+    }
+  }
+  .qytq {
+    @include flex-center;
+    margin-top: 42px;
+    margin-bottom: 20px;
+    & > p {
+      flex: 1;
+    }
+    & > div {
+      flex: 2;
+    }
+    &-list {
+      p {
+        position: relative;
+        margin-bottom: 10px;
+        &::before {
+          content: '';
+          position: absolute;
+          left: -12px;
+          top: 50%;
+          margin-top: -2px;
+          width: 4px;
+          height: 4px;
+          border-radius: 50%;
+          background-color: #409eff;
+        }
+      }
+    }
+    &-icon {
+      @include flex-col-center;
+      padding-right: 60px;
+      p {
+        font-size: 16px;
+        font-weight: bold;
+      }
+      span {
+        color: #a6a6a6;
+      }
+    }
+    &-img {
+      position: relative;
+      margin-bottom: 32px;
+      width: 100px;
+      height: 100px;
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+.focus-form {
+  .ivu-icon-ios-calendar-outline,
+  .el-input__suffix {
+    opacity: 0;
+  }
+  .ivu-input,
+  .el-input__inner,
+  .ivu-select-selection {
+    border-color: transparent;
+
+    &:hover {
+      background-color: #f3f3f3;
+    }
+    &:focus {
+      border-color: #dcdee2 !important;
+      background-color: #fff;
+      box-shadow: none;
+    }
+    &:focus &-icon {
+      opacity: 1;
+    }
+    &:focus + .el-input__suffix {
+      opacity: 1;
+    }
+  }
+  .el-input__inner {
+    height: 32px;
+    line-height: 32px;
+  }
+  .el-input__icon {
+    line-height: 32px;
+  }
+  .el-select:hover .el-input__inner {
+    border-color: transparent;
+  }
+
+  .wangEditor-container {
+    border-color: transparent;
+    &:hover {
+      background-color: #f3f3f3;
+    }
+    .wangEditor-menu-container {
+      opacity: 0;
+    }
+    &.wangEditor-focus {
+      background-color: #fff;
+      border-color: #ccc;
+      .wangEditor-menu-container {
+        opacity: 1;
+      }
+    }
+  }
+}
+.ivu-modal-header-inner {
+  text-align: center;
+}
+.chart-right {
+  &-btn {
+    @include flex-center;
+    justify-content: space-between;
   }
 }
 </style>

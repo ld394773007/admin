@@ -24,6 +24,7 @@
           </div>
           <div class="test-info-right">
             <Button type="error"
+                    size="small"
                     ghost>紧急且重要</Button>
           </div>
         </div>

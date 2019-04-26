@@ -66,6 +66,7 @@
                      v-if="active >= 4"
                      icon="el-icon-circle-plus">添加子部门</el-button>
           <Dropdown trigger="custom"
+                    class="hide-dropdown"
                     :visible="visible">
             <el-button type="text"
                        @click="visible = true"
@@ -92,10 +93,11 @@
                               slot="extra" />
                   </Cell>
                   <Cell title="编辑部门" />
+                  <Cell class="cell-delete" title="删除部门">
+                    <span style="color:red;font-size:12px">删除部门</span>
+                  </Cell>
                 </CellGroup>
-
               </Card>
-              <DropdownItem><span style="color:red;font-size:14px">删除部门</span></DropdownItem>
             </DropdownMenu>
           </Dropdown>
         </div>
@@ -346,6 +348,7 @@ export default {
 
 <style lang="scss" scoped>
 .modal {
+
   &-content1 {
     @include flex-col-center;
     padding-bottom: 20px;
@@ -390,6 +393,9 @@ export default {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  .cell-delete {
+    border-top: 1px solid #EBEEF5;
+  }
   .custom-tree-node {
     display: flex;
     align-items: center;
@@ -448,6 +454,8 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #EBEEF5;
   }
 }
 </style>

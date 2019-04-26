@@ -112,6 +112,7 @@ export default {
   },
   data() {
     return {
+      focus: false,
       editor: null
     };
   },
@@ -213,7 +214,14 @@ export default {
       if (this.value) {
         this.setHtml(this.value);
       }
-
+      let textContainer = this.editor.$editorContainer[0].getElementsByClassName('wangEditor-txt')[0]
+      textContainer.onfocus = () => {
+        this.editor.$editorContainer[0].setAttribute('class', 'wangEditor-container wangEditor-focus')
+      }
+      textContainer.onblur = () => {
+        this.editor.$editorContainer[0].setAttribute('class', 'wangEditor-container')
+      }
+      textContainer.blur()
     }
   },
   created() {},

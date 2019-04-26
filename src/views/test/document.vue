@@ -6,6 +6,7 @@
            class="iconfont el-icon-arrow-right"></i>{{isChild ? '文件' : ''}}</div>
       <div class="document-header-right">
         <el-button type="text"
+                   :disabled="isAdd"
                    @click="handleClickAdd"
                    icon="el-icon-circle-plus">创建文件</el-button>
         <el-button type="text"
@@ -424,7 +425,6 @@ export default {
       e.stopPropagation();
       this.tableIndex = 0
       this.isAdd = true
-      console.log(this.tableIndex)
       this.tableData.unshift({
         isAdd: true
       })

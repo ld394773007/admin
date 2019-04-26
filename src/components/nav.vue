@@ -65,20 +65,30 @@
       </div>
     </Modal>
     <div class="nav-left">
-      <img class="logo"
+      <div class="nav-left-logo">
+        <div class="test-index-header-icon" @click="changeShowNav">
+          <i class="iconfont icon-list"></i>
+        </div>
+        <img class="logo"
            src="/static/images/logo.svg">
+      </div>
+
       <Menu mode="horizontal"
             :active-name="activeName">
-        <MenuItem name="1" to="/home">
+        <MenuItem name="1"
+                  to="/home">
         首页
         </MenuItem>
-        <MenuItem name="2" to="/home/project">
+        <MenuItem name="2"
+                  to="/home/project">
         项目
         </MenuItem>
-        <MenuItem name="3" to="/home/wiki">
+        <MenuItem name="3"
+                  to="/home/wiki">
         wiki
         </MenuItem>
-        <MenuItem name="4" to="/home/information">
+        <MenuItem name="4"
+                  to="/home/information">
         数据
         </MenuItem>
       </Menu>
@@ -109,19 +119,21 @@
       </Dropdown>
 
       <i class="line"></i>
-      <i @click="$router.push('/home/enterprise/info')"
-         class="iconfont icon-group nav-icon"></i>
-      <router-link to="/home/team">
-        <i class="iconfont icon-icon-test nav-icon"></i>
+      <div class="nav-icon" :class="{active: navActive == 0}">
+        <i @click="$router.push('/home/enterprise/info')"
+           class="iconfont icon-group"></i>
+      </div>
+      <router-link class="nav-icon" :class="{active: navActive == 1}" to="/home/team">
+        <i class="iconfont icon-icon-test" style="font-size:18px"></i>
       </router-link>
 
       <Dropdown>
         <a href="javascript:"
            @click="changVisible"
-           class="nav-plus">
+           class="nav-plus nav-message nav-icon" :class="{active: navActive == 2}">
           <Badge class="plus-badge"
                  dot>
-            <i class="iconfont icon-lingdang nav-icon"></i>
+            <i class="iconfont icon-lingdang"></i>
           </Badge>
 
         </a>
@@ -153,14 +165,18 @@
           </Card>
         </DropdownMenu>
       </Dropdown>
-      <i class="iconfont icon-rili nav-icon"></i>
+      <div class="nav-icon">
+        <i class="iconfont icon-rili" :class="{active: navActive == 3}"></i>
+      </div>
       <Dropdown trigger="click">
         <a href="javascript:"
-           class="nav-help">
-          <i class="iconfont icon-help nav-icon"></i>
+           class="nav-help nav-icon" :class="{active: navActive == 4}">
+          <i class="iconfont icon-help"></i>
         </a>
         <DropdownMenu slot="list">
-          <DropdownItem><router-link to="/home/help">帮助中心</router-link></DropdownItem>
+          <DropdownItem>
+            <router-link to="/home/help">帮助中心</router-link>
+          </DropdownItem>
         </DropdownMenu>
       </Dropdown>
 
@@ -173,7 +189,8 @@
           <Avatar class="nav-avatar user-avatar">陈波</Avatar>
         </Badge>
       </router-link>
-      <Dropdown class="hide-dropdown"  trigger="click">
+      <Dropdown class="hide-dropdown"
+                trigger="click">
         <a href="javascript:"
            class="nav-list">
           <Icon type="ios-list"
@@ -214,7 +231,8 @@
                    placeholder="请输入项目名称"></Input>
           </FormItem>
           <FormItem>
-            <Select placeholder="请选择项目优先级" style="width:510px"
+            <Select placeholder="请选择项目优先级"
+                    style="width:510px"
                     v-model="formItem.level">
               <Option value="1">一般</Option>
               <Option value="2">重要</Option>
@@ -222,13 +240,13 @@
               <Option value="3">紧急且重要</Option>
             </Select>
           </FormItem>
-          <FormItem >
+          <FormItem>
             <div class="time-input">
               <DatePicker type="date"
                           style="width: 250px"
                           placeholder="选择开始时间"
                           v-model="formItem.startTime"></DatePicker>
-                <span>-</span>
+              <span>-</span>
               <TimePicker type="time"
                           style="width: 250px"
                           placeholder="选择结束时间"
@@ -257,6 +275,7 @@
 </template>
 
 <script>
+import {mapMutations} from 'vuex'
 import editor from './editor'
 import createTest from './createTest'
 export default {
@@ -281,16 +300,23 @@ export default {
         dec: ''
       },
       msg: 'Welcome to Your Vue.js App',
-      navPath: ['/home', '/home/project', '/home/wiki', '/home/admin', '/home/kanban']
+      navPath: ['/home', '/home/project', '/home/wiki', '/home/admin', '/home/kanban'],
+      navIconPath: ['/home/enterprise/info', '/home/team', '/home/message', '/home/rl', '/home/help']
     }
   },
   computed: {
     activeName () {
       let { fullPath } = this.$route
       return String(this.navPath.indexOf(fullPath) + 1)
+    },
+    navActive () {
+      let { fullPath } = this.$route
+      console.log(fullPath, this.navIconPath.indexOf(fullPath))
+      return this.navIconPath.indexOf(fullPath)
     }
   },
   methods: {
+    ...mapMutations(['changeShowNav']),
     changVisible (e) {
       e.stopPropagation()
       this.visible = true
@@ -322,108 +348,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-.level-popup {
-  color: #383838;
-  .time-input {
-    @include flex-center;
-    width: 510px;
-    span {
-      margin: 0 10px;
-    }
-  }
-  &-title {
-    margin-top: 8px;
-    margin-bottom: 24px;
-    font-size: 16px;
-    font-weight: bold;
-  }
-  &-btn {
-    border-color: #409eff;
-    color: #409eff;
-  }
-  &-item {
-    margin-right: 32px;
-    color: #383838;
-    font-weight: 600;
-    p {
-      font-size: 36px;
-      line-height: 38px;
-    }
-  }
-  &-info {
-    &-header {
-      @include flex-center;
-      margin-bottom: 16px;
-    }
-    & > span {
-      font-size: 12px;
-      color: #a6a6a6;
-    }
-  }
-  &-card {
-    @include flex-center;
-    &-left {
-      padding-left: 16px;
-      padding-right: 32px;
-      height: 80px;
-      border-right: 1px solid #e5e5e5;
-    }
-    &-right {
-      flex: 1;
-      @include flex-center;
-      justify-content: space-between;
-      padding-left: 32px;
-    }
-  }
-  .qytq {
-    @include flex-center;
-    margin-top: 42px;
-    margin-bottom: 20px;
-    & > p {
-      flex: 1;
-    }
-    & > div {
-      flex: 2;
-    }
-    &-list {
-      p {
-        position: relative;
-        margin-bottom: 10px;
-        &::before {
-          content: '';
-          position: absolute;
-          left: -12px;
-          top: 50%;
-          margin-top: -2px;
-          width: 4px;
-          height: 4px;
-          border-radius: 50%;
-          background-color: #409eff;
-        }
-      }
-    }
-    &-icon {
-      @include flex-col-center;
-      padding-right: 60px;
-      p {
-        font-size: 16px;
-        font-weight: bold;
-      }
-      span {
-        color: #a6a6a6;
-      }
-    }
-    &-img {
-      position: relative;
-      margin-bottom: 32px;
-      width: 100px;
-      height: 100px;
-      img {
-        width: 100%;
-      }
-    }
-  }
-}
 .nav {
   @include flex-center;
   position: relative;
@@ -435,6 +359,7 @@ export default {
   z-index: 10;
   width: 100%;
   min-width: 1200px;
+
   .icon-group {
     cursor: pointer;
   }
@@ -456,10 +381,6 @@ export default {
       margin-right: 8px;
     }
   }
-  .plus-badge {
-    width: 30px;
-    margin-right: 8px;
-  }
   &-avatar {
     cursor: pointer;
   }
@@ -467,6 +388,7 @@ export default {
     @include flex-center;
     height: 24px;
     padding: 4px 12px;
+    margin-left: 10px;
     margin-right: 12px;
     border-radius: 16px;
     color: #fff;
@@ -479,7 +401,14 @@ export default {
     }
   }
   .nav-icon {
-    margin: 0 8px;
+    @include flex-center;
+    box-sizing: border-box;
+    padding: 0 8px;
+    height: 48px;
+    border-bottom: 2px solid transparent;
+    &.active {
+      border-color: #2d8cf0;
+    }
     &.icon-icon-test {
       font-size: 24px;
     }
@@ -515,6 +444,10 @@ export default {
     @include flex-center;
     justify-content: start;
     cursor: pointer;
+    &-logo {
+      display: flex;
+      align-items: center;
+    }
   }
   &-right {
     @include flex-center;
@@ -550,6 +483,7 @@ export default {
     background-color: #409eff;
   }
   .logo {
+    margin-left: 10px;
     margin-right: 50px;
     width: 120px;
   }
@@ -604,5 +538,4 @@ export default {
     margin-left: 20px;
   }
 }
-
 </style>

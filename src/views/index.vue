@@ -17,9 +17,7 @@
         </div>
       </div>
     </el-header>
-    <el-main>
-
-    </el-main>
+    <div></div>
   </el-container>
 </template>
 

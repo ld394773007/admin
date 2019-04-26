@@ -1,7 +1,7 @@
 <template>
   <div class="info container">
     <Form :model="form"
-          class="info-form"
+          class="info-form focus-form"
           :label-width="100">
       <FormItem label="项目名称">
         <Input class="info-input"
@@ -9,25 +9,18 @@
                placeholder="请输入项目名称"></Input>
       </FormItem>
       <FormItem label="项目优先级">
-        <Select class="info-input"
+        <el-select class="info-input info-select"
+                placeholder="请输入项目优先级"
                 v-model="form.level">
-          <Option value="4">紧急且重要</Option>
-          <Option value="3">紧急</Option>
-          <Option value="2">重要</Option>
-          <Option value="1">一般</Option>
-        </Select>
+          <el-option value="4" label="紧急且重要"></el-option>
+          <el-option value="3" label="紧急"></el-option>
+          <el-option value="2" label="重要"></el-option>
+          <el-option value="1" label="一般"></el-option>
+        </el-select>
       </FormItem>
       <FormItem label="开始结束时间">
         <div class="from-time">
-          <DatePicker type="date"
-                      style="width: 248px"
-                      placeholder="请选择开始时间"
-                      v-model="form.startTime"></DatePicker>
-          <span>-</span>
-          <DatePicker type="date"
-                      style="width: 248px"
-                      placeholder="请选择结束时间"
-                      v-model="form.endTime"></DatePicker>
+          <DatePicker class="info-input " type="daterange" placement="bottom-start" placeholder="请选择开始结束时间"></DatePicker>
         </div>
       </FormItem>
       <FormItem label="项目归属">
@@ -82,6 +75,8 @@ export default {
 
 <style lang="scss" scoped>
 .info {
+  display: flex;
+  justify-content: center;
   padding-top: 1px;
   padding-bottom: 1px;
   width: 1200px;
@@ -109,6 +104,7 @@ export default {
   }
   &-form {
     margin: 30px 50px;
+    margin-right: 130px;
     margin-bottom: 40px;
     width: 610px;
     &-time {

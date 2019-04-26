@@ -24,17 +24,22 @@ import {
   Header,
   Container,
   Breadcrumb,
-  BreadcrumbItem
+  BreadcrumbItem,
+  Menu,
+  MenuItem
 } from 'element-ui'
 // import ElementUI from 'element-ui';
 // import 'element-ui/lib/theme-chalk/index.css';
 import 'iview/dist/styles/iview.css'
 import router from './router'
+import store from './store'
 
 // Vue.use(ElementUI);
 Vue.use(iView)
 Vue.use(Input)
   .use(Tabs)
+  .use(Menu)
+  .use(MenuItem)
   .use(Breadcrumb)
   .use(BreadcrumbItem)
   .use(Container)
@@ -63,5 +68,6 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   render: h => h(App)
 })

@@ -9,7 +9,7 @@
         返回
       </div>
       <img class="logo"
-           src="https://dn-st.teambition.net/web/release/images/teambition-logo@2x.773fd502.png"
+           src="/static/images/logo.svg"
            alt=""
            srcset="">
       <Icon class="close-icon"
@@ -120,8 +120,8 @@
           </div>
         </div>
         <div class="step-btn-wrap">
-          <el-button type="primary" class="step-btn">去升级</el-button>
-          <el-button type="primary" class="step-btn">先试用</el-button>
+          <el-button type="primary" class="step-btn" @click="dialogVisible = true">去升级</el-button>
+          <el-button type="primary" class="step-btn" @click="$router.push('/home')">先试用</el-button>
         </div>
       </div>
       <a href="javascript:"
@@ -129,6 +129,70 @@
          class="common-btn create-team-btn"
          @click="nextStep">开始创建<i class="iconfont icon-arrow-right-circle-s common-btn-icon"></i></a>
     </div>
+    <Modal v-model="dialogVisible"
+           footer-hide
+           :styles="{top: '20px'}"
+           width="800">
+      <p slot="header"
+         style="text-align:center;font-size:16px;">
+        <span>当前企业付费状态</span>
+      </p>
+      <div class="level-popup">
+        <p class="level-popup-title">名额使用情况</p>
+        <Card>
+          <div class="level-popup-card">
+            <div class="level-popup-card-left">
+              <i-circle :size="80"
+                        :percent="80">
+                <span class="demo-Circle-inner"
+                      style="font-size:24px">80%</span>
+              </i-circle>
+            </div>
+            <div class="level-popup-card-right">
+              <div class="level-popup-info">
+                <div class="level-popup-info-header">
+                  <div class="level-popup-item">
+                    <span>可用名额</span>
+                    <p>10</p>
+                  </div>
+                  <div class="level-popup-item">
+                    <span>剩余可激活成员名额</span>
+                    <p>8</p>
+                  </div>
+                </div>
+
+                <span>名额有效期至 2020-04-15</span>
+              </div>
+              <el-button @click="$router.push('/order')"
+                         class="level-popup-btn"
+                         plain>购买名额</el-button>
+            </div>
+          </div>
+        </Card>
+        <div class="qytq">
+          <p class="level-popup-title">企业特权</p>
+          <div class="qytq-icon">
+            <div class="qytq-img">
+              <img src="/static/images/basic-medal-active.4e09e98d.png"
+                   alt="">
+            </div>
+            <p>企业版功能</p>
+            <span>适用于任何规模的团队或企业</span>
+          </div>
+          <div class="qytq-list">
+            <p>任务、日程、文件、分享、聊天</p>
+            <p>企业和项目统计报告</p>
+            <p>强大并易于配置的权限管理</p>
+            <p>企业组织架构管理</p>
+            <p>项目和成员甘特图</p>
+            <p>自定义任务类型和字段</p>
+            <p>任务工时统计</p>
+            <p>项目信息表</p>
+            <p>丰富的第三方应用</p>
+          </div>
+        </div>
+      </div>
+    </Modal>
   </div>
 </template>
 
@@ -140,6 +204,7 @@ export default {
   },
   data () {
     return {
+      dialogVisible: false,
       current: 0,
       form: {
         name: 'dsada',
@@ -231,7 +296,7 @@ export default {
     width: 350px;
   }
   .logo {
-    width: 92px;
+    width: 120px;
   }
   .close-icon {
     position: absolute;

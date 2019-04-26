@@ -2,7 +2,7 @@
   <div class="pay">
     <div class="pay-header">
       <img class="logo"
-           src="https://dn-st.teambition.net/web/release/images/teambition-logo@2x.773fd502.png"
+           src="/static/images/logo.svg"
            alt=""
            srcset="">
     </div>
@@ -144,6 +144,9 @@ export default {
   min-height: 100vh;
   color: #383838;
   background-color: #f2f2f2;
+  .logo {
+    width: 120px;
+  }
   &-btn {
     align-self: flex-end;
   }

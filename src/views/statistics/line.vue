@@ -75,6 +75,10 @@
 
           </Form>
         </div>
+        <div class="chart-right-btn">
+          <el-button type="text" size="small">清除筛选</el-button>
+          <el-button type="primary" size="small">保存</el-button>
+        </div>
       </Card>
     </div>
   </div>

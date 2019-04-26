@@ -149,13 +149,14 @@ export default {
 <style lang="scss" scoped>
 .prject {
   position: relative;
+  padding-bottom: 20px;
   width: 1200px;
   display: flex;
   margin-top: 20px;
   &-nav {
     margin-right: 20px;
     width: 280px;
-    height: calc(100vh - 88px);
+    min-height: calc(100vh - 88px);
     border-radius: 5px;
     background-color: #fff;
   }

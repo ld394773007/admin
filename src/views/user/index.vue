@@ -32,7 +32,7 @@
       </div>
     </div>
     <div class="user-right">
-      <div class="user-content"
+      <div class="user-content focus-form"
            v-if="active == 1">
         <p class="user-content-title">个人信息</p>
         <Form ref="form"
@@ -155,9 +155,9 @@ export default {
     return {
       active: 1,
       form: {
-        name: '',
-        phone: '',
-        birthday: '',
+        name: '陈波',
+        phone: '13699011543',
+        birthday: '2013-01-01',
         address: ''
       },
       formTwo: {
@@ -204,6 +204,7 @@ export default {
     }
     &-group {
       width: 100%;
+      height: calc(100vh - 200px);
     }
   }
 
@@ -278,6 +279,8 @@ export default {
   &-content {
     padding: 20px;
     width: 100%;
+    height: calc(100vh - 88px);
+    border-radius: 5px;
     background-color: #fff;
     &-title {
       margin-bottom: 20px;
