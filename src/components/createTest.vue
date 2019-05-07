@@ -1,16 +1,6 @@
 <template>
   <div class="create-test">
-    <div class="create-test-header">
-
-    </div>
     <div class="input-wrap">
-      <Select v-model="model1"
-              style="width:200px;margin-right:10px;">
-        <Option value="1">项目一</Option>
-        <Option value="2">项目二</Option>
-        <Option value="3">项目三</Option>
-        <Option value="4">项目四</Option>
-      </Select>
       <Input v-model="value"
              placeholder="项目名称" />
     </div>

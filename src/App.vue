@@ -645,4 +645,7 @@ body {
     justify-content: space-between;
   }
 }
+.create-test-left {
+  overflow: initial !important;
+}
 </style>
