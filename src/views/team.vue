@@ -129,7 +129,23 @@
         <el-table-column prop="role"
                          label="企业角色">
         </el-table-column>
+        <el-table-column label="操作"
+                         width="90">
+          <template slot-scope="scope">
+            <Dropdown>
+              <i class="el-icon-more personnel-icon"
+                 @click.stop="() => {}"></i>
+              <DropdownMenu slot="list">
+                <div @click.stop="() => {}">
+                  <DropdownItem><span @click="rowClick(scope.row)">查看成员信息</span></DropdownItem>
+                  <DropdownItem><span @click="showPower = true">编辑项目权限</span></DropdownItem>
+                  <DropdownItem>移出项目</DropdownItem>
+                </div>
+              </DropdownMenu>
+            </Dropdown>
 
+          </template>
+        </el-table-column>
       </el-table>
       <el-table ref="multipleTable"
                 :data="tableData"
@@ -158,8 +174,22 @@
         <el-table-column prop="phone"
                          label="电话">
         </el-table-column>
-        <el-table-column prop="role"
-                         label="操作">
+        <el-table-column label="操作"
+                         width="90">
+          <template slot-scope="scope">
+            <Dropdown>
+              <i class="el-icon-more personnel-icon"
+                 @click.stop="() => {}"></i>
+              <DropdownMenu slot="list">
+                <div @click.stop="() => {}">
+                  <DropdownItem><span @click="rowClick(scope.row)">查看成员信息</span></DropdownItem>
+                  <DropdownItem><span @click="showPower = true">编辑项目权限</span></DropdownItem>
+                  <DropdownItem>移出项目</DropdownItem>
+                </div>
+              </DropdownMenu>
+            </Dropdown>
+
+          </template>
         </el-table-column>
       </el-table>
       <div class="team-pagination">
@@ -372,6 +402,30 @@
                 @click="edit = false">保存</Button>
       </div>
     </Modal>
+    <Modal v-model="showPower"
+           width="300px"
+           :closable="false"
+           :styles="{top: '20%'}"
+           footer-hide>
+      <div class="power-popup">
+        <CellGroup @on-click="onClickCell">
+          <Cell name="1"
+                title="项目管理员"
+                :selected="selected == 1">
+            <Icon type="md-checkmark"
+                  slot="extra"
+                  v-if="selected == 1" />
+          </Cell>
+          <Cell name="2"
+                title="项目成员"
+                :selected="selected == 2">
+            <Icon type="md-checkmark"
+                  v-if="selected == 2"
+                  slot="extra" />
+          </Cell>
+        </CellGroup>
+      </div>
+    </Modal>
   </div>
 </template>
 
@@ -379,6 +433,7 @@
 export default {
   data () {
     return {
+      showPower: false,
       show: false,
       edit: false,
       selectData: {},
@@ -390,6 +445,7 @@ export default {
       serchValue: '',
       switchValue: false,
       height: 0,
+      selected: 0,
       data2: [{
         id: 4,
         label: '市场部',
@@ -547,6 +603,10 @@ export default {
     }
   },
   methods: {
+    onClickCell (name) {
+      this.selected = name
+      this.showPower = false
+    },
     onVisibleChange (t) {
       if (!t) {
         this.selectData = {}

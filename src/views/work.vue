@@ -1,6 +1,7 @@
 <template>
   <div class="work container">
     <el-tabs class="work-tabs"
+             v-if="isTeam"
              v-model="active">
       <el-tab-pane label="我的任务"
                    name="1"></el-tab-pane>
@@ -177,6 +178,11 @@ export default {
         level: '紧急且重要',
         status: '未开始'
       }]
+    }
+  },
+  computed: {
+    isTeam() {
+      return this.$store.state.isTeam
     }
   },
   methods: {

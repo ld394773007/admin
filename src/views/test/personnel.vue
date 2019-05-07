@@ -40,9 +40,11 @@
               <i class="el-icon-more personnel-icon"
                  @click="stopPropagation($event)"></i>
               <DropdownMenu slot="list">
-                <DropdownItem><span @click="rowClick(scope.row)">查看成员信息</span></DropdownItem>
-                <DropdownItem>编辑项目权限</DropdownItem>
-                <DropdownItem>移出项目</DropdownItem>
+                <div @click.stop="() => {}">
+                  <DropdownItem><span @click="rowClick(scope.row)">查看成员信息</span></DropdownItem>
+                  <DropdownItem><span @click="showPower = true">编辑项目权限</span></DropdownItem>
+                  <DropdownItem>移出项目</DropdownItem>
+                </div>
               </DropdownMenu>
             </Dropdown>
 
@@ -84,6 +86,22 @@
         </div>
       </div>
     </el-dialog>
+    <Modal v-model="showPower"
+           width="300px"
+           :closable="false"
+           :styles="{top: '20%'}"
+           footer-hide>
+      <div class="power-popup">
+        <CellGroup @on-click="onClickCell">
+          <Cell name="1" title="项目管理员" :selected="selected == 1">
+            <Icon type="md-checkmark" slot="extra" v-if="selected == 1" />
+          </Cell>
+          <Cell name="2" title="项目成员" :selected="selected == 2">
+            <Icon type="md-checkmark" v-if="selected == 2" slot="extra" />
+          </Cell>
+        </CellGroup>
+      </div>
+    </Modal>
     <Modal v-model="show"
            width="800px"
            :styles="{top: '5%'}"
@@ -247,7 +265,9 @@ export default {
       visible: false,
       selectData: {},
       edit: false,
+      showPower: false,
       show: false,
+      selected: 0,
       tableData: [{
         id: 1,
         birthday: '2016-05-02',
@@ -335,6 +355,10 @@ export default {
     }
   },
   methods: {
+    onClickCell(name) {
+      this.selected = name
+      this.showPower = false
+    },
     stopPropagation (e) {
       console.log(e)
       e.stopPropagation()
@@ -358,6 +382,7 @@ export default {
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   background-color: #fff;
   border-radius: 5px;
+
   &-info {
     padding: 0 40px;
     &-title {
@@ -455,6 +480,7 @@ export default {
     padding-bottom: 20px;
     height: calc(100vh - 160px);
   }
+
 }
 </style>
 

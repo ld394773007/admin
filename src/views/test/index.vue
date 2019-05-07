@@ -34,6 +34,7 @@
           文档
           </MenuItem>
           <MenuItem name="4"
+                    v-if="isTeam"
                     :to="{name: 'personnel'}">
           人员
           </MenuItem>
@@ -64,6 +65,11 @@ export default {
       value: '1',
       pathArr: ['test', 'gt', 'document', 'personnel', 'statistics', 'info'],
       titleArr: ['未开始/未领取', '进行中', '已完成', '已逾期', '已关闭']
+    }
+  },
+  computed: {
+    isTeam() {
+      return this.$store.state.isTeam
     }
   },
   watch: {

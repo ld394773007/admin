@@ -91,7 +91,7 @@
             <Tag>标签二</Tag>
           </div>
         </div>
-        <div class="wiki-form-item">
+        <div class="wiki-form-item" v-if="isTeam">
           <div class="wiki-form-content">
             <label>评论</label>
             <at-ta :members="members"
@@ -108,7 +108,7 @@
           </div>
         </div>
       </div>
-      <div class="comment-list">
+      <div class="comment-list" v-if="isTeam">
         <div class="comment-item">
           <div class="comment-item-header">
             <p>李四</p><span>2019-04-18 10:10:27</span>
@@ -214,7 +214,9 @@ export default {
     }
   },
   computed: {
-
+    isTeam() {
+      return this.$store.state.isTeam
+    },
     num () {
       console.log(this.comment)
       return 500 - this.comment.length

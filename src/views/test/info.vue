@@ -6,10 +6,12 @@
       <FormItem label="项目名称">
         <Input class="info-input"
                v-model="form.name"
+               @on-focus="showBtn = true"
                placeholder="请输入项目名称"></Input>
       </FormItem>
       <FormItem label="项目优先级">
-        <el-select class="info-input info-select"
+        <div @click="showBtn = true">
+          <el-select class="info-input info-select"
                 placeholder="请输入项目优先级"
                 v-model="form.level">
           <el-option value="4" label="紧急且重要"></el-option>
@@ -17,9 +19,10 @@
           <el-option value="2" label="重要"></el-option>
           <el-option value="1" label="一般"></el-option>
         </el-select>
+        </div>
       </FormItem>
       <FormItem label="开始结束时间">
-        <div class="from-time">
+        <div class="from-time" @click="showBtn = true">
           <DatePicker class="info-input " type="daterange" placement="bottom-start" placeholder="请选择开始结束时间"></DatePicker>
         </div>
       </FormItem>
@@ -31,7 +34,14 @@
         </div>
       </FormItem>
       <FormItem label="项目简介">
-        <editor v-model="form.dec"></editor>
+        <div @click="showBtn = true">
+          <editor v-model="form.dec"></editor>
+        </div>
+        <div class="info-remove">
+          <Button type="primary"
+                  ghost>项目归档</Button>
+          <span>注意：项目归档后，不可编辑，只可查看</span>
+        </div>
         <div class="info-remove">
           <Button type="error"
                   ghost>删除项目</Button>
@@ -41,7 +51,7 @@
 
       <FormItem>
 
-        <div class="form-btn">
+        <div class="form-btn" v-if="showBtn">
           <Button class="info-button"
                   style="margin-right: 8px">取消</Button>
           <Button class="info-button"
@@ -60,6 +70,7 @@ export default {
   },
   data () {
     return {
+      showBtn: false,
       form: {
         name: '',
         level: '',
@@ -68,6 +79,15 @@ export default {
         gs: [],
         dec: ''
       }
+    }
+  },
+  watch: {
+    form: {
+      handler: function(val, oldVal) {
+        console.log(this.showBtn)
+        this.showBtn = true
+      },
+      deep: true
     }
   }
 }

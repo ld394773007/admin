@@ -14,7 +14,7 @@
           <span class="test-name">张三</span>
           <span class="test-time">创建于2019-03-24 19:55:23</span>
         </div>
-        <span class="test-status">当前状态：已完成</span>
+        <span class="test-status">点单系统开发</span>
 
       </div>
       <div class="test-dialog-right">
@@ -47,10 +47,6 @@
       <div class="test-dialog">
         <div class="test-dialog-list">
           <div class="test-dialog-item">
-            <div class="test-dialog-item-left">项目名称：</div>
-            <div class="test-dialog-item-right">点单系统开发</div>
-          </div>
-          <div class="test-dialog-item">
             <div class="test-dialog-item-left">任务标题：</div>
             <div class="test-dialog-item-right">推进改革开放等工作</div>
           </div>
@@ -61,7 +57,7 @@
               <el-tab-pane label="描述信息"
                            name="1">
                 <div class="test-dialog-tabs-content">
-                  这里是描述内容
+                  <div class="__content">这里是描述内容</div>
                 </div>
               </el-tab-pane>
               <el-tab-pane label="子任务"
@@ -122,12 +118,12 @@
             </el-tabs>
           </div>
 
-          <div class="test-dialog-info hide-line ">
+          <div class="test-dialog-info hide-line show-line">
             <el-tabs value="1">
               <el-tab-pane label="基本信息"
                            name="1">
                 <div class="test-dialog-info-list">
-                  <div class="test-dialog-info-item">
+                  <div class="test-dialog-info-item" v-if="isTeam">
                     <span class="test-dialog-info-left">
                       处理人：
                     </span>
@@ -169,7 +165,7 @@
                     </span>
                   </div>
 
-                  <div class="test-dialog-info-item">
+                  <div class="test-dialog-info-item" v-if="isTeam">
                     <span class="test-dialog-info-left">
                       抄送人：
                     </span>
@@ -284,6 +280,11 @@ export default {
       }]
     }
   },
+  computed: {
+    isTeam() {
+      return this.$store.state.isTeam
+    }
+  },
   methods: {
     onChange () {
       console.log(111)
@@ -340,6 +341,10 @@ export default {
 .close-btn {
   margin-left: 15px;
   cursor: pointer;
+}
+.__content {
+  height: 260px;
+  overflow-y: auto;
 }
 .test-dialog {
   font-size: 12px;
@@ -444,6 +449,9 @@ export default {
   margin-right: 10px;
   padding-right: 10px;
   border-right: 1px solid #dcdfe6;
+  &:last-child {
+    border: none;
+  }
   &-down {
     @include flex-center;
     margin-right: 10px;

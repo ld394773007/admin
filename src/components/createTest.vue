@@ -46,7 +46,7 @@
                    name="1">
             <Form :model="form"
                   :label-width="80">
-              <FormItem label="处理人">
+              <FormItem label="处理人" v-if="isTeam">
                 <Select v-model="form.clr"
                         placeholder="选择处理人"
                         filterable>
@@ -81,7 +81,7 @@
                             style="width: 268px"></DatePicker>
               </FormItem>
 
-              <FormItem label="抄送人">
+              <FormItem label="抄送人" v-if="isTeam">
                 <Select v-model="form.csr"
                         placeholder="选择抄送人"
                         multiple
@@ -169,6 +169,11 @@ export default {
         csr: [],
         select: 'beijing'
       }
+    }
+  },
+  computed: {
+    isTeam() {
+      return this.$store.state.isTeam
     }
   }
 }

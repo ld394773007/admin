@@ -423,6 +423,12 @@ body {
   .hide-line & {
     opacity: 0;
   }
+  .show-line & {
+    opacity: 1;
+  }
+}
+.test-list {
+  overflow: initial !important;
 }
 .hide-line {
   .el-tabs__active-bar,

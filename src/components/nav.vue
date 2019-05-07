@@ -66,11 +66,12 @@
     </Modal>
     <div class="nav-left">
       <div class="nav-left-logo">
-        <div class="test-index-header-icon" @click="changeShowNav">
+        <div class="test-index-header-icon"
+             @click="changeShowNav">
           <i class="iconfont icon-list"></i>
         </div>
         <img class="logo"
-           src="/static/images/logo.svg">
+             src="/static/images/logo.svg">
       </div>
 
       <Menu mode="horizontal"
@@ -119,18 +120,25 @@
       </Dropdown>
 
       <i class="line"></i>
-      <div class="nav-icon" :class="{active: navActive == 0}">
+      <div class="nav-icon"
+           v-if="isTeam"
+           :class="{active: navActive == 0}">
         <i @click="$router.push('/home/enterprise/info')"
            class="iconfont icon-group"></i>
       </div>
-      <router-link class="nav-icon" :class="{active: navActive == 1}" to="/home/team">
-        <i class="iconfont icon-icon-test" style="font-size:18px"></i>
+      <router-link class="nav-icon"
+                   v-if="isTeam"
+                   :class="{active: navActive == 1}"
+                   to="/home/team">
+        <i class="iconfont icon-icon-test"
+           style="font-size:18px"></i>
       </router-link>
 
       <Dropdown>
         <a href="javascript:"
            @click="changVisible"
-           class="nav-plus nav-message nav-icon" :class="{active: navActive == 2}">
+           class="nav-plus nav-message nav-icon"
+           :class="{active: navActive == 2}">
           <Badge class="plus-badge"
                  dot>
             <i class="iconfont icon-lingdang"></i>
@@ -166,11 +174,13 @@
         </DropdownMenu>
       </Dropdown>
       <div class="nav-icon">
-        <i class="iconfont icon-rili" :class="{active: navActive == 3}"></i>
+        <i class="iconfont icon-rili"
+           :class="{active: navActive == 3}"></i>
       </div>
       <Dropdown trigger="click">
         <a href="javascript:"
-           class="nav-help nav-icon" :class="{active: navActive == 4}">
+           class="nav-help nav-icon"
+           :class="{active: navActive == 4}">
           <i class="iconfont icon-help"></i>
         </a>
         <DropdownMenu slot="list">
@@ -181,6 +191,7 @@
       </Dropdown>
 
       <a href="javascript:"
+         v-if="isTeam"
          @click="dialogVisible = true"
          class="upgrade-btn">升级</a>
       <router-link to="/home/user">
@@ -207,8 +218,8 @@
             <router-link class="card-title"
                          to="/createTeam"
                          slot="title">创建团队/企业</router-link>
-            <CellGroup>
-              <Cell title="个人空间" />
+            <CellGroup @on-click="onClickCell">
+              <Cell name="1" title="个人空间" />
               <Cell title="阿里巴巴有限公司" />
               <Cell title="腾讯科技有限公司" />
               <Cell class="nav-out"
@@ -266,16 +277,32 @@
       </div>
     </Modal>
     <Modal width="1200px"
-           title="新建任务"
            :styles="{top: '20px'}"
            v-model="showTestPop">
+      <div class="test-header"
+           slot="header">
+        <div class="test-header-left">
+          <span>新建任务</span>
+          <Dropdown trigger="click">
+            <a href="javascript:void(0)">
+              请选择项目
+              <Icon type="ios-arrow-down"></Icon>
+            </a>
+            <DropdownMenu slot="list">
+              <DropdownItem>项目一</DropdownItem>
+              <DropdownItem>项目二</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+        </div>
+        <div class="test-header-right"></div>
+      </div>
       <create-test></create-test>
     </Modal>
   </div>
 </template>
 
 <script>
-import {mapMutations} from 'vuex'
+import { mapMutations } from 'vuex'
 import editor from './editor'
 import createTest from './createTest'
 export default {
@@ -313,10 +340,19 @@ export default {
       let { fullPath } = this.$route
       console.log(fullPath, this.navIconPath.indexOf(fullPath))
       return this.navIconPath.indexOf(fullPath)
+    },
+    isTeam() {
+      return this.$store.state.isTeam
     }
   },
   methods: {
-    ...mapMutations(['changeShowNav']),
+    ...mapMutations(['changeShowNav', 'changeIsTeam']),
+    onClickCell(name) {
+      if(name == 1) {
+        this.changeIsTeam(false)
+        this.$router.push('/home')
+      }
+    },
     changVisible (e) {
       e.stopPropagation()
       this.visible = true
@@ -348,6 +384,25 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+.test-header {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 20px;
+  &::before {
+    content: '';
+    position: absolute;
+    left: 54px;
+    top: 50%;
+    height: 20px;
+    width: 1px;
+    background-color: #e8eaec;
+    transform: translateY(-50%);
+  }
+  span {
+    margin-right: 10px;
+  }
+}
 .nav {
   @include flex-center;
   position: relative;

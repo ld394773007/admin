@@ -6,11 +6,13 @@
       <el-form-item label="企业名称">
         <el-input class="info-input"
                   placeholder="请填写企业名称"
+                  @focus="showBtn = true"
                   v-model="form.name"></el-input>
       </el-form-item>
       <el-form-item label="企业规模">
         <el-select class="info-input"
                    v-model="form.scale"
+                   @focus="showBtn = true"
                    placeholder="请选择公司规模">
           <el-option label="小型企业"
                      value="1"></el-option>
@@ -21,11 +23,11 @@
         </el-select>
       </el-form-item>
       <el-form-item label="企业简介">
-        <div class="editor-wrap">
+        <div class="editor-wrap" @click="showBtn = true">
           <editor v-model="form.info"></editor>
         </div>
       </el-form-item>
-      <el-form-item>
+      <el-form-item v-if="showBtn">
         <el-button type="primary"
                    class="info-btn"
                    @click="onSubmit">立即创建</el-button>
@@ -43,6 +45,7 @@ export default {
   },
   data () {
     return {
+      showBtn: false,
       form: {
         name: '',
         scale: '',
