@@ -43,7 +43,7 @@
         <div class="wiki-right-action">
           <el-button class="wiki-action-btn"
                      icon="el-icon-edit"
-                     @click="$router.push('/home/addWiki')"
+                     @click="showEdit = true"
                      type="text">编辑</el-button>
           <el-button class="wiki-action-btn"
                      :icon="isStar ? 'el-icon-star-on' : 'el-icon-star-off'"
@@ -76,8 +76,8 @@
         <span>编辑(1)</span>
         <i></i>
         <span>浏览(23)</span>
-        <i></i>
-        <span>评论(2)</span>
+        <i v-if="isTeam"></i>
+        <span v-if="isTeam">评论(2)</span>
       </div>
       <div class="wiki-html">
         <p>dsadsadasd</p>
@@ -138,6 +138,9 @@
     <Modal v-model="showAdd" footer-hide  width="1200px" :styles="{top: '10px'}" title="创建词条">
         <add-wiki></add-wiki>
     </Modal>
+    <Modal v-model="showEdit" footer-hide  width="1200px" :styles="{top: '10px'}" title="编辑词条">
+        <add-wiki></add-wiki>
+    </Modal>
   </div>
 </template>
 
@@ -154,6 +157,7 @@ export default {
   data () {
     return {
       showAdd: false,
+      showEdit: false,
       value: '',
       value1: [],
       value2: [],

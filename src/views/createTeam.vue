@@ -58,7 +58,6 @@
            class="step-content">
         <img src="https://dn-st.teambition.net/web/release/images/organization.5a82f38e.svg">
         <h1 class="create-team-title">输入团队或组织名称</h1>
-        <p class="create-team-subtitle">如需帮助，请拨打400-060-5578</p>
         <el-input class="create-team-input"
                   placeholder="请输入企业名"
                   v-model="form.name"></el-input>
@@ -101,7 +100,6 @@
       </div>
       <div v-else-if="current == 3"
            class="step-content">
-        <h1 class="create-team-title">选择使用版本</h1>
         <div class="edition-item">
           <div class="edition-item-header">
             <img src="/static/images/basic.1a03bd6a.svg">

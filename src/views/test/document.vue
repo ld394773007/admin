@@ -4,11 +4,15 @@
     <div class="document-header">
       <div class="document-title"> <span @click="isChild = false">文件库</span> <i v-if="isChild"
            class="iconfont el-icon-arrow-right"></i>{{isChild ? '文件' : ''}}</div>
+      <div class="document-header-center">
+        <Input suffix="ios-search" placeholder="请输入关键词，按Enter键搜索" style="width: 220px" />
+        <Button type="text">全部文档</Button>
+      </div>
       <div class="document-header-right">
         <el-button type="text"
                    :disabled="isAdd"
                    @click="handleClickAdd"
-                   icon="el-icon-circle-plus">创建文件</el-button>
+                   icon="el-icon-circle-plus">创建文件夹</el-button>
         <el-button type="text"
                    icon="el-icon-upload">上传文件</el-button>
       </div>
@@ -119,18 +123,13 @@
               </div>
             </template>
             <template slot-scope="scope">
-              <div class="show-table-action" @click="stopPropagation">
+              <div class="show-table-action"
+                   @click="stopPropagation">
                 <i class="table-action-icon el-icon-download"></i>
                 <i class="table-action-icon el-icon-rank"></i>
-                <i @click="handleClickEdit(scope.$index)" class="table-action-icon el-icon-edit"></i>
-                <Dropdown trigger="click">
-                  <i class="table-action-icon el-icon-arrow-down"></i>
-                  <DropdownMenu slot="list">
-                    <DropdownItem>复制文件夹链接</DropdownItem>
-                    <DropdownItem>复制文件夹</DropdownItem>
-                    <DropdownItem>移动回收站</DropdownItem>
-                  </DropdownMenu>
-                </Dropdown>
+                <i @click="handleClickEdit(scope.$index)"
+                   class="table-action-icon el-icon-edit"></i>
+                <i class="table-action-icon el-icon-delete"></i>
 
               </div>
             </template>
@@ -178,12 +177,6 @@
                            icon="el-icon-download"
                            type="text">下载</el-button>
                 <el-button class="table-action-btn"
-                           icon="el-icon-rank"
-                           type="text">移动</el-button>
-                <el-button class="table-action-btn"
-                           icon="el-icon-tickets"
-                           type="text">复制</el-button>
-                <el-button class="table-action-btn"
                            icon="el-icon-delete"
                            type="text">删除</el-button>
               </div>
@@ -226,14 +219,7 @@
                 <i class="table-action-icon el-icon-download"></i>
                 <i class="table-action-icon el-icon-rank"></i>
                 <i class="table-action-icon el-icon-edit"></i>
-                <Dropdown trigger="click">
-                  <i class="table-action-icon el-icon-arrow-down"></i>
-                  <DropdownMenu slot="list">
-                    <DropdownItem>复制文件链接</DropdownItem>
-                    <DropdownItem>复制文件</DropdownItem>
-                    <DropdownItem>移动回收站</DropdownItem>
-                  </DropdownMenu>
-                </Dropdown>
+                <i class="table-action-icon el-icon-delete"></i>
 
               </div>
             </template>
@@ -247,6 +233,7 @@
              :key="item.id">
           <div class="document-item"
                :class="{checked: item.isChecked}">
+            <i class="iconfont icon-wenjian"></i>
             <div class="document-item-checkbox"
                  @click="changeCheckbox(i)">
               <input class="document-item-input"
@@ -261,8 +248,11 @@
               <span class="document-item-btn"><i class="el-icon-arrow-down"></i></span>
             </div>
           </div>
-          <div v-if="!item.isAdd" class="document-item-text">{{item.name}}</div>
-          <div v-else class="document-item-text" @click="stopPropagation">
+          <div v-if="!item.isAdd"
+               class="document-item-text">{{item.name}}</div>
+          <div v-else
+               class="document-item-text"
+               @click="stopPropagation">
             <Input @on-enter="handleEnter"
                    v-model="value"
                    placeholder="按Enter新建文件夹" />
@@ -398,14 +388,14 @@ export default {
         this.tableIndex = -1
         this.isAdd = false
         this.tableData.shift()
-      } else if(this.tableIndex > -1) {
+      } else if (this.tableIndex > -1) {
         this.tableData[this.tableIndex].isEdit = false
       }
     },
-    handleEditEnter() {
+    handleEditEnter () {
       this.reset()
     },
-    handleClickEdit(i, e) {
+    handleClickEdit (i, e) {
       console.log(e)
       console.log(i)
       this.tableIndex = i
@@ -508,6 +498,7 @@ export default {
     }
   }
   &-item {
+    @include flex-center;
     position: relative;
 
     width: 168px;
@@ -516,6 +507,10 @@ export default {
     box-sizing: border-box;
     overflow: hidden;
     border: 1px solid #d3d1d1;
+    & > i {
+      font-size: 70px;
+      color: #409eff;
+    }
     &-text {
       @include flex-center;
       margin-top: 8px;

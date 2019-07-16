@@ -36,7 +36,7 @@
         </div>
         <el-Button type="success"
                    ghost
-                   class="wechat-btn"><span class="wechat-btn-text">使用微信登录</span><i class="fab fa-weixin wechat-btn-icon"></i></el-Button>
+                   class="wechat-btn"><span class="wechat-btn-text">使用微信登录</span><i class="iconfont icon-wechat wechat-btn-icon"></i></el-Button>
       </div>
     </div>
     <div class="login-content"
@@ -44,6 +44,7 @@
       <img class="logo"
            src="/static/images/创建企业_团队/u116.png">
       <el-form :model="ruleForm2"
+               ref="ruleForm2"
                label-width="0"
                class="demo-ruleForm">
         <el-form-item>
@@ -120,19 +121,21 @@
            v-if="!isLogin">
         <a href="javascript:"
            class="common-btn plan"
-           @click="register('ruleForm2')">其他号码登录<i class="iconfont icon-arrow-right-circle-s common-btn-icon"></i></a>
+           @click="register()">其他号码登录<i class="iconfont icon-arrow-right-circle-s common-btn-icon"></i></a>
       </div>
     </div>
-    <create-team  v-if="showCreate" :current="current" @next-step="nextStep"></create-team>
+    <create-team v-if="showCreate"
+                 :current="current"
+                 @next-step="nextStep"></create-team>
   </div>
 </template>
 
 <script>
 import createTeam from '@/components/createTeam'
 import { checkMobile, checkEmail } from '@/utils'
-
+import {Message} from 'element-ui'
 export default {
-  components: {createTeam},
+  components: { createTeam },
   data () {
     return {
       isLogin: false,
@@ -152,16 +155,22 @@ export default {
     };
   },
   methods: {
-    nextStep() {
+    nextStep () {
       this.$router.push('/home')
     },
     submitForm (formName) {
       this.isSuccess = true
     },
     register (formName) {
-      this.$refs[formName].validate((valid) => {
+      console.log(this.$refs.ruleForm2)
+      this.$refs.ruleForm2.validate((valid) => {
+        console.log(valid)
         if (valid) {
+          console.log(valid)
           this.isSuccess = true
+          Message.success({
+            message: '恭喜你，注册成功！'
+          });
         } else {
           console.log('error submit!!');
           return false;
@@ -240,6 +249,5 @@ export default {
     background-color: #fff;
     color: #67c23a;
   }
-
 }
 </style>

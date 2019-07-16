@@ -123,7 +123,7 @@
 <script>
 import errMessage from '@/components/errMessage'
 import { checkMobile, checkEmail } from '@/utils'
-
+import {Message} from 'element-ui'
 export default {
   components: {
     errMessage
@@ -177,7 +177,9 @@ export default {
       } else if (repassword != password) {
         this.message1 = '两次密码不相同'
       } else {
-        alert('reset success')
+        Message.success({
+          message: '重置成功！'
+        })
       }
     },
     submitForm (formName) {

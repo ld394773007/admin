@@ -21,7 +21,7 @@
       </Form>
 
       <div class="wechat-login">
-        <el-Button type="success" ghost class="wechat-btn"><span class="wechat-btn-text">使用微信登录</span><i class="fab fa-weixin wechat-btn-icon"></i></el-Button>
+        <el-Button type="success" ghost class="wechat-btn"><span class="wechat-btn-text">使用微信登录</span><i class="iconfont icon-wechat wechat-btn-icon"></i></el-Button>
         <div class="register">还没有账号？ <router-link to="/register"
                        class="register-btn">注册新账号</router-link>
         </div>

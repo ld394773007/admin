@@ -1,6 +1,6 @@
 <template>
   <div class="information container">
-    <Card class="item"
+    <!-- <Card class="item"
           title="任务按执行者分布">
       <router-link to="/test/ring"
                    slot="extra">
@@ -11,8 +11,8 @@
         <ve-ring :data="ringData"
                  :settings="ringSetting"></ve-ring>
       </div>
-    </Card>
-    <Card class="item"
+    </Card> -->
+    <!-- <Card class="item"
           title="期间完成任务">
       <router-link to="/test/histogram"
                    slot="extra">
@@ -22,7 +22,7 @@
       <div class="content">
         <vue-histogram :data="histogramData"></vue-histogram>
       </div>
-    </Card>
+    </Card> -->
     <Card class="item"
           title="概览报表">
       <router-link to="/test/gk"
@@ -93,7 +93,7 @@
         <ve-line :data="lineData"></ve-line>
       </div>
     </Card>
-    <Card class="item"
+    <!-- <Card class="item"
           title="项目进展走势图">
       <router-link to="/test/trend"
                    slot="extra">
@@ -131,7 +131,7 @@
           </el-table-column>
         </el-table>
       </div>
-    </Card>
+    </Card> -->
 
   </div>
 </template>

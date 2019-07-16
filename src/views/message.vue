@@ -50,69 +50,6 @@
           <div class="a_message-right-content">
             软件开发云上有您的新动态
           </div>
-          <div class="a_message-right-wrap">
-            <div class="a_message-right-info">
-              <div class="a_message-right-info-item">
-                <span class="a_message-right-info-left">
-                  项目：
-                </span>
-                <span class="a_message-right-info-left">
-                  练成项目
-                </span>
-              </div>
-              <div class="a_message-right-info-item">
-                <span class="a_message-right-info-left">
-                  工作项：
-                </span>
-                <span class="a_message-right-info-left">
-                  练成机械质量检测系统
-                </span>
-              </div>
-              <div class="a_message-right-info-item">
-                <span class="a_message-right-info-left">
-                  修改人：
-                </span>
-                <span class="a_message-right-info-left">
-                  chengbo
-                </span>
-              </div>
-              <div class="a_message-right-info-item">
-                <span class="a_message-right-info-left">
-                  修改时间：
-                </span>
-                <span class="a_message-right-info-left">
-                  20193-03-10
-                </span>
-              </div>
-            </div>
-            <div class="a_message-right-table">
-              <div class="a_message-right-table-header">
-                <div class="a_message-right-table-item">
-                  修改字段
-                </div>
-                <div class="a_message-right-table-item">
-                  修改前
-                </div>
-                <div class="a_message-right-table-item">
-                  修改后
-                </div>
-              </div>
-              <div class="a_message-right-table-body">
-                <div class="a_message-right-table-list">
-                  <div class="a_message-right-table-item">
-                    修改后
-                  </div>
-                  <div class="a_message-right-table-item">
-                    修改后
-                  </div>
-                  <div class="a_message-right-table-item">
-                    修改后
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
           <div class="a_message-right-link">
             <span>链接</span>
             <a href="">http://wwww.baidu.com</a>
@@ -293,7 +230,8 @@ export default {
   }
   .message {
     &-list {
-      height: 70vh;
+      height: 63vh;
+      overflow-y: auto;
     }
     &-pagination {
       @include flex-center;

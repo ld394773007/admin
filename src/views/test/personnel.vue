@@ -126,9 +126,7 @@
         </div>
         <div class="personnel-info-title">
           <h3>详细资料</h3>
-          <el-button type="text"
-                     icon="el-icon-edit"
-                     @click="edit = true">编辑</el-button>
+
         </div>
         <div class="personnel-info-content">
           <Row class="personnel-info-row">

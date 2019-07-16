@@ -7,7 +7,7 @@
           <Icon type="md-star"
                 slot="icon" />
         </Cell>
-        <Cell title="未开始项目">
+        <Cell title="未开始项目" extra="20">
           <Icon type="ios-clock-outline"
                 slot="icon" />
         </Cell>
@@ -16,7 +16,7 @@
           <Icon type="logo-buffer"
                 slot="icon" />
         </Cell>
-        <Cell title="已完成的项目">
+        <Cell title="已完成的项目" extra="20">
           <Icon type="md-copy"
                 slot="icon" />
         </Cell>
@@ -25,11 +25,11 @@
           <Icon type="md-calendar"
                 slot="icon" />
         </Cell>
-        <Cell title="已归档的项目">
+        <Cell title="已归档的项目" extra="20">
           <Icon type="ios-filing"
                 slot="icon" />
         </Cell>
-        <Cell title="查看甘特图">
+        <Cell title="查看甘特图" extra="20">
           <Icon type="ios-stats"
                 slot="icon" />
         </Cell>
@@ -85,7 +85,7 @@
           <div @click="$router.push('/test')">
             <div class="prject-item-header">
               <p class="prject-item-title" :class="{gd: item == 1}">点点项目标题</p>
-              <span class="prject-item-avatar">陈</span>
+              <span class="prject-item-avatar">志远</span>
             </div>
             <div class="prject-item-img">
               <img src="/static/images/项目/u1300.png"

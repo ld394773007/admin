@@ -18,18 +18,10 @@
           <i class="iconfont icon-application-for-membership"
              slot="icon"></i>
         </Cell>
-        <Cell name="3"
-              title="停用的成员">
-          <i style="font-size:16px"
-             class="iconfont icon-shanchuchengyuan"
-             slot="icon"></i>
-        </Cell>
       </CellGroup>
       <div class="team-btn-wrap">
         <el-button type="text"
                    icon="el-icon-circle-plus">创建部门</el-button>
-        <el-button type="text"
-                   icon="el-icon-sort">部门排序</el-button>
       </div>
       <el-tree :data="data2"
                node-key="id"

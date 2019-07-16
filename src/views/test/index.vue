@@ -141,7 +141,7 @@ export default {
   &-body {
     box-sizing: border-box;
     height: calc(100vh - 68px);
-    margin-top: 20px;
+    margin-top: 10px;
     border-top: 1px solid transparent;
     overflow-y: auto;
   }

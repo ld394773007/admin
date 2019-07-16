@@ -85,6 +85,9 @@
           <div class="work-column">
             <p>紧急重要</p>
           </div>
+          <div class="work-column">
+            <p>已完成</p>
+          </div>
           <div class="work-column work-column-time">
             <p>2019-07-23 09:00截止</p>
           </div>
@@ -100,7 +103,7 @@
     <test-dialog v-model="dialogVisible" @change="changeDialog"></test-dialog>
     <Modal width="1200px"
            title="新建任务"
-           :styles="{top: '20px'}"
+           :styles="{top: '10%'}"
            v-model="showTestPop">
       <create-test></create-test>
     </Modal>

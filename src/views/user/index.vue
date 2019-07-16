@@ -70,11 +70,6 @@
                         placeholder="选择日期">
             </DatePicker>
           </FormItem>
-          <FormItem label="地址">
-            <Input class="form-input"
-                   @on-focus="showBtn = true"
-                   v-model="form.address"></Input>
-          </FormItem>
           <FormItem v-if="showBtn">
             <Button type="primary"
                     style="margin-left: 36px;margin-right: 10px"

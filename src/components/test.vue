@@ -2,7 +2,6 @@
   <el-dialog :visible.sync="value"
              :show-close="false"
              width="1200px"
-             top="10px"
              :fullscreen="isfull"
              class="test-dialog"
              custom-class="common-dialog">

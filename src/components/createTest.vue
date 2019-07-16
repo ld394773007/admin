@@ -2,7 +2,7 @@
   <div class="create-test">
     <div class="input-wrap">
       <Input v-model="value"
-             placeholder="项目名称" />
+             placeholder="任务标题" />
     </div>
     <div class="create-test-body">
       <div class="create-test-body-left hide-line">
@@ -46,9 +46,7 @@
                 </Select>
               </FormItem>
               <FormItem label="父任务">
-                <Select v-model="form.select">
-                  <Option value="beijing">推进改革开放工作</Option>
-                </Select>
+                <p>推进改革开放工作</p>
               </FormItem>
               <FormItem label="优先级">
                 <Select v-model="form.level">
@@ -71,9 +69,9 @@
                             style="width: 268px"></DatePicker>
               </FormItem>
 
-              <FormItem label="抄送人" v-if="isTeam">
+              <FormItem label="关闭人" v-if="isTeam">
                 <Select v-model="form.csr"
-                        placeholder="选择抄送人"
+                        placeholder="选择关闭人"
                         multiple
                         filterable>
                   <Option v-for="item in nameList"

@@ -231,7 +231,7 @@
     </div>
     <Modal width="550px"
            title="新建项目"
-           :styles="{top: '20px'}"
+           :styles="{top: '10%'}"
            v-model="showProjectPop">
       <div class="add-project">
         <Form :model="formItem"
@@ -256,6 +256,7 @@
               <DatePicker type="date"
                           style="width: 250px"
                           placeholder="选择开始时间"
+                          @on-change="changeDate"
                           v-model="formItem.startTime"></DatePicker>
               <span>-</span>
               <TimePicker type="time"
@@ -277,7 +278,7 @@
       </div>
     </Modal>
     <Modal width="1200px"
-           :styles="{top: '20px'}"
+           :styles="{top: '5%'}"
            v-model="showTestPop">
       <div class="test-header"
            slot="header">
@@ -347,6 +348,10 @@ export default {
   },
   methods: {
     ...mapMutations(['changeShowNav', 'changeIsTeam']),
+    changeDate(params) {
+      console.log(params)
+      this.formItem.endTime = '23:59:59'
+    },
     onClickCell(name) {
       if(name == 1) {
         this.changeIsTeam(false)

@@ -27,14 +27,6 @@
           <i class="iconfont icon-shuju"></i>
           数据
           </el-menu-item>
-          <el-menu-item to="/home/enterprise/info" index="/home/enterprise/info">
-          <i class="iconfont icon-group"></i>
-          管理后台
-          </el-menu-item>
-          <el-menu-item to="/home/team" index="/home/team">
-          <i class="iconfont icon-icon-test"></i>
-          团队
-          </el-menu-item>
           <el-menu-item to="/home/message" index="/home/message">
           <i class="iconfont icon-lingdang"></i>
           通知
@@ -212,13 +204,13 @@ body {
     transform: translate(-50%, -50%);
     transition: all 0.3s;
   }
+  &:hover &-text {
+    opacity: 0;
+  }
   &:hover .wechat-btn-icon {
     opacity: 1;
     left: 50%;
     color: #fff;
-  }
-  &:hover &-text {
-    opacity: 0;
   }
   &:hover {
     background: #67c23a !important;
@@ -283,7 +275,7 @@ body {
   display: none;
 }
 .iconfont {
-  font-size: 16px;
+  font-size: 20px;
   color: #a6a6a6;
 }
 .ivu-badge-dot {
@@ -400,6 +392,7 @@ body {
   &::after {
     content: '\e611';
     position: absolute;
+    top: 50%;
     right: 10px;
     font-family: element-icons !important;
     speak: none;
@@ -411,6 +404,7 @@ body {
     vertical-align: baseline;
     display: inline-block;
     -webkit-font-smoothing: antialiased;
+    transform: translateY(-50%);
   }
 }
 .ivu-el-menu-item-with-link {
@@ -434,9 +428,6 @@ body {
   .el-tabs__active-bar,
   .ivu-tabs-ink-bar {
     opacity: 0;
-  }
-  .ivu-tabs-bar {
-    border-color: transparent;
   }
   .el-tabs__item.is-active,
   .ivu-tabs-nav .ivu-tabs-tab-active {
@@ -647,5 +638,25 @@ body {
 }
 .create-test-left {
   overflow: initial !important;
+}
+
+.icon-icon-test {
+  font-size: 22px !important;
+}
+.ivu-tag {
+  height: 25px;
+  line-height: 25px;
+}
+.el-dialog {
+  margin-top: 0 !important;
+  &__wrapper {
+    @include flex-center;
+  }
+}
+.ivu-modal {
+  top: 0 !important;
+  &-wrap {
+    @include flex-center;
+  }
 }
 </style>

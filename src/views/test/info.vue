@@ -3,6 +3,19 @@
     <Form :model="form"
           class="info-form focus-form"
           :label-width="100">
+      <FormItem label="项目封面">
+        <Upload multiple
+                type="drag"
+                class="info-upload"
+                action="//jsonplaceholder.typicode.com/posts/">
+          <div style="padding: 20px 0">
+            <Icon type="ios-cloud-upload"
+                  size="52"
+                  style="color: #3399ff"></Icon>
+            <p>上传项目封面图</p>
+          </div>
+        </Upload>
+      </FormItem>
       <FormItem label="项目名称">
         <Input class="info-input"
                v-model="form.name"
@@ -12,21 +25,30 @@
       <FormItem label="项目优先级">
         <div @click="showBtn = true">
           <el-select class="info-input info-select"
-                placeholder="请输入项目优先级"
-                v-model="form.level">
-          <el-option value="4" label="紧急且重要"></el-option>
-          <el-option value="3" label="紧急"></el-option>
-          <el-option value="2" label="重要"></el-option>
-          <el-option value="1" label="一般"></el-option>
-        </el-select>
+                     placeholder="请输入项目优先级"
+                     v-model="form.level">
+            <el-option value="4"
+                       label="紧急且重要"></el-option>
+            <el-option value="3"
+                       label="紧急"></el-option>
+            <el-option value="2"
+                       label="重要"></el-option>
+            <el-option value="1"
+                       label="一般"></el-option>
+          </el-select>
         </div>
       </FormItem>
       <FormItem label="开始结束时间">
-        <div class="from-time" @click="showBtn = true">
-          <DatePicker class="info-input " type="daterange" placement="bottom-start" placeholder="请选择开始结束时间"></DatePicker>
+        <div class="from-time"
+             @click="showBtn = true">
+          <DatePicker class="info-input "
+                      type="daterange"
+                      placement="bottom-start"
+                      placeholder="请选择开始结束时间"></DatePicker>
         </div>
       </FormItem>
-      <FormItem label="项目归属">
+      <FormItem label="项目归属"
+                v-if="isTeam">
         <div class="project-gs">
           <Avatar class="project-gs-avatar">陈波</Avatar>
           <span class="project-gs-name">陈波</span>
@@ -51,7 +73,8 @@
 
       <FormItem>
 
-        <div class="form-btn" v-if="showBtn">
+        <div class="form-btn"
+             v-if="showBtn">
           <Button class="info-button"
                   style="margin-right: 8px">取消</Button>
           <Button class="info-button"
@@ -81,9 +104,14 @@ export default {
       }
     }
   },
+  computed: {
+    isTeam () {
+      return this.$store.state.isTeam
+    }
+  },
   watch: {
     form: {
-      handler: function(val, oldVal) {
+      handler: function (val, oldVal) {
         console.log(this.showBtn)
         this.showBtn = true
       },
@@ -105,6 +133,9 @@ export default {
   min-height: calc(100vh - 88px);
   margin-bottom: 20px;
   background-color: #fff;
+  &-upload {
+    width: 124px;
+  }
   .form-btn {
     display: flex;
     justify-content: flex-end;
