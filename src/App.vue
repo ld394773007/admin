@@ -387,7 +387,7 @@ body {
     font-weight: bold;
   }
 }
-.ivu-select-item-selected {
+#app .ivu-select-item-selected {
   position: relative;
   &::after {
     content: '\e611';
@@ -396,6 +396,7 @@ body {
     right: 10px;
     font-family: element-icons !important;
     speak: none;
+    font-size: 12px;
     font-style: normal;
     font-weight: 400;
     font-variant: normal;

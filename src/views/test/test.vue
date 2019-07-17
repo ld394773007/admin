@@ -1,9 +1,32 @@
 <template>
   <div class="test">
     <div class="test-header">
-      <Input suffix="ios-search"
-             placeholder="请输入关键词"
-             style="width: auto" />
+      <div>
+        <Input suffix="ios-search"
+               placeholder="请输入关键词"
+               style="width: auto" />
+        <Select v-model="model1"
+                style="width:200px">
+          <Option :value="1">所有工作</Option>
+          <Option :value="2">我的工作</Option>
+          <Option :value="3">我创建的</Option>
+        </Select>
+        <Select v-model="model1"
+                style="width:200px">
+          <Option :value="1">优先级</Option>
+          <Option :value="2">处理人</Option>
+          <Option :value="3">结束时间</Option>
+        </Select>
+        <span>处理人</span>
+        <Select v-model="value1"
+                multiple
+                filterable
+                style="width:200px">
+          <Option :value="1">章三</Option>
+          <Option :value="2">李四</Option>
+          <Option :value="3">王五</Option>
+        </Select>
+      </div>
       <div class="test-header-right">
         <a href="javascript:"
            class="plus-icon"></a>
@@ -385,6 +408,8 @@ export default {
       dialogVisible: false,
       showDialog: false,
       buttonSize: '20',
+      model1: 1,
+      value1: 1,
       titleArr: ['未开始/未领取', '进行中', '已完成', '已逾期', '已关闭'],
       checkForm: {
         showTitle: false,
